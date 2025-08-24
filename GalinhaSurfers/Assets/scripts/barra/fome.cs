@@ -53,8 +53,7 @@ public class fome : MonoBehaviour
         if (cookieAtivo)
         {
             velFome = 0;
-            float incremento = (valorMaxFome - valorAtualFome) * (Time.deltaTime / 3f);
-            valorAtualFome += incremento;
+            valorAtualFome += 100f * Time.deltaTime;
             valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
 
             float alturaMaximaF = alturaInicialFome * (valorMaxFome / valorMaxInicialFome);
@@ -64,10 +63,8 @@ public class fome : MonoBehaviour
             if (tempoRestanteCookie <= 0f)
             {
                 cookieAtivo = false;
-                velFome = 1f; // aqui você pode colocar seu valor original de velFome
+                velFome = 50f;
             }
-
-            return;
         }
 
         //Pimenta
@@ -85,9 +82,7 @@ public class fome : MonoBehaviour
             );
 
             float novoMaxFome = valorMaxInicialFome - valorMaxPimenta;
-
-            if (valorMaxFome != novoMaxFome)
-                valorMaxFome = novoMaxFome;
+            valorMaxFome = novoMaxFome;
 
             if (valorAtualFome > valorMaxFome)
                 valorAtualFome = valorMaxFome;
@@ -97,8 +92,6 @@ public class fome : MonoBehaviour
                 pimentaAtiva = false;
                 barraPimenta.gameObject.SetActive(false);
                 valorMaxFome = valorMaxInicialFome;
-                if (valorAtualFome > valorMaxFome)
-                    valorAtualFome = valorMaxFome;
             }
         }
 
