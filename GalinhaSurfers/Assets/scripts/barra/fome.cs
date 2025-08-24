@@ -22,6 +22,10 @@ public class fome : MonoBehaviour
 
     private bool pimentaAtiva;
 
+    [Header("Barra Pimenta")]
+    public float duracaoCookie;
+    private bool cookieAtivo;
+    private float tempoRestanteCookie;
     void Start()
     {
         // Fome
@@ -41,9 +45,31 @@ public class fome : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
-        {
             AtivarPimenta();
+        if (Input.GetKeyDown(KeyCode.C))
+            AtivarCookie();
+
+        //Cookie
+        if (cookieAtivo)
+        {
+            velFome = 0;
+            float incremento = (valorMaxFome - valorAtualFome) * (Time.deltaTime / 3f);
+            valorAtualFome += incremento;
+            valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
+
+            float alturaMaximaF = alturaInicialFome * (valorMaxFome / valorMaxInicialFome);
+            float porcentagemF = valorAtualFome / valorMaxFome;
+            barraFome.sizeDelta = new Vector2(barraFome.sizeDelta.x, alturaMaximaF * porcentagemF);
+            tempoRestanteCookie -= Time.deltaTime;
+            if (tempoRestanteCookie <= 0f)
+            {
+                cookieAtivo = false;
+                velFome = 1f; // aqui você pode colocar seu valor original de velFome
+            }
+
+            return;
         }
+
         //Pimenta
         if (pimentaAtiva)
         {
@@ -95,5 +121,10 @@ public class fome : MonoBehaviour
         pimentaAtiva = true;
         barraPimenta.gameObject.SetActive(true);
         valorAtualPimenta = valorMaxPimenta;
+    }
+    public void AtivarCookie()
+    {
+        cookieAtivo = true;
+        tempoRestanteCookie = duracaoCookie;
     }
 }
