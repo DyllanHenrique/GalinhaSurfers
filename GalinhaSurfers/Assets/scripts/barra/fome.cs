@@ -4,33 +4,96 @@ using UnityEngine;
 
 public class fome : MonoBehaviour
 {
-    public RectTransform barra;
-    public float valorAtual;
-    public float valorMax;
+    [Header("Barra Fome")]
+    public RectTransform barraFome;
+    public float valorAtualFome;
+    public float valorMaxFome;
+    public float velFome; 
 
-    private float alturaInicial;   
-    private float valorMaxInicial;
+    [Header("Barra Pimenta")]
+    public RectTransform barraPimenta;
+    public float valorAtualPimenta;
+    public float valorMaxPimenta;
+    public float duracaoPimenta;
 
-    public float velfome;
+    private float alturaInicialFome;
+    private float alturaInicialPimenta;
+    private float valorMaxInicialFome;
+
+    private bool pimentaAtiva;
+
     void Start()
     {
-        alturaInicial = barra.sizeDelta.y;
-        valorMaxInicial = alturaInicial;
-        valorMax = valorMaxInicial;
-        valorAtual = valorMax;
+        // Fome
+        alturaInicialFome = barraFome.sizeDelta.y;
+        valorMaxInicialFome = alturaInicialFome;
+        valorMaxFome = valorMaxInicialFome;
+        valorAtualFome = valorMaxFome;
+
+        // Pimenta
+        alturaInicialPimenta = barraPimenta.sizeDelta.y;
+        valorMaxPimenta = alturaInicialPimenta;
+        valorAtualPimenta = valorMaxPimenta;
+
+        pimentaAtiva = false;
     }
 
     void Update()
     {
-        valorAtual -= velfome * Time.deltaTime;
-        valorAtual = Mathf.Clamp(valorAtual, 0, valorMax);
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            AtivarPimenta();
+        }
+        //Pimenta
+        if (pimentaAtiva)
+        {
+            float velPimenta = valorMaxPimenta / duracaoPimenta;
+            valorAtualPimenta -= velPimenta * Time.deltaTime;
+            valorAtualPimenta = Mathf.Clamp(valorAtualPimenta, 0, valorMaxPimenta);
 
-        float alturaMaximaAtual = alturaInicial * (valorMax / valorMaxInicial);
-        float porcentagem = valorAtual / valorMax;
-        float novaAltura = alturaMaximaAtual * porcentagem;
-        barra.sizeDelta = new Vector2(
-            barra.sizeDelta.x,
-            novaAltura
+            float porcentagemPimenta = valorAtualPimenta / valorMaxPimenta;
+
+            barraPimenta.sizeDelta = new Vector2(
+                barraPimenta.sizeDelta.x,
+                alturaInicialPimenta * porcentagemPimenta
+            );
+
+            float novoMaxFome = valorMaxInicialFome - valorMaxPimenta;
+
+            if (valorMaxFome != novoMaxFome)
+                valorMaxFome = novoMaxFome;
+
+            if (valorAtualFome > valorMaxFome)
+                valorAtualFome = valorMaxFome;
+
+            if (valorAtualPimenta <= 0)
+            {
+                pimentaAtiva = false;
+                barraPimenta.gameObject.SetActive(false);
+                valorMaxFome = valorMaxInicialFome;
+                if (valorAtualFome > valorMaxFome)
+                    valorAtualFome = valorMaxFome;
+            }
+        }
+
+        //Fome
+        valorAtualFome -= velFome * Time.deltaTime;
+        valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
+
+        float alturaMaximaFome = alturaInicialFome * (valorMaxFome / valorMaxInicialFome);
+        float porcentagemFome = valorAtualFome / valorMaxFome;
+        float novaAlturaFome = alturaMaximaFome * porcentagemFome;
+
+        barraFome.sizeDelta = new Vector2(
+            barraFome.sizeDelta.x,
+            novaAlturaFome
         );
+    }
+
+    public void AtivarPimenta()
+    {
+        pimentaAtiva = true;
+        barraPimenta.gameObject.SetActive(true);
+        valorAtualPimenta = valorMaxPimenta;
     }
 }
