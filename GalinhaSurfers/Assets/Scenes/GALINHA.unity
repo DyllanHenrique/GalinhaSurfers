@@ -1473,7 +1473,7 @@ MonoBehaviour:
   velFome: 25
   barraPimenta: {fileID: 325444643}
   duracaoPimenta: 10
-  tamanhoPimenta: 0.25
+  tamanhoPimenta: 0.3
   duracaoCookie: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

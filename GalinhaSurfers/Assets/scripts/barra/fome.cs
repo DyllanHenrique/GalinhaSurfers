@@ -14,11 +14,12 @@ public class fome : MonoBehaviour
     public RectTransform barraPimenta;
     public float duracaoPimenta;
     [Range(0f, 1f)]
-    public float tamanhoPimenta = 0.25f; // 25%
+    public float tamanhoPimenta; // 25%
     private float valorMaxPimenta;
     private float valorAtualPimenta;
     private bool pimentaAtiva;
     private float valorMaxFomeAntesPimenta;
+    private float debitoPimenta = 0f;
 
     [Header("Cookie")]
     public float duracaoCookie;
@@ -88,7 +89,9 @@ public class fome : MonoBehaviour
         {
             pimentaAtiva = false;
             barraPimenta.gameObject.SetActive(false);
-            valorMaxFome = valorMaxFomeAntesPimenta; // Reset maxFome após pimenta
+            valorMaxFome = valorMaxFomeAntesPimenta;
+            valorMaxFome += debitoPimenta* (1 / tamanhoPimenta);
+            debitoPimenta = 0f;
         }
     }
 
@@ -154,24 +157,32 @@ public class fome : MonoBehaviour
     {
         if (pimentaAtiva)
         {
-            // Se a pimenta está ativa, ajustamos o valor base (antes da redução da pimenta)
-            valorMaxFomeAntesPimenta += quantidade;
-            valorMaxFomeAntesPimenta = Mathf.Clamp(valorMaxFomeAntesPimenta, 0, 1000);
+            if (quantidade < 0) 
+            {
+                float partePimenta = quantidade * tamanhoPimenta; 
+                float parteFome = quantidade * (1- tamanhoPimenta);  
 
-            // Recalcula o valor visível com a pimenta aplicada
-            valorMaxPimenta = valorMaxFomeAntesPimenta * tamanhoPimenta;
-            valorMaxFome = valorMaxFomeAntesPimenta - valorMaxPimenta;
+                valorAtualPimenta += partePimenta;
+                valorAtualPimenta = Mathf.Clamp(valorAtualPimenta, 0, valorMaxPimenta);
 
-            // Garante que a fome atual não passe do limite
+                valorMaxFome += parteFome;
+                valorMaxFome = Mathf.Clamp(valorMaxFome, 0, 1000);
+
+                debitoPimenta += partePimenta; 
+            }
+            else 
+            {
+                valorMaxFome += quantidade;
+                valorMaxFome = Mathf.Clamp(valorMaxFome, 0, 1000);
+            }
+
             if (valorAtualFome > valorMaxFome)
                 valorAtualFome = valorMaxFome;
 
-            // Atualiza a posição da barra de pimenta (porque o Y depende do valor base)
             AtualizarPosicaoPimenta();
         }
         else
         {
-            // Caso não esteja com pimenta, funciona normal
             valorMaxFome += quantidade;
             valorMaxFome = Mathf.Clamp(valorMaxFome, 0, 1000);
 
