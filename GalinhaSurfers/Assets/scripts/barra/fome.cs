@@ -35,10 +35,10 @@ public class fome : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        /*if (Input.GetKeyDown(KeyCode.P))
             AtivarPimenta();
         if (Input.GetKeyDown(KeyCode.C))
-            AtivarCookie();
+            AtivarCookie();/*/
 
         AtualizarFome();
         AtualizarPimenta();
@@ -99,6 +99,10 @@ public class fome : MonoBehaviour
         if (tempoRestanteCookie <= 0f)
         {
             cookieAtivo = false;
+            if(valorAtualFome >= valorMaxFome)
+            {
+                valorAtualFome = valorMaxFome;
+            }
         }
     }
     public void AtivarPimenta()
