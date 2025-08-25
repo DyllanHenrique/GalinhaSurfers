@@ -34,6 +34,7 @@ public class comida_geral : MonoBehaviour
             Fome.AdicionarFome(valorFome);
             Fome.AlterarMaxFome(valorMaxFome);
         }
+        Debug.Log("COMEU");
         Destroy(gameObject);
     }
 }

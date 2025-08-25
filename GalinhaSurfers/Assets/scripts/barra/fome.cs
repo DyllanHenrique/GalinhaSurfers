@@ -78,6 +78,12 @@ public class fome : MonoBehaviour
         float porcentagemPimenta = valorAtualPimenta / valorMaxPimenta;
         barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta * porcentagemPimenta);
 
+        Debug.Log(
+            $"[DEBUG PIMENTA] Max: {valorMaxPimenta}, Atual: {valorAtualPimenta}, " +
+            $"AlturaBase: {alturaPimenta}, Porcentagem: {porcentagemPimenta}, " +
+            $"SizeDeltaY: {barraPimenta.sizeDelta.y}"
+        );
+
         if (valorAtualPimenta <= 0f)
         {
             pimentaAtiva = false;
