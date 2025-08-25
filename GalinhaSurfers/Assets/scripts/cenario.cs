@@ -5,16 +5,20 @@ using UnityEngine;
 public class cenario : MonoBehaviour
 {
     public float cenarioAndando;
+    public Pontos pontos;
 
-    // Update is called once per frame
     void Update()
     {
         andaa();
     }
-
     void andaa()
     {
-        Vector2 deslocar = new Vector2 (0, Time.time * cenarioAndando);
+        Vector2 deslocar = new Vector2(0, Time.time * cenarioAndando);
         GetComponent<Renderer>().material.mainTextureOffset = deslocar;
+    }
+    public void AumentarVelocidade()
+    {
+        cenarioAndando *= 1.5f; // aumenta 1 na velocidade
+        Debug.Log("Velocidade ao extremoooo: " + cenarioAndando);
     }
 }

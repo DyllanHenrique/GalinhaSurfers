@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cenarioAndando: 0.05
+  pontos: {fileID: 0}
 --- !u!1 &330533246
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +675,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7e04b2fa63e1948805b06063f15cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cenarioAndando: 0.07
+  cenarioAndando: 0.1
+  pontos: {fileID: 0}
 --- !u!64 &489352797
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1223,6 +1225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cenarioAndando: 0.05
+  pontos: {fileID: 0}
 --- !u!1 &1722729803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,6 +1409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MetrosPorSegundo: 3
   textMetros: {fileID: 510604332}
+  cenario: {fileID: 489352796}
 --- !u!4 &2082620732
 Transform:
   m_ObjectHideFlags: 0
