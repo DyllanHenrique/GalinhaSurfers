@@ -27,11 +27,11 @@ public class SpawnScript : MonoBehaviour
     }
     private void SpawnarItens()
     {
-        QntdSpawnSorteado = Random.Range(1,6);
+        QntdSpawnSorteado = 5;
         for (int i = 0; i < QntdSpawnSorteado; i++)
         {
-            Instantiate(prefabs[0], spawns[1].position, transform.rotation);
+            int spawnEscolhido = Random.Range(0,5);
+            Instantiate(prefabs[0], spawns[spawnEscolhido].position, transform.rotation);
         }
-        
     }
 }
