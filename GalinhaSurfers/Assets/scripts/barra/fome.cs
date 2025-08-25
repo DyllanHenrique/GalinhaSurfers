@@ -49,9 +49,9 @@ public class fome : MonoBehaviour
     void AtualizarFome()
     {
         // Redução normal da fome
-        valorAtualFome -= velFome * Time.deltaTime; valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome); 
+        valorAtualFome -= velFome * Time.deltaTime; valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
         // Atualiza altura da barra de fome
-        float alturaMaximaFome = alturaInicialFome * (valorMaxFome / valorMaxInicialFome); 
+        float alturaMaximaFome = alturaInicialFome * (valorMaxFome / valorMaxInicialFome);
         float porcentagemFome = valorAtualFome / valorMaxFome; barraFome.sizeDelta = new Vector2(barraFome.sizeDelta.x, alturaMaximaFome * porcentagemFome);
     }
     void AtualizarPimenta()
@@ -63,7 +63,7 @@ public class fome : MonoBehaviour
         valorAtualPimenta = Mathf.Clamp(valorAtualPimenta, 0, valorMaxPimenta);
         // Atualiza altura da barra da pimenta 
         float alturaPimenta = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
-        float porcentagemPimenta = valorAtualPimenta / valorMaxPimenta; 
+        float porcentagemPimenta = valorAtualPimenta / valorMaxPimenta;
         barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta * porcentagemPimenta);
         Debug.Log($"[PIMENTA] Max: {valorMaxPimenta:F2} | Atual: {valorAtualPimenta:F2}");
         if (valorAtualPimenta <= 0f)
@@ -106,13 +106,13 @@ public class fome : MonoBehaviour
         pimentaAtiva = true;
         barraPimenta.gameObject.SetActive(true);
         // Salva o maxFome antes da redução da pimenta
-        valorMaxFomeAntesPimenta = valorMaxFome; 
+        valorMaxFomeAntesPimenta = valorMaxFome;
         // Calcula valor da pimenta (25% do maxFome atual antes de reduzir) 
-        valorMaxPimenta = valorMaxFomeAntesPimenta * tamanhoPimenta; valorAtualPimenta = valorMaxPimenta; 
+        valorMaxPimenta = valorMaxFomeAntesPimenta * tamanhoPimenta; valorAtualPimenta = valorMaxPimenta;
         // Aplica redução no maxFome sem afetar o Y da barra da pimenta
-        valorMaxFome -= valorMaxPimenta; 
+        valorMaxFome -= valorMaxPimenta;
         // Define altura inicial da barra proporcional ao valor da pimenta
-        float alturaPimenta = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome); 
+        float alturaPimenta = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
         barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta);
         // Calcula posição inicial 
         AtualizarPosicaoPimenta();
