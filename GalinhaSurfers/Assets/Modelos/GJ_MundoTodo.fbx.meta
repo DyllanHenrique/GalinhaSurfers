@@ -7,13 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: MI_Bushes
+    second: {fileID: 2100000, guid: efd1042152197a64ead1986ca126cbc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MI_General
-    second: {fileID: 2100000, guid: adaaffa528ad71f49b773a0b77c046ef, type: 2}
+    second: {fileID: 2100000, guid: 10d45efd071ab0a4c9f3eb3d4b33773f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Lines
+    second: {fileID: 2100000, guid: f0e011760d2b24a47b50069c51b21e94, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MI_Path
-    second: {fileID: 2100000, guid: a24b060a7bb2a6342bd0cf073ac15810, type: 2}
+    second: {fileID: 2100000, guid: 285103daf318f7b4fa86c47c346c5d3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Water
+    second: {fileID: 2100000, guid: b785ca45aea3a5f4892fc370ae540c7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Wood
+    second: {fileID: 2100000, guid: c5f92e9b6ed660046be32fda1e0be836, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
