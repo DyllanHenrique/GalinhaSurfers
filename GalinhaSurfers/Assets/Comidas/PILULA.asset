@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: COOKIE
+  m_Name: PILULA
   m_EditorClassIdentifier: Assembly-CSharp::comidaConfiig
-  nomeComida: COOKIE
-  cliquesParaComer: 5
+  nomeComida: PILULA
+  cliquesParaComer: 3
   valorFome: 0
   valorMaxFome: 0
   temPoder: 1

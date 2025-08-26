@@ -1669,7 +1669,7 @@ GameObject:
   - component: {fileID: 575997537}
   - component: {fileID: 575997538}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderGERAL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2060,7 +2060,7 @@ GameObject:
   - component: {fileID: 677891504}
   - component: {fileID: 677891503}
   m_Layer: 5
-  m_Name: Image
+  m_Name: bloqueioPause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2135,7 +2135,7 @@ GameObject:
   - component: {fileID: 871124164}
   - component: {fileID: 871124165}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2573,6 +2573,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146331443}
   m_CullTransparentMesh: 1
+--- !u!1 &1151553354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151553356}
+  - component: {fileID: 1151553355}
+  m_Layer: 0
+  m_Name: SoundMixer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1151553355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151553354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6990acac7b3844f95173d46444603d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 0}
+  sliderMusic: {fileID: 1492148962}
+  sliderFx: {fileID: 871124165}
+  sliderMaster: {fileID: 575997538}
+  sliderValue1: 0
+  sliderValue2: 0
+  sliderValue3: 0
+--- !u!4 &1151553356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151553354}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 948.32996, y: 552.81537, z: -0.21290417}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1152509928
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,7 +3100,7 @@ GameObject:
   - component: {fileID: 1492148961}
   - component: {fileID: 1492148962}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderMUSIC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3746,6 +3797,7 @@ MonoBehaviour:
   duracaoPimenta: 5
   tamanhoPimenta: 0.25
   duracaoCookie: 10
+  duracaoCM: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3760,3 +3812,4 @@ SceneRoots:
   - {fileID: 328820888}
   - {fileID: 1760494292}
   - {fileID: 2082620732}
+  - {fileID: 1151553356}

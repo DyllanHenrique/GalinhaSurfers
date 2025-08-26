@@ -8,6 +8,8 @@ public class fome : MonoBehaviour
     public float valorAtualFome;
     public float valorMaxFome;
     public float velFome; // velocidade normal de diminuição da fome [Header("Barra Pimenta")] 
+    private float alturaInicialFome;
+    private float valorMaxInicialFome;
     public RectTransform barraPimenta;
     public float duracaoPimenta; [Range(0f, 1f)]
     public float tamanhoPimenta; // 25% 
@@ -20,8 +22,10 @@ public class fome : MonoBehaviour
     public float duracaoCookie;
     private bool cookieAtivo;
     private float tempoRestanteCookie;
-    private float alturaInicialFome;
-    private float valorMaxInicialFome;
+    [Header("CogumeloMal")]
+    public float duracaoCM;
+    private bool CMAtivo;
+    private float tempoRestanteCM;
     void Start()
     {
         // Fome 
@@ -36,14 +40,12 @@ public class fome : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
-            AtivarPimenta();
-        if (Input.GetKeyDown(KeyCode.C))
-            AtivarCookie();
+            AtivarCogumeloMal();
 
         AtualizarFome();
         AtualizarPimenta();
         AtualizarCookie();
-
+        AtualizarCM();
         if (pimentaAtiva) AtualizarPosicaoPimenta();
     }
     void AtualizarFome()
@@ -65,7 +67,7 @@ public class fome : MonoBehaviour
         float alturaPimenta = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
         float porcentagemPimenta = valorAtualPimenta / valorMaxPimenta;
         barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta * porcentagemPimenta);
-        Debug.Log($"[PIMENTA] Max: {valorMaxPimenta:F2} | Atual: {valorAtualPimenta:F2}");
+        //Debug.Log($"[PIMENTA] Max: {valorMaxPimenta:F2} | Atual: {valorAtualPimenta:F2}");
         if (valorAtualPimenta <= 0f)
         {
             pimentaAtiva = false;
@@ -94,11 +96,23 @@ public class fome : MonoBehaviour
     {
         if (!cookieAtivo)
             return;
-        valorAtualFome += 150f * Time.deltaTime;
+        valorAtualFome += 200f * Time.deltaTime;
         tempoRestanteCookie -= Time.deltaTime;
         if (tempoRestanteCookie <= 0f)
         {
             cookieAtivo = false;
+        }
+    }
+    void AtualizarCM()
+    {
+        if (!CMAtivo)
+            return;
+       
+        valorAtualFome += 150f * Time.deltaTime;
+        tempoRestanteCM -= Time.deltaTime;
+        if (tempoRestanteCM <= 0f)
+        {
+            CMAtivo = false;
         }
     }
     public void AtivarPimenta()
@@ -121,6 +135,12 @@ public class fome : MonoBehaviour
     {
         cookieAtivo = true;
         tempoRestanteCookie = duracaoCookie;
+    }
+    public void AtivarCogumeloMal()
+    {
+        CMAtivo = true;
+        tempoRestanteCM = duracaoCM;
+        valorMaxFome = valorMaxFome / 2;
     }
     public void AdicionarFome(float quantidade)
     {
