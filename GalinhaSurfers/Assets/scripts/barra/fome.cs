@@ -22,7 +22,6 @@ public class fome : MonoBehaviour
     public float duracaoCookie;
     private bool cookieAtivo;
     private float tempoRestanteCookie;
-
     [Header("CogumeloMal")]
     public float duracaoCM;
     private bool CMAtivo;
@@ -112,6 +111,13 @@ public class fome : MonoBehaviour
         if (tempoRestanteCookie <= 0f)
         {
             cookieAtivo = false;
+            GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
+            foreach (GameObject fruta in frutas)
+            {
+                Collider2D col = fruta.GetComponent<Collider2D>();
+                if (col != null)
+                    col.enabled = true; // reativa o clique
+            }
         }
     }
     void AtualizarCM()
@@ -144,6 +150,13 @@ public class fome : MonoBehaviour
     }
     public void AtivarCookie()
     {
+        GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
+        foreach (GameObject fruta in frutas)
+        {
+            Collider2D col = fruta.GetComponent<Collider2D>();
+            if (col != null)
+                col.enabled = false;
+        }
         cookieAtivo = true;
         tempoRestanteCookie = duracaoCookie;
     }
@@ -151,7 +164,7 @@ public class fome : MonoBehaviour
     {
         CMAtivo = true;
         tempoRestanteCM = duracaoCM;
-        valorMaxFome = valorMaxFome / 2;
+        valorMaxFome = valorMaxFome / 4;
     }
     public void AdicionarFome(float quantidade)
     {

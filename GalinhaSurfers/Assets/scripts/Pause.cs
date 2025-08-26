@@ -18,12 +18,26 @@ public class Pause : MonoBehaviour
     {
         if (isPaused)
         {
+            GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
+            foreach (GameObject fruta in frutas)
+            {
+                Collider2D col = fruta.GetComponent<Collider2D>();
+                if (col != null)
+                    col.enabled = true; 
+            }
             MenuDePause.SetActive(false);
             Time.timeScale = 1f;
             isPaused = false;
         }
         else
         {
+            GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
+            foreach (GameObject fruta in frutas)
+            {
+                Collider2D col = fruta.GetComponent<Collider2D>();
+                if (col != null)
+                    col.enabled = false; 
+            }
             MenuDePause.SetActive(true);
             Time.timeScale = 0f;
             isPaused = true;

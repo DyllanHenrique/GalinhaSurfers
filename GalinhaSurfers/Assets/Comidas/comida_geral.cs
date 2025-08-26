@@ -22,7 +22,7 @@ public class comida_geral : MonoBehaviour
     }
     private void Update() 
     { 
-        rb.velocity = new Vector3(0, 0, 2); 
+        //rb.velocity = new Vector3(0, 0, 2); 
     }
 
     void OnMouseDown()

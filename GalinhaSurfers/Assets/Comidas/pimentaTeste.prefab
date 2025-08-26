@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 877627401797714010}
   m_Layer: 0
   m_Name: pimentaTeste
-  m_TagString: Untagged
+  m_TagString: Frutas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
