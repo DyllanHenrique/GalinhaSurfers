@@ -7,7 +7,7 @@ public class fome : MonoBehaviour
     public RectTransform barraFome;
     public float valorAtualFome;
     public float valorMaxFome;
-    public float velFome; // velocidade normal de diminuição da fome [Header("Barra Pimenta")] 
+    public float velFome; // velocidade normal de diminuiï¿½ï¿½o da fome [Header("Barra Pimenta")] 
     private float alturaInicialFome;
     private float valorMaxInicialFome;
     public RectTransform barraPimenta;
@@ -22,11 +22,18 @@ public class fome : MonoBehaviour
     public float duracaoCookie;
     private bool cookieAtivo;
     private float tempoRestanteCookie;
+
     [Header("CogumeloMal")]
     public float duracaoCM;
     private bool CMAtivo;
     private float tempoRestanteCM;
+
+    [Header("Morte")]
+    public GameObject mortehud;
+    private bool Morreu;
+
     void Start()
+
     {
         // Fome 
         alturaInicialFome = barraFome.sizeDelta.y;
@@ -47,10 +54,14 @@ public class fome : MonoBehaviour
         AtualizarCookie();
         AtualizarCM();
         if (pimentaAtiva) AtualizarPosicaoPimenta();
+        if (valorAtualFome <= 0 && !Morreu)
+        {
+            GalinhaMorreu();
+        }
     }
     void AtualizarFome()
     {
-        // Redução normal da fome
+        // Reduï¿½ï¿½o normal da fome
         valorAtualFome -= velFome * Time.deltaTime; valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
         // Atualiza altura da barra de fome
         float alturaMaximaFome = alturaInicialFome * (valorMaxFome / valorMaxInicialFome);
@@ -59,7 +70,7 @@ public class fome : MonoBehaviour
     void AtualizarPimenta()
     {
         if (!pimentaAtiva) return;
-        // Redução da pimenta
+        // Reduï¿½ï¿½o da pimenta
         float velPimenta = valorMaxPimenta / duracaoPimenta;
         valorAtualPimenta -= velPimenta * Time.deltaTime;
         valorAtualPimenta = Mathf.Clamp(valorAtualPimenta, 0, valorMaxPimenta);
@@ -83,7 +94,7 @@ public class fome : MonoBehaviour
     {
         float fomeTotal = valorMaxFome + valorMaxPimenta;
 
-        // normaliza em relação a 1000 (se esse for teu limite fixo)
+        // normaliza em relaï¿½ï¿½o a 1000 (se esse for teu limite fixo)
         float posY = (fomeTotal - 500f) * alturaInicialFome / 1000f;
 
         Vector3 posPimenta = barraPimenta.localPosition;
@@ -119,16 +130,16 @@ public class fome : MonoBehaviour
     {
         pimentaAtiva = true;
         barraPimenta.gameObject.SetActive(true);
-        // Salva o maxFome antes da redução da pimenta
+        // Salva o maxFome antes da reduï¿½ï¿½o da pimenta
         valorMaxFomeAntesPimenta = valorMaxFome;
         // Calcula valor da pimenta (25% do maxFome atual antes de reduzir) 
         valorMaxPimenta = valorMaxFomeAntesPimenta * tamanhoPimenta; valorAtualPimenta = valorMaxPimenta;
-        // Aplica redução no maxFome sem afetar o Y da barra da pimenta
+        // Aplica reduï¿½ï¿½o no maxFome sem afetar o Y da barra da pimenta
         valorMaxFome -= valorMaxPimenta;
         // Define altura inicial da barra proporcional ao valor da pimenta
         float alturaPimenta = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
         barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta);
-        // Calcula posição inicial 
+        // Calcula posiï¿½ï¿½o inicial 
         AtualizarPosicaoPimenta();
     }
     public void AtivarCookie()
@@ -151,7 +162,7 @@ public class fome : MonoBehaviour
     {
         if (pimentaAtiva)
         {
-            // Divide a alteração entre fome e pimenta
+            // Divide a alteraï¿½ï¿½o entre fome e pimenta
             float partePimenta = quantidade * tamanhoPimenta;
             float parteFome = quantidade * (1 - tamanhoPimenta);
 
@@ -168,7 +179,7 @@ public class fome : MonoBehaviour
 
             valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
 
-            // Débito da pimenta
+            // Dï¿½bito da pimenta
             debitoPimenta += partePimenta;
 
             // Reposiciona a barra da pimenta
@@ -176,10 +187,16 @@ public class fome : MonoBehaviour
         }
         else
         {
-            // Só fome mesmo
+            // Sï¿½ fome mesmo
             valorMaxFome += quantidade;
             valorMaxFome = Mathf.Clamp(valorMaxFome, 1, 1000);
             valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
         }
+    }
+    private void GalinhaMorreu()
+    {
+        Morreu = true;
+        mortehud.SetActive(true);
+        //Usado para atualizar o score em breve
     }
 }

@@ -7,7 +7,7 @@ using TMPro;
 public class Pontos : MonoBehaviour
 {
     public float MetrosPorSegundo = 3f;
-    private float distanciaPercorrida;
+    public float distanciaPercorrida;
     public TMP_Text textMetros;
 
     private int Aumento = 100;
