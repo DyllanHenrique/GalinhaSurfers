@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class GalinhaMovement : MonoBehaviour
 {
-    public float velocidade = 5f;
-    public Animator animator;
+    private float[] lanes = { -2f, 0f, 2f };
+    private int currentLane = 1;
+    public float speed = 10f;
 
-    private void Start()
+    private void Update()
     {
-        animator.SetBool("isWalking", false);
-    }
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.Translate(Vector3.forward * velocidade * Time.deltaTime);
-            animator.SetBool("isWalking", true);
+            if (currentLane > 0)
+                currentLane--;
         }
-        else
+
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            animator.SetBool("isWalking", false);
+            if (currentLane < lanes.Length - 1)
+                currentLane++;
         }
+
+        Vector3 targetPosition = new Vector3(lanes[currentLane], transform.position.y, transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
     }
 }
