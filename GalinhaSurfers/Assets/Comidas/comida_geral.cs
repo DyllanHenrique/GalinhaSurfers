@@ -5,7 +5,8 @@ public class comida_geral : MonoBehaviour
     public comidaConfig config; // referência para o preset
     private int cliquesRestantes;
     public fome Fome;
-    void Start()
+    private Rigidbody rb;
+    private void Start()
     {
         cliquesRestantes = config != null ? config.cliquesParaComer : 1;
 
@@ -13,6 +14,15 @@ public class comida_geral : MonoBehaviour
         {
             Fome = FindObjectOfType<fome>();
         }
+        rb = gameObject.GetComponent<Rigidbody>();
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        //Destroy(gameObject);
+    }
+    private void Update() 
+    { 
+        rb.velocity = new Vector3(0, 0, 2); 
     }
 
     void OnMouseDown()
@@ -66,4 +76,5 @@ public class comida_geral : MonoBehaviour
                 break;
         }
     }
+
 }
