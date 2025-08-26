@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "ComidaData", menuName = "Comida/Configuração")]
-public class comidaConfiig : ScriptableObject
+public class comidaConfig : ScriptableObject
 {
     public string nomeComida;
     public int cliquesParaComer = 1;

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 420c63d26683d754fa8d720284b5996e, type: 3}
   m_Name: NOZ
   m_EditorClassIdentifier: Assembly-CSharp::comidaConfiig
   nomeComida: NOZ
-  cliquesParaComer: 10
-  valorFome: 300
+  cliquesParaComer: 15
+  valorFome: 500
   valorMaxFome: 0
   temPoder: 0

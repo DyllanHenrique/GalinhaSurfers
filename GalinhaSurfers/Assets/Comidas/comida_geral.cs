@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class comida_geral : MonoBehaviour
 {
-    public comidaConfiig config; // referência para o preset
+    public comidaConfig config; // referência para o preset
     private int cliquesRestantes;
     public fome Fome;
     void Start()
