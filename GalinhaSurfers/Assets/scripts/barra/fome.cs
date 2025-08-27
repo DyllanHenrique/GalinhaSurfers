@@ -244,51 +244,39 @@ public class fome : MonoBehaviour
     }
     private IEnumerator EfeitoAlucinogeno(float duracao)
     {
-        GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
-        Debug.Log("Frutas encontradas: " + frutas.Length);
-        Dictionary<GameObject, Sprite> originais = new Dictionary<GameObject, Sprite>();
-        Dictionary<GameObject, Sprite> novos = new Dictionary<GameObject, Sprite>();
-        
-        foreach (GameObject fruta in frutas)
-        {
-            if (fruta == null) continue; // fruta destruída
-            SpriteRenderer sr = fruta.GetComponent<SpriteRenderer>();
-            if (sr != null && todasFrutas.Count > 0)
-            {
-                originais.Add(fruta, sr.sprite);
-
-                Sprite novoSprite;
-                do
-                {
-                    novoSprite = todasFrutas[Random.Range(0, todasFrutas.Count)];
-                } while (novoSprite == sr.sprite);
-
-                novos.Add(fruta, novoSprite);
-                Debug.Log(fruta.name + " -> sprite trocado para " + novoSprite.name);
-            }
-            else
-            {
-                Debug.LogWarning(fruta.name + " não tem SpriteRenderer ou lista de frutas está vazia!");
-            }
-        }
         float tempoPassado = 0f;
         bool mostrarNovo = true;
-        // pisca-pisca
+        Dictionary<GameObject, Sprite> originais = new Dictionary<GameObject, Sprite>();
         while (tempoPassado < duracao)
         {
-            foreach (var fruta in frutas)
+            GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
+            foreach (GameObject fruta in frutas)
             {
-                if (fruta == null) continue; // fruta destruída
+                if (fruta == null) continue;
                 SpriteRenderer sr = fruta.GetComponent<SpriteRenderer>();
-                if (sr != null)
-                    sr.sprite = mostrarNovo ? novos[fruta] : originais[fruta];
+                if (sr == null || todasFrutas.Count == 0) continue;
+                if (!originais.ContainsKey(fruta))
+                    originais.Add(fruta, sr.sprite);
+                if (mostrarNovo)
+                {
+                    Sprite novoSprite;
+                    do
+                    {
+                        novoSprite = todasFrutas[Random.Range(0, todasFrutas.Count)];
+                    } while (novoSprite == sr.sprite);
+
+                    sr.sprite = novoSprite;
+                }
+                else
+                {
+                    sr.sprite = originais[fruta];
+                }
             }
 
             mostrarNovo = !mostrarNovo;
             yield return new WaitForSeconds(1f);
             tempoPassado += 1f;
         }
-        // normal volta
         foreach (var item in originais)
         {
             if (item.Key != null)
