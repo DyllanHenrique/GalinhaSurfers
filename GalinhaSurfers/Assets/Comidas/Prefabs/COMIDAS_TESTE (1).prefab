@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2504075878114452101}
   - component: {fileID: 6658732449209922771}
   - component: {fileID: 3601570109781389982}
+  - component: {fileID: 55459172143071453}
   m_Layer: 0
   m_Name: COMIDAS_TESTE (1)
-  m_TagString: Untagged
+  m_TagString: Inseto
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 7629525360118902673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 305.25458, y: 356.4503, z: -554.5767}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.0182, y: -0.4631, z: 9.86}
+  m_LocalScale: {x: 0.6, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -133,10 +134,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7708696
-  m_Height: 4.1781664
+  m_Radius: 0.73265016
+  m_Height: 2.1397154
   m_Direction: 1
-  m_Center: {x: -0.15398258, y: -0.2400509, z: 0}
+  m_Center: {x: 0.22959888, y: -0.3143515, z: 0}
 --- !u!114 &3601570109781389982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +153,15 @@ MonoBehaviour:
   config: {fileID: 11400000, guid: a654f4c3638ebb24b89ff057c15e0294, type: 2}
   Fome: {fileID: 0}
   ponto: {fileID: 0}
+--- !u!114 &55459172143071453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7629525360118902673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d8b607e3cb3c24ca045cb87ff4516f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

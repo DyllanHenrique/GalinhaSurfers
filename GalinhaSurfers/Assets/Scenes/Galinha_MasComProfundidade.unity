@@ -6412,63 +6412,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122062018}
   m_CullTransparentMesh: 1
---- !u!1001 &3961795051698770665
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 305.25458
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 356.4503
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -554.5767
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3481674051501824099, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7629525360118902673, guid: d338c270771a6b648981b9a4db04e517, type: 3}
-      propertyPath: m_Name
-      value: COMIDAS_TESTE (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d338c270771a6b648981b9a4db04e517, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6491,4 +6434,3 @@ SceneRoots:
   - {fileID: 887544350}
   - {fileID: 1392641421}
   - {fileID: 12591079}
-  - {fileID: 3961795051698770665}

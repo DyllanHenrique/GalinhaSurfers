@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Frutas
+  - Inseto
   layers:
   - Default
   - TransparentFX
