@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420c63d26683d754fa8d720284b5996e, type: 3}
   m_Name: COGUMELOMALUCO
   m_EditorClassIdentifier: 
-  nomeComida: 
+  nomeComida: COGUMELOMALUCO
   cliquesParaComer: 1
   valorFome: 0
   valorMaxFome: 0
-  temPoder: 0
+  temPoder: 1
