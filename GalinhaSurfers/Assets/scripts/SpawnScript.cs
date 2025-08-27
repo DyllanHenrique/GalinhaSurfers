@@ -32,7 +32,7 @@ public class SpawnScript : MonoBehaviour
     private void SpawnarItens()
     {
         List<int> spawnsOcupados = new List<int>();
-        QntdSpawnSorteado = Random.Range(1,6);
+        QntdSpawnSorteado = Random.Range(1,4);
         for (int i = 0; i < QntdSpawnSorteado; i++)
         {
             int spawnEscolhido;
@@ -42,9 +42,8 @@ public class SpawnScript : MonoBehaviour
             }
             while (spawnsOcupados.Contains(spawnEscolhido));
             spawnsOcupados.Add(spawnEscolhido);
-            GameObject foodSpawn = Instantiate(prefabs[0], spawns[spawnEscolhido].position, transform.rotation);
+            GameObject foodSpawn = Instantiate(prefabs[Random.Range(0,prefabs.Length)], spawns[spawnEscolhido].position, transform.rotation);
             Rigidbody rb = foodSpawn.GetComponent<Rigidbody>();
-            rb.velocity = new Vector3(0,0,-5) * 3;
             comida_geral script = foodSpawn.GetComponent<comida_geral>();
             script.ponto = pontosdacena;
         }
