@@ -11,7 +11,7 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePause(); //o mundo é divino as vezes
+            TogglePause(); //o mundo ï¿½ divino as vezes
         }
     }
     public void TogglePause()
@@ -48,5 +48,9 @@ public class Pause : MonoBehaviour
         Debug.Log("ISSO AQUI ESTA CANCELADO");
         UnityEditor.EditorApplication.isPlaying = false; //a vida me deu um ataque cardiaco
         Application.Quit();
+    }
+    public void Reset()
+    {
+        Debug.Log("Faz oq vc quise");
     }
 }

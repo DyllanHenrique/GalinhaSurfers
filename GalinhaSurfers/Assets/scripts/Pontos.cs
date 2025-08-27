@@ -27,7 +27,7 @@ public class Pontos : MonoBehaviour
         { 
             distanciaNum = Mathf.FloorToInt(distanciaPercorrida);
             distanciaPercorrida += MetrosPorSegundo * Time.deltaTime;
-            textMetros.text = "Pontos: " + distanciaNum.ToString() + " m";
+            textMetros.text = distanciaNum.ToString() + " m";
 
             if (distanciaPercorrida >= Aumento)
             {
