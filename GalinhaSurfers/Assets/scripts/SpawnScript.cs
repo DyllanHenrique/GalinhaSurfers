@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnScript : MonoBehaviour
 {
     public GameObject[] prefabs;
+    public float[] comidaChances;
     public int QntdSpawnSorteado;
     public Transform[] spawns;
     public int IntervaloSpawn;
@@ -42,10 +43,30 @@ public class SpawnScript : MonoBehaviour
             }
             while (spawnsOcupados.Contains(spawnEscolhido));
             spawnsOcupados.Add(spawnEscolhido);
-            GameObject foodSpawn = Instantiate(prefabs[Random.Range(0,prefabs.Length)], spawns[spawnEscolhido].position, transform.rotation);
+            int prefabEscolhido = SortearComida();
+            GameObject foodSpawn = Instantiate(prefabs[prefabEscolhido], spawns[spawnEscolhido].position, transform.rotation);
             Rigidbody rb = foodSpawn.GetComponent<Rigidbody>();
             comida_geral script = foodSpawn.GetComponent<comida_geral>();
             script.ponto = pontosdacena;
         }
+    }
+    private int SortearComida()
+    {
+        float total = 0f;
+        foreach(float prob in comidaChances)
+        {
+            total += prob;
+        }
+        float sorteio = Random.Range(0f,total);
+        float acumulado = 0f;
+        for (int i = 0; i < comidaChances.Length; i++)
+        {
+            acumulado += comidaChances[i];
+            if (sorteio < acumulado)
+            {
+                return i;
+            }
+        }
+        return comidaChances.Length - 1;
     }
 }
