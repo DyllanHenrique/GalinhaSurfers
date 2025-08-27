@@ -71,6 +71,11 @@ public class comida_geral : MonoBehaviour
                 Debug.Log("Poder" + nomePoder);
                 Fome.AtivarCogumeloMal();
                 break;
+            case "COGUMELOMALUCO":
+                Debug.Log("Poder" + nomePoder);
+                Fome.AtivarCogumeloMaluco();
+                break;
+
             default:
                 Debug.Log("Comida sem poder específico");
                 break;

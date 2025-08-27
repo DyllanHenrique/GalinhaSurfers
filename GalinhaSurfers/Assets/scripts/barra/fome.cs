@@ -26,7 +26,9 @@ public class fome : MonoBehaviour
     public float duracaoCM;
     private bool CMAtivo;
     private float tempoRestanteCM;
-
+    [Header("CogumeloMaluco")]
+    public float duracaoCoguMaluco;
+    public List<Sprite> todasFrutas; // Arraste aqui todos os sprites possíveis de frutas
     [Header("Morte")]
     public GameObject mortehud;
     private bool Morreu;
@@ -205,6 +207,68 @@ public class fome : MonoBehaviour
             valorMaxFome = Mathf.Clamp(valorMaxFome, 1, 1000);
             valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
         }
+    }
+    public void AtivarCogumeloMaluco()
+    {
+        StartCoroutine(EfeitoAlucinogeno(duracaoCoguMaluco));
+    }
+    private IEnumerator EfeitoAlucinogeno(float duracao)
+    {
+        GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
+        Debug.Log("Frutas encontradas: " + frutas.Length);
+        Dictionary<GameObject, Sprite> originais = new Dictionary<GameObject, Sprite>();
+        Dictionary<GameObject, Sprite> novos = new Dictionary<GameObject, Sprite>();
+        
+        foreach (GameObject fruta in frutas)
+        {
+            if (fruta == null) continue; // fruta destruída
+            SpriteRenderer sr = fruta.GetComponent<SpriteRenderer>();
+            if (sr != null && todasFrutas.Count > 0)
+            {
+                originais.Add(fruta, sr.sprite);
+
+                Sprite novoSprite;
+                do
+                {
+                    novoSprite = todasFrutas[Random.Range(0, todasFrutas.Count)];
+                } while (novoSprite == sr.sprite);
+
+                novos.Add(fruta, novoSprite);
+                Debug.Log(fruta.name + " -> sprite trocado para " + novoSprite.name);
+            }
+            else
+            {
+                Debug.LogWarning(fruta.name + " não tem SpriteRenderer ou lista de frutas está vazia!");
+            }
+        }
+        float tempoPassado = 0f;
+        bool mostrarNovo = true;
+        // pisca-pisca
+        while (tempoPassado < duracao)
+        {
+            foreach (var fruta in frutas)
+            {
+                if (fruta == null) continue; // fruta destruída
+                SpriteRenderer sr = fruta.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                    sr.sprite = mostrarNovo ? novos[fruta] : originais[fruta];
+            }
+
+            mostrarNovo = !mostrarNovo;
+            yield return new WaitForSeconds(1f);
+            tempoPassado += 1f;
+        }
+        // normal volta
+        foreach (var item in originais)
+        {
+            if (item.Key != null)
+            {
+                SpriteRenderer sr = item.Key.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                    sr.sprite = item.Value;
+            }
+        }
+        Debug.Log("Efeito alucinógeno passou!");
     }
     private void GalinhaMorreu()
     {
