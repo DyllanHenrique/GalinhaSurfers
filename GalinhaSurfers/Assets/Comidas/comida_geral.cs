@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class comida_geral : MonoBehaviour
 {
-    public comidaConfig config; // refer�ncia para o preset
+    public comidaConfig config;
     private int cliquesRestantes;
     public fome Fome;
     private Rigidbody rb;
     public Pontos ponto;
+    private aranha scriptAranha;
+
     private void Start()
     {
         cliquesRestantes = config != null ? config.cliquesParaComer : 1;
@@ -20,6 +22,8 @@ public class comida_geral : MonoBehaviour
             ponto = FindObjectOfType<Pontos>();
         }
         rb = gameObject.GetComponent<Rigidbody>();
+        if(scriptAranha == null)
+            scriptAranha = GetComponent<aranha>();
     }
     private void OnTriggerEnter(Collider other) 
     {
@@ -42,15 +46,36 @@ public class comida_geral : MonoBehaviour
     {
         if (Fome != null && config != null)
         {
-            Fome.AdicionarFome(config.valorFome);
-            Fome.AlterarMaxFome(config.valorMaxFome);
-            if (config.temPoder)
+            if (config.nomeComida == "ARANHA" && scriptAranha != null)
             {
-                AtivarPoder(config.nomeComida);
+                if (scriptAranha.EstaArmada())
+                {
+                    Debug.Log("Aranha estava ARMADA! Nenhum valor nutricional aplicado.");
+                    Fome.AtivarEscorpiaoLentidao();
+                }
+                else
+                {
+                    AplicarValoresNutricionais();
+                }
+            }
+            else
+            {
+                AplicarValoresNutricionais();
             }
         }
+
         Debug.Log($"COMEU {config?.nomeComida}");
         Destroy(gameObject);
+    }
+    void AplicarValoresNutricionais()
+    {
+        Fome.AdicionarFome(config.valorFome);
+        Fome.AlterarMaxFome(config.valorMaxFome);
+
+        if (config.temPoder)
+        {
+            AtivarPoder(config.nomeComida);
+        }
     }
     void AtivarPoder(string nomePoder)
     {

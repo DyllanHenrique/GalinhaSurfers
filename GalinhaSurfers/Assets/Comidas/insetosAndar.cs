@@ -5,7 +5,6 @@ using UnityEngine;
 public class insetosAndar : MonoBehaviour
 {
     private float chanceMove = 0.5f;
-    private float[] posicoesX = { -2f, 0f, 2f }; 
     private float tempoEspera = 2f;
     private void Start()
     {
