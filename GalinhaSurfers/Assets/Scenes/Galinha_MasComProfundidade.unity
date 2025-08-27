@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 181140516}
   - component: {fileID: 181140515}
   m_Layer: 0
-  m_Name: BostinhaDaSilva
+  m_Name: PontosManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1037,11 +1037,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 6140016617487151117, guid: 996d87a3ebf900e418be62673d607f0a, type: 3}
+  - {fileID: 7337140320649577479, guid: 90e3e8b03246a8040b78321b75f0c572, type: 3}
   QntdSpawnSorteado: 0
   spawns:
   - {fileID: 2902837730535788535, guid: 996d87a3ebf900e418be62673d607f0a, type: 3}
   IntervaloSpawn: 2
+  pontosdacena: {fileID: 181140515}
 --- !u!4 &287567339
 Transform:
   m_ObjectHideFlags: 0
@@ -1343,7 +1344,6 @@ GameObject:
   - component: {fileID: 391134836}
   - component: {fileID: 391134839}
   - component: {fileID: 391134838}
-  - component: {fileID: 391134837}
   m_Layer: 0
   m_Name: Spawn4
   m_TagString: Untagged
@@ -1366,27 +1366,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 287567339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &391134837
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391134835}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &391134838
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2033,7 +2012,6 @@ GameObject:
   - component: {fileID: 578610242}
   - component: {fileID: 578610245}
   - component: {fileID: 578610244}
-  - component: {fileID: 578610243}
   m_Layer: 0
   m_Name: Spawn2
   m_TagString: Untagged
@@ -2056,27 +2034,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 287567339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &578610243
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578610241}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &578610244
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3225,7 +3182,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 01999f05db56ff34182a783224923329, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.211
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3320,7 +3277,6 @@ GameObject:
   - component: {fileID: 895342450}
   - component: {fileID: 895342453}
   - component: {fileID: 895342452}
-  - component: {fileID: 895342451}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -3343,27 +3299,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 287567339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &895342451
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895342449}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &895342452
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4131,7 +4066,6 @@ GameObject:
   - component: {fileID: 1488577007}
   - component: {fileID: 1488577010}
   - component: {fileID: 1488577009}
-  - component: {fileID: 1488577008}
   m_Layer: 0
   m_Name: Spawn5
   m_TagString: Untagged
@@ -4154,27 +4088,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 287567339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1488577008
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488577006}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1488577009
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5042,6 +4955,8 @@ MonoBehaviour:
   tamanhoPimenta: 0.25
   duracaoCookie: 10
   duracaoCM: 0
+  duracaoCoguMaluco: 0
+  todasFrutas: []
   mortehud: {fileID: 763480046}
 --- !u!1 &1932139072
 GameObject:
@@ -5711,7 +5626,6 @@ GameObject:
   - component: {fileID: 2114786268}
   - component: {fileID: 2114786271}
   - component: {fileID: 2114786270}
-  - component: {fileID: 2114786269}
   m_Layer: 0
   m_Name: Spawn3
   m_TagString: Untagged
@@ -5734,27 +5648,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 287567339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2114786269
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114786267}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2114786270
 MeshRenderer:
   m_ObjectHideFlags: 0

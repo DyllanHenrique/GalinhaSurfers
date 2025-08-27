@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class comida_geral : MonoBehaviour
 {
-    public comidaConfig config; // referência para o preset
+    public comidaConfig config; // referï¿½ncia para o preset
     private int cliquesRestantes;
     public fome Fome;
     private Rigidbody rb;
+    public Pontos ponto;
     private void Start()
     {
         cliquesRestantes = config != null ? config.cliquesParaComer : 1;
@@ -16,13 +17,13 @@ public class comida_geral : MonoBehaviour
         }
         rb = gameObject.GetComponent<Rigidbody>();
     }
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other) 
     {
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
     private void Update() 
     { 
-        //rb.velocity = new Vector3(0, 0, 2); 
+        rb.velocity = new Vector3(0, 0, -ponto.MetrosPorSegundo); 
     }
 
     void OnMouseDown()
@@ -56,7 +57,7 @@ public class comida_geral : MonoBehaviour
                 string[] poderes = { "PIMENTA", "COOKIE" };
                 int index = Random.Range(0, poderes.Length);
                 string poderSorteado = poderes[index];
-                Debug.Log("Pílula ativou aleatoriamente: " + poderSorteado);
+                Debug.Log("Pï¿½lula ativou aleatoriamente: " + poderSorteado);
                 AtivarPoder(poderSorteado); 
                 break;
             case "PIMENTA":
@@ -77,7 +78,7 @@ public class comida_geral : MonoBehaviour
                 break;
 
             default:
-                Debug.Log("Comida sem poder específico");
+                Debug.Log("Comida sem poder especï¿½fico");
                 break;
         }
     }

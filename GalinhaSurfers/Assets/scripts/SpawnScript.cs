@@ -8,7 +8,7 @@ public class SpawnScript : MonoBehaviour
     public int QntdSpawnSorteado;
     public Transform[] spawns;
     public int IntervaloSpawn;
-
+    public Pontos pontosdacena;
 
 
     // Start is called before the first frame update
@@ -45,6 +45,8 @@ public class SpawnScript : MonoBehaviour
             GameObject foodSpawn = Instantiate(prefabs[0], spawns[spawnEscolhido].position, transform.rotation);
             Rigidbody rb = foodSpawn.GetComponent<Rigidbody>();
             rb.velocity = new Vector3(0,0,-5) * 3;
+            comida_geral script = foodSpawn.GetComponent<comida_geral>();
+            script.ponto = pontosdacena;
         }
     }
 }
