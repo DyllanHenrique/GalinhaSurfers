@@ -12,13 +12,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: MI_Fence
+    second: {fileID: 2100000, guid: c6e480aafa2d7e3438a29e0f79c468b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MI_General
+    second: {fileID: 2100000, guid: 10d45efd071ab0a4c9f3eb3d4b33773f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Grass
     second: {fileID: 2100000, guid: 10d45efd071ab0a4c9f3eb3d4b33773f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MI_Lines
     second: {fileID: 2100000, guid: f0e011760d2b24a47b50069c51b21e94, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Metal
+    second: {fileID: 2100000, guid: 13bc32c67d375a343b1c9701e7b9cccd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
