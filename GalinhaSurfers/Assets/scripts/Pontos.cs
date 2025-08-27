@@ -9,6 +9,8 @@ public class Pontos : MonoBehaviour
     public float MetrosPorSegundo = 3f;
     public float distanciaPercorrida;
     public TMP_Text textMetros;
+    public int distanciaNum;
+    public bool galinhaMorta;
 
     private int Aumento = 100;
     public cenario cenario;
@@ -16,14 +18,18 @@ public class Pontos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distanciaPercorrida += MetrosPorSegundo * Time.deltaTime;
-        textMetros.text = "Pontos: " + Mathf.FloorToInt(distanciaPercorrida).ToString() + " m";
+        if (!galinhaMorta)
+        { 
+            distanciaNum = Mathf.FloorToInt(distanciaPercorrida);
+            distanciaPercorrida += MetrosPorSegundo * Time.deltaTime;
+            textMetros.text = "Pontos: " + distanciaNum.ToString() + " m";
 
-        if (distanciaPercorrida >= Aumento)
-        {
-            cenario.AumentarVelocidade();
-            AumentarVelocidadeMetros();
-            Aumento += 100;
+            if (distanciaPercorrida >= Aumento)
+            {
+                cenario.AumentarVelocidade();
+                AumentarVelocidadeMetros();
+                Aumento += 100;
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 public class fome : MonoBehaviour
 {
     [Header("Barra Fome")]
@@ -31,7 +32,10 @@ public class fome : MonoBehaviour
     public List<Sprite> todasFrutas; // Arraste aqui todos os sprites possíveis de frutas
     [Header("Morte")]
     public GameObject mortehud;
+    public Pontos scriptPontuacao;
     private bool Morreu;
+    public GameObject HighScore;
+    public TMP_Text Score;
 
     void Start()
 
@@ -272,8 +276,19 @@ public class fome : MonoBehaviour
     }
     private void GalinhaMorreu()
     {
+        int recorde = PlayerPrefs.GetInt("pontuacao",0);
+        Debug.Log(recorde);
         Morreu = true;
+        scriptPontuacao.galinhaMorta = true;
         mortehud.SetActive(true);
+        Score.text = "Score:" + scriptPontuacao.distanciaNum;
+        int pontosAtuais = scriptPontuacao.distanciaNum;
+        if (pontosAtuais > recorde)
+        {
+            Debug.Log(pontosAtuais);
+            PlayerPrefs.SetInt("pontuacao", pontosAtuais);
+            HighScore.SetActive(true);
+        }
         //Usado para atualizar o score em breve
     }
 }

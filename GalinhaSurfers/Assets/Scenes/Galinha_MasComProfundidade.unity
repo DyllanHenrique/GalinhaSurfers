@@ -654,6 +654,8 @@ MonoBehaviour:
   MetrosPorSegundo: 3
   distanciaPercorrida: 0
   textMetros: {fileID: 1120810197}
+  distanciaNum: 0
+  galinhaMorta: 0
   cenario: {fileID: 2063683753}
 --- !u!4 &181140516
 Transform:
@@ -1042,6 +1044,12 @@ MonoBehaviour:
   - {fileID: 982361190997541557, guid: 6ef0949c4d1d67441a2cfd297b869631, type: 3}
   - {fileID: 8267870656542886816, guid: 8290e94c48af9a34bac4ef209775dfe2, type: 3}
   - {fileID: 5963871530914419481, guid: 1332cd85b3766bb4581371ac65f8645e, type: 3}
+  comidaChances:
+  - 50
+  - 75
+  - 5
+  - 25
+  - 25
   QntdSpawnSorteado: 0
   spawns: []
   IntervaloSpawn: 3
@@ -5073,6 +5081,9 @@ MonoBehaviour:
   duracaoCoguMaluco: 0
   todasFrutas: []
   mortehud: {fileID: 763480046}
+  scriptPontuacao: {fileID: 181140515}
+  HighScore: {fileID: 1932139072}
+  Score: {fileID: 864291695}
 --- !u!1 &1920589376 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -634519806643129948, guid: 263cc087c51b82b42bb0d202aead3dfa, type: 3}
