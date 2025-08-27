@@ -6,7 +6,7 @@ public class GalinhaMovement : MonoBehaviour
 {
     private float[] lanes = { -2f, 0f, 2f };
     private int currentLane = 1;
-    public float speed = 10f;
+    public float speed = 1f;
 
     private Animator animator;
     private bool isJumping = false;
@@ -31,6 +31,10 @@ public class GalinhaMovement : MonoBehaviour
                 StartCoroutine(JumpToLane(currentLane + 1));
             }
         }
+    }
+    public void VelGalin()
+    {
+        animator.speed = speed;
     }
 
     private IEnumerator JumpToLane(int newLane)

@@ -11,9 +11,11 @@ public class Pontos : MonoBehaviour
     public TMP_Text textMetros;
     public int distanciaNum;
     public bool galinhaMorta;
-
+    public float incremento;
     private int Aumento = 100;
     public cenario cenario;
+    public RotacaoMundo Mundo;
+    public GalinhaMovement galinha;
 
     // Update is called once per frame
     void Update()
@@ -35,7 +37,13 @@ public class Pontos : MonoBehaviour
 
     public void AumentarVelocidadeMetros()
     {
-        MetrosPorSegundo *= 1.5f;
-        Debug.Log("Moleculas moleculas MOLECULAS por segundo: " + MetrosPorSegundo);
+        Mundo.rotationSpeed *= incremento;
+        MetrosPorSegundo *= incremento;
+        galinha.speed *= 1.1F;
+        if (galinha.speed >= 2.5) galinha.speed = 2.5f;
+        galinha.VelGalin();
+        Debug.Log("velSCORE" + MetrosPorSegundo);
+        Debug.Log("velGALIN" + galinha.speed);
+        Debug.Log("velMUNDO" + Mundo.rotationSpeed);
     }
 }
