@@ -17,6 +17,8 @@ public class Pontos : MonoBehaviour
     public RotacaoMundo Mundo;
     public GalinhaMovement galinha;
 
+    public float pimentaIncremento;
+    public float cookieIncremento;
     // Update is called once per frame
     void Update()
     {
@@ -42,8 +44,40 @@ public class Pontos : MonoBehaviour
         galinha.speed *= 1.1F;
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
-        Debug.Log("velSCORE" + MetrosPorSegundo);
+        //Debug.Log("velSCORE" + MetrosPorSegundo);
         Debug.Log("velGALIN" + galinha.speed);
-        Debug.Log("velMUNDO" + Mundo.rotationSpeed);
+        //Debug.Log("velMUNDO" + Mundo.rotationSpeed);
+    }
+    public void pimentaSpeed()
+    {
+        Mundo.rotationSpeed *= pimentaIncremento;
+        MetrosPorSegundo *= pimentaIncremento;
+        galinha.speed *= pimentaIncremento;
+        if (galinha.speed >= 2.5) galinha.speed = 2.5f;
+        galinha.VelGalin();
+    }
+    public void pimentaMenosSpeed()
+    {
+        Mundo.rotationSpeed /= pimentaIncremento;
+        MetrosPorSegundo /= pimentaIncremento;
+        galinha.speed /= pimentaIncremento;
+        if (galinha.speed >= 2.5) galinha.speed = 2.5f;
+        galinha.VelGalin();
+    }
+    public void cookieSpeed()
+    {
+        Mundo.rotationSpeed *= cookieIncremento;
+        MetrosPorSegundo *= cookieIncremento;
+        galinha.speed *= cookieIncremento;
+        if (galinha.speed >= 2.5) galinha.speed = 2.5f;
+        galinha.VelGalin();
+    }
+    public void cookieMenosSpeed()
+    {
+        Mundo.rotationSpeed /= cookieIncremento;
+        MetrosPorSegundo /= cookieIncremento;
+        galinha.speed /= cookieIncremento;
+        if (galinha.speed >= 2.5) galinha.speed = 2.5f;
+        galinha.VelGalin();
     }
 }

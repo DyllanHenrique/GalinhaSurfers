@@ -656,10 +656,12 @@ MonoBehaviour:
   textMetros: {fileID: 1120810197}
   distanciaNum: 0
   galinhaMorta: 0
-  incremento: 1.5
+  incremento: 1.2
   cenario: {fileID: 2063683753}
   Mundo: {fileID: 1681555180}
   galinha: {fileID: 565722872}
+  pimentaIncremento: 1.5
+  cookieIncremento: 2
 --- !u!4 &181140516
 Transform:
   m_ObjectHideFlags: 0
@@ -913,10 +915,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 91092225}
   m_HandleRect: {fileID: 1165019228}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2741,10 +2743,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 697451057}
   m_HandleRect: {fileID: 267718793}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5112,9 +5114,16 @@ MonoBehaviour:
   duracaoPimenta: 5
   tamanhoPimenta: 0.25
   duracaoCookie: 10
-  duracaoCM: 0
-  duracaoCoguMaluco: 0
-  todasFrutas: []
+  duracaoCM: 5
+  duracaoCoguMaluco: 8
+  todasFrutas:
+  - {fileID: 21300000, guid: 645b89db5ebde434c8036b827b47a01e, type: 3}
+  - {fileID: 21300000, guid: b6e3741e859055d448663f3d9fb91085, type: 3}
+  - {fileID: 21300000, guid: d0ce67e99277f494f85aa82e5c39cbca, type: 3}
+  - {fileID: 21300000, guid: 62bbbf9043eecd141ad1b1c98a1a0829, type: 3}
+  - {fileID: 21300000, guid: 7ad9cda3225f8b741832a7d9952232bb, type: 3}
+  - {fileID: 21300000, guid: 77bdb04106e4ead49b6904321c8adc9e, type: 3}
+  - {fileID: 21300000, guid: dc63700a371f8934c969928a664503c7, type: 3}
   mortehud: {fileID: 763480046}
   scriptPontuacao: {fileID: 181140515}
   HighScore: {fileID: 1932139072}
@@ -5468,10 +5477,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 776637601}
   m_HandleRect: {fileID: 1688613295}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

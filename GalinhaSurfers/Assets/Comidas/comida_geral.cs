@@ -15,6 +15,10 @@ public class comida_geral : MonoBehaviour
         {
             Fome = FindObjectOfType<fome>();
         }
+        if(ponto == null)
+        {
+            ponto = FindObjectOfType<Pontos>();
+        }
         rb = gameObject.GetComponent<Rigidbody>();
     }
     private void OnTriggerEnter(Collider other) 
@@ -54,7 +58,7 @@ public class comida_geral : MonoBehaviour
         {
             case "PILULA":
                 Debug.Log("Poder" + nomePoder);
-                string[] poderes = { "PIMENTA", "COOKIE" };
+                string[] poderes = { "PIMENTA", "COOKIE", "COGUMELOMAL", "COGUMELOMALUCO" };
                 int index = Random.Range(0, poderes.Length);
                 string poderSorteado = poderes[index];
                 Debug.Log("P�lula ativou aleatoriamente: " + poderSorteado);

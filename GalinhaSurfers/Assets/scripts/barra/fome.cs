@@ -93,6 +93,7 @@ public class fome : MonoBehaviour
             debitoPimenta = 0f;
             if (valorMaxFome >= 1000) valorMaxFome = 1000;
             if (valorMaxFome <= 0) valorMaxFome = 0;
+            scriptPontuacao.pimentaMenosSpeed();
         }
     }
     void AtualizarPosicaoPimenta()
@@ -117,6 +118,7 @@ public class fome : MonoBehaviour
         if (tempoRestanteCookie <= 0f)
         {
             cookieAtivo = false;
+            scriptPontuacao.cookieMenosSpeed();
             GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
             foreach (GameObject fruta in frutas)
             {
@@ -141,6 +143,7 @@ public class fome : MonoBehaviour
     public void AtivarPimenta()
     {
         pimentaAtiva = true;
+        scriptPontuacao.pimentaSpeed();
         barraPimenta.gameObject.SetActive(true);
         // Salva o maxFome antes da redu��o da pimenta
         valorMaxFomeAntesPimenta = valorMaxFome;
@@ -164,6 +167,7 @@ public class fome : MonoBehaviour
                 col.enabled = false;
         }
         cookieAtivo = true;
+        scriptPontuacao.cookieSpeed();
         tempoRestanteCookie = duracaoCookie;
     }
     public void AtivarCogumeloMal()
