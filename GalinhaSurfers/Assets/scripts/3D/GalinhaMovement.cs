@@ -8,21 +8,56 @@ public class GalinhaMovement : MonoBehaviour
     private int currentLane = 1;
     public float speed = 10f;
 
+    private Animator animator;
+    private bool isJumping = false;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        animator.Play("Walk");
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (!isJumping)
         {
-            if (currentLane > 0)
-                currentLane--;
+            if (Input.GetKeyDown(KeyCode.A) && currentLane > 0)
+            {
+                StartCoroutine(JumpToLane(currentLane - 1));
+            }
+
+            if (Input.GetKeyDown(KeyCode.D) && currentLane < lanes.Length - 1)
+            {
+                StartCoroutine(JumpToLane(currentLane + 1));
+            }
+        }
+    }
+
+    private IEnumerator JumpToLane(int newLane)
+    {
+        isJumping = true;
+        animator.Play("Jump");
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new Vector3(lanes[newLane], startPos.y, startPos.z);
+
+        float duration = animator.GetCurrentAnimatorStateInfo(0).length;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            transform.position = Vector3.Lerp(startPos, endPos, t);
+
+            yield return null;
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (currentLane < lanes.Length - 1)
-                currentLane++;
-        }
+        transform.position = endPos;
+        currentLane = newLane;
 
-        Vector3 targetPosition = new Vector3(lanes[currentLane], transform.position.y, transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        animator.Play("Walk");
+        isJumping = false;
     }
 }
