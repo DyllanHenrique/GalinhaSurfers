@@ -19,6 +19,6 @@ public class cenario : MonoBehaviour
     public void AumentarVelocidade()
     {
         //cenarioAndando *= 1.5f; // aumenta 1 na velocidade
-        Debug.Log("Velocidade ao extremoooo: " + cenarioAndando);
+        //Debug.Log("Velocidade ao extremoooo: " + cenarioAndando);
     }
 }

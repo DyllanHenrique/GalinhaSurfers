@@ -814,7 +814,7 @@ MonoBehaviour:
   galinha: {fileID: 565722872}
   pimentaIncremento: 1.5
   cookieIncremento: 2
-  escorpiaoIncremento: 0
+  escorpiaoIncremento: 0.75
 --- !u!4 &181140516
 Transform:
   m_ObjectHideFlags: 0
@@ -1202,12 +1202,14 @@ MonoBehaviour:
   - {fileID: 982361190997541557, guid: 6ef0949c4d1d67441a2cfd297b869631, type: 3}
   - {fileID: 8267870656542886816, guid: 8290e94c48af9a34bac4ef209775dfe2, type: 3}
   - {fileID: 5963871530914419481, guid: 1332cd85b3766bb4581371ac65f8645e, type: 3}
+  - {fileID: 7629525360118902673, guid: d338c270771a6b648981b9a4db04e517, type: 3}
   comidaChances:
   - 50
   - 75
   - 5
   - 25
   - 25
+  - 90
   QntdSpawnSorteado: 0
   spawns: []
   IntervaloSpawn: 3
@@ -1530,7 +1532,7 @@ Transform:
   m_GameObject: {fileID: 391134835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: 6.383546, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2260,7 +2262,7 @@ Transform:
   m_GameObject: {fileID: 578610241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 2.383546, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6042,7 +6044,7 @@ Transform:
   m_GameObject: {fileID: 2114786267}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalPosition: {x: 4.233546, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

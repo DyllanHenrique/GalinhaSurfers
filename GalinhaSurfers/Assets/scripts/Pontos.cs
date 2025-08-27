@@ -88,6 +88,7 @@ public class Pontos : MonoBehaviour
         galinha.speed *= escorpiaoIncremento;
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
+        Debug.Log("velGALIN" + galinha.speed);
     }
     public void escorpiaoMenosSpeed()
     {
@@ -96,5 +97,6 @@ public class Pontos : MonoBehaviour
         galinha.speed /= escorpiaoIncremento;
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
+        Debug.Log("velGALIN" + galinha.speed);
     }
 }

@@ -141,7 +141,7 @@ public class fome : MonoBehaviour
         if (tempoRestanteEscorpion <= 0f)
         {
             escorpiaoAtivo = false;
-            scriptPontuacao.escorpiaoSpeed();
+            scriptPontuacao.escorpiaoMenosSpeed();
         }
     }
     void AtualizarCM()
@@ -196,7 +196,7 @@ public class fome : MonoBehaviour
     {
         escorpiaoAtivo = true;
         tempoRestanteEscorpion = duracaoEscorpiao;
-        scriptPontuacao.escorpiaoMenosSpeed();
+        scriptPontuacao.escorpiaoSpeed();
     }
     public void AdicionarFome(float quantidade)
     {
