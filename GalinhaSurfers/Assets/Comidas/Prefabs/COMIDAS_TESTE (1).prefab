@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1481411336038317815
+--- !u!1 &7629525360118902673
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6885072939266410476}
-  - component: {fileID: 7060694844943024387}
-  - component: {fileID: 6809049588488825026}
-  - component: {fileID: 6852600646280006594}
-  - component: {fileID: 513918653879682324}
+  - component: {fileID: 3481674051501824099}
+  - component: {fileID: 204199983531595041}
+  - component: {fileID: 2504075878114452101}
+  - component: {fileID: 6658732449209922771}
+  - component: {fileID: 3601570109781389982}
   m_Layer: 0
-  m_Name: Mirtilos
-  m_TagString: Frutas
+  m_Name: COMIDAS_TESTE (1)
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6885072939266410476
+--- !u!4 &3481674051501824099
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481411336038317815}
+  m_GameObject: {fileID: 7629525360118902673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.17, y: -0.4, z: 9.86}
-  m_LocalScale: {x: 0.6, y: 0.7, z: 1}
+  m_LocalPosition: {x: 305.25458, y: 356.4503, z: -554.5767}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7060694844943024387
+--- !u!212 &204199983531595041
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481411336038317815}
+  m_GameObject: {fileID: 7629525360118902673}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7ad9cda3225f8b741832a7d9952232bb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41efaec1889b7ae478e55442fde71421, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,13 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!54 &6809049588488825026
+--- !u!54 &2504075878114452101
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481411336038317815}
+  m_GameObject: {fileID: 7629525360118902673}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -114,13 +114,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &6852600646280006594
+--- !u!136 &6658732449209922771
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481411336038317815}
+  m_GameObject: {fileID: 7629525360118902673}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -133,22 +133,22 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.5
-  m_Height: 5
+  m_Radius: 0.7708696
+  m_Height: 4.1781664
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &513918653879682324
+  m_Center: {x: -0.15398258, y: -0.2400509, z: 0}
+--- !u!114 &3601570109781389982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481411336038317815}
+  m_GameObject: {fileID: 7629525360118902673}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 541fc4e58cfdd494f9052f775ca0db07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 04016249811d2574e9137d2e1f30d0af, type: 2}
+  config: {fileID: 0}
   Fome: {fileID: 0}
   ponto: {fileID: 0}

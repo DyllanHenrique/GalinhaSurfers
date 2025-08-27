@@ -58,7 +58,7 @@ public class comida_geral : MonoBehaviour
         {
             case "PILULA":
                 Debug.Log("Poder" + nomePoder);
-                string[] poderes = { "PIMENTA", "COOKIE", "COGUMELOMAL", "COGUMELOMALUCO" };
+                string[] poderes = { "PIMENTA", "COOKIE", "COGUMELOMAL", "COGUMELOMALUCO","ESCORPIAO" };
                 int index = Random.Range(0, poderes.Length);
                 string poderSorteado = poderes[index];
                 Debug.Log("P�lula ativou aleatoriamente: " + poderSorteado);
@@ -79,6 +79,10 @@ public class comida_geral : MonoBehaviour
             case "COGUMELOMALUCO":
                 Debug.Log("Poder" + nomePoder);
                 Fome.AtivarCogumeloMaluco();
+                break;
+            case "ESCORPIAO":
+                Debug.Log("Poder" + nomePoder);
+                Fome.AtivarEscorpiaoLentidao();
                 break;
 
             default:

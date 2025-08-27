@@ -29,7 +29,11 @@ public class fome : MonoBehaviour
     private float tempoRestanteCM;
     [Header("CogumeloMaluco")]
     public float duracaoCoguMaluco;
-    public List<Sprite> todasFrutas; // Arraste aqui todos os sprites possíveis de frutas
+    public List<Sprite> todasFrutas;
+    [Header("Escorpiao")]
+    private bool escorpiaoAtivo;
+    public float duracaoEscorpiao;
+    private float tempoRestanteEscorpion;
     [Header("Morte")]
     public GameObject mortehud;
     public Pontos scriptPontuacao;
@@ -57,6 +61,7 @@ public class fome : MonoBehaviour
         AtualizarFome();
         AtualizarPimenta();
         AtualizarCookie();
+        AtualizarEscorpion();
         AtualizarCM();
         if (pimentaAtiva) AtualizarPosicaoPimenta();
         if (valorAtualFome <= 0 && !Morreu)
@@ -128,6 +133,17 @@ public class fome : MonoBehaviour
             }
         }
     }
+    void AtualizarEscorpion()
+    {
+        if (!escorpiaoAtivo)
+            return;
+        tempoRestanteEscorpion -= Time.deltaTime;
+        if (tempoRestanteEscorpion <= 0f)
+        {
+            escorpiaoAtivo = false;
+            scriptPontuacao.escorpiaoSpeed();
+        }
+    }
     void AtualizarCM()
     {
         if (!CMAtivo)
@@ -175,6 +191,12 @@ public class fome : MonoBehaviour
         CMAtivo = true;
         tempoRestanteCM = duracaoCM;
         valorMaxFome = valorMaxFome / 4;
+    }
+    public void AtivarEscorpiaoLentidao()
+    {
+        escorpiaoAtivo = true;
+        tempoRestanteEscorpion = duracaoEscorpiao;
+        scriptPontuacao.escorpiaoMenosSpeed();
     }
     public void AdicionarFome(float quantidade)
     {

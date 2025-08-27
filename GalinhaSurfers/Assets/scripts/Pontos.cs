@@ -19,6 +19,7 @@ public class Pontos : MonoBehaviour
 
     public float pimentaIncremento;
     public float cookieIncremento;
+    public float escorpiaoIncremento;
     // Update is called once per frame
     void Update()
     {
@@ -77,6 +78,22 @@ public class Pontos : MonoBehaviour
         Mundo.rotationSpeed /= cookieIncremento;
         MetrosPorSegundo /= cookieIncremento;
         galinha.speed /= cookieIncremento;
+        if (galinha.speed >= 2.5) galinha.speed = 2.5f;
+        galinha.VelGalin();
+    }
+    public void escorpiaoSpeed()
+    {
+        Mundo.rotationSpeed *= escorpiaoIncremento;
+        MetrosPorSegundo *= escorpiaoIncremento;
+        galinha.speed *= escorpiaoIncremento;
+        if (galinha.speed >= 2.5) galinha.speed = 2.5f;
+        galinha.VelGalin();
+    }
+    public void escorpiaoMenosSpeed()
+    {
+        Mundo.rotationSpeed /= escorpiaoIncremento;
+        MetrosPorSegundo /= escorpiaoIncremento;
+        galinha.speed /= escorpiaoIncremento;
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
     }
