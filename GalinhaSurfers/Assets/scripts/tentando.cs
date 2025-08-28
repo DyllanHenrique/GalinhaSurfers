@@ -40,22 +40,39 @@ public class tentando : MonoBehaviour
 
             if (frutaAlvo != null)
             {
-
-                forwardTarget = frutaAlvo.transform.position - new Vector3(0, 0, frutaOffsetZ);
-                stretch = true;
-
-                // marca para destruir depois
-                frutaAlvoParaDestruir = frutaAlvo;
+                if (frutaAlvo.transform.position.z < 2f)
+                {
+                    stretch = false;
+                    Animator animator = GetComponent<Animator>();
+                    if (animator != null)
+                    {
+                        StartCoroutine(TocarEating(animator, frutaAlvo));
+                        frutaAlvo.ConsumirClique();
+                    }
+                }
+                else
+                {
+                    forwardTarget = frutaAlvo.transform.position - new Vector3(0, 0, 0.2f);
+                    stretch = true;
+                    frutaAlvoParaDestruir = frutaAlvo;
+                }
             }
             else
             {
-     
                 forwardTarget = neckBone.position + neckBone.forward * forwardDistance;
                 stretch = true;
-
-                frutaAlvoParaDestruir = null; 
+                frutaAlvoParaDestruir = null;
             }
         }
+    }
+    private IEnumerator TocarEating(Animator animator, comida_geral fruta)
+    {
+        animator.Play("Eating");
+
+        // espera a duração da animação
+        float duration = 1.5f;
+        yield return new WaitForSeconds(duration);       
+        animator.Play("Walk");        
     }
 
     void LateUpdate()
@@ -101,7 +118,6 @@ public class tentando : MonoBehaviour
             }
         }
     }
-
     LaneDetector GetLaneMaisProxima()
     {
         LaneDetector maisPerto = null;
