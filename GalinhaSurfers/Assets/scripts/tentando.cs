@@ -12,6 +12,10 @@ public class tentando : MonoBehaviour
     private bool stretch = false;
     private Vector3 forwardTarget;
 
+    public LaneDetector[] lanes;   // <- arrasta os 3 detectors aqui
+    private LaneDetector laneAtual;
+    private comida_geral frutaAlvo;
+    public float stretchSpeed = 0.3f;
     void Start()
     {
         if (neckBone == null)
@@ -26,32 +30,55 @@ public class tentando : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)&& Mathf.Abs(neckBone.localPosition.y - originalLocalPos.y) < 0.0001f)
+        laneAtual = GetLaneMaisProxima();
+
+        if (laneAtual != null)
         {
-            forwardTarget = neckBone.position + neckBone.forward * forwardDistance;
-            stretch = true;
+            frutaAlvo = laneAtual.GetFrutaMaisNaFrente();
+
+            if (frutaAlvo != null && Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(neckBone.localPosition.y - originalLocalPos.y) < 0.0001f)
+            {
+                if (frutaAlvo.cliquesRestantes == 1)
+                {
+                    forwardTarget = frutaAlvo.transform.position;
+                    stretch = true;
+                }
+                frutaAlvo.ConsumirClique();
+            }
         }
     }
 
     void LateUpdate()
     {
-        if (neckBone == null) return;
-
-        Vector3 targetPos;
-
         if (stretch)
         {
-            targetPos = forwardTarget;
+            // interpola suavemente do pescoço para o alvo
+            neckBone.position = Vector3.Lerp(neckBone.position, forwardTarget, stretchSpeed);
 
             if (Vector3.Distance(neckBone.position, forwardTarget) < 0.05f)
-            {
                 stretch = false;
-            }
         }
         else
         {
-            targetPos = neckBone.parent.TransformPoint(originalLocalPos);
+            neckBone.position = Vector3.MoveTowards(neckBone.position, neckBone.parent.TransformPoint(originalLocalPos), moveSpeed * Time.deltaTime);
         }
-        neckBone.position = Vector3.MoveTowards(neckBone.position, targetPos, moveSpeed * Time.deltaTime);
+
+    }
+    LaneDetector GetLaneMaisProxima()
+    {
+        LaneDetector maisPerto = null;
+        float menorDistancia = Mathf.Infinity;
+
+        foreach (var lane in lanes)
+        {
+            float dist = Mathf.Abs(transform.position.x - lane.transform.position.x);
+            if (dist < menorDistancia)
+            {
+                menorDistancia = dist;
+                maisPerto = lane;
+            }
+        }
+
+        return maisPerto;
     }
 }

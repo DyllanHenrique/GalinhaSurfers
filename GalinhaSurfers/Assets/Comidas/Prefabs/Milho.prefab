@@ -133,7 +133,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.9414463
+  m_Radius: 0.1
   m_Height: 2.6898468
   m_Direction: 1
   m_Center: {x: 0, y: -0.11538642, z: 0}
@@ -150,5 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 52aa90f6ba4774640a358d78dac15be5, type: 2}
+  cliquesRestantes: 0
   Fome: {fileID: 0}
   ponto: {fileID: 0}

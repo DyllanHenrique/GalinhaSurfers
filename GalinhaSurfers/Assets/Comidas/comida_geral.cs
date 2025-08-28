@@ -3,7 +3,7 @@ using UnityEngine;
 public class comida_geral : MonoBehaviour
 {
     public comidaConfig config;
-    private int cliquesRestantes;
+    public int cliquesRestantes;
     public fome Fome;
     private Rigidbody rb;
     public Pontos ponto;
@@ -25,22 +25,20 @@ public class comida_geral : MonoBehaviour
         if(scriptAranha == null)
             scriptAranha = GetComponent<aranha>();
     }
-    private void OnTriggerEnter(Collider other) 
-    {
-        Destroy(gameObject);
-    }
+
     private void Update() 
     { 
         rb.velocity = new Vector3(0, 0, -ponto.MetrosPorSegundo); 
     }
 
-    void OnMouseDown()
+    public void ConsumirClique()
     {
         cliquesRestantes--;
 
         if (cliquesRestantes <= 0)
             Comer();
     }
+
 
     void Comer()
     {

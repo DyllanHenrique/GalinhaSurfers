@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5963871530914419481
+--- !u!1 &6600980405684268374
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2502549721006870761}
-  - component: {fileID: 2070566044709836941}
-  - component: {fileID: 2168805384991647603}
-  - component: {fileID: 4766755262804589662}
-  - component: {fileID: 3267079112467849154}
+  - component: {fileID: 7791466984411258169}
+  - component: {fileID: 9059616176348991317}
+  - component: {fileID: 8227982962690214912}
+  - component: {fileID: 93665449032856545}
+  - component: {fileID: 5089965607283952088}
+  - component: {fileID: 195019141731872992}
   m_Layer: 0
-  m_Name: Coco
-  m_TagString: Frutas
+  m_Name: ESCORPIAO
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2502549721006870761
+--- !u!4 &7791466984411258169
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5963871530914419481}
+  m_GameObject: {fileID: 6600980405684268374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.951, y: -0.3216, z: 9.86}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 305.25458, y: 356.4503, z: -554.5767}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2070566044709836941
+--- !u!212 &9059616176348991317
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5963871530914419481}
+  m_GameObject: {fileID: 6600980405684268374}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 645b89db5ebde434c8036b827b47a01e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af6fddd48f0be2d43b48fb0995f3a459, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,13 +88,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!54 &2168805384991647603
+--- !u!54 &8227982962690214912
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5963871530914419481}
+  m_GameObject: {fileID: 6600980405684268374}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -114,13 +115,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &4766755262804589662
+--- !u!136 &93665449032856545
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5963871530914419481}
+  m_GameObject: {fileID: 6600980405684268374}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -134,22 +135,34 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
-  m_Height: 3.1912513
+  m_Height: 2.66
   m_Direction: 1
-  m_Center: {x: 0.21737912, y: -0.15799384, z: 0}
---- !u!114 &3267079112467849154
+  m_Center: {x: -0.15398258, y: -0.2400509, z: 0}
+--- !u!114 &5089965607283952088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5963871530914419481}
+  m_GameObject: {fileID: 6600980405684268374}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 541fc4e58cfdd494f9052f775ca0db07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 5a02a8ebbede03d4a8c74ada8ee7e153, type: 2}
+  config: {fileID: 11400000, guid: a654f4c3638ebb24b89ff057c15e0294, type: 2}
   cliquesRestantes: 0
   Fome: {fileID: 0}
   ponto: {fileID: 0}
+--- !u!114 &195019141731872992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600980405684268374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d8b607e3cb3c24ca045cb87ff4516f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
