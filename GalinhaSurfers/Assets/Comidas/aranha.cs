@@ -23,16 +23,41 @@ public class aranha : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.5f);
+
             float sorteio = Random.value;
-            if (sorteio < chanceArmada)
+            bool novaArmada = sorteio < chanceArmada;
+
+            if (novaArmada != armada)
             {
-                armada = true;
-                sr.sprite = spriteArmada;
-            }
-            else
-            {
-                armada = false;
-                sr.sprite = spriteNormal;
+                armada = novaArmada;
+
+                float duracao = 0.5f;
+                float elapsed = 0f;
+                bool spriteTrocado = false;
+                float rotacaoTotal = 0f;
+
+                while (elapsed < duracao)
+                {
+                    float delta = Time.deltaTime;
+                    elapsed += delta;
+
+                    // rota incremental: 360° / duracao * delta
+                    float rotY = (360f / duracao) * delta;
+                    transform.Rotate(0, rotY, 0);
+                    rotacaoTotal += rotY;
+
+                    // troca o sprite quando passar metade da rotação (180°)
+                    if (!spriteTrocado && rotacaoTotal >= 180f)
+                    {
+                        spriteTrocado = true;
+                        sr.sprite = armada ? spriteArmada : spriteNormal;
+                    }
+
+                    yield return null;
+                }
+
+                // garante que completou a rotação exatamente 360°
+                transform.Rotate(0, 360f - rotacaoTotal, 0);
             }
         }
     }

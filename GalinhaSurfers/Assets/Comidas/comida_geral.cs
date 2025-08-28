@@ -10,7 +10,6 @@ public class comida_geral : MonoBehaviour
     private Rigidbody rb;
     public Pontos ponto;
     private aranha scriptAranha;
-
     private void Start()
     {
         cliquesRestantes = config != null ? config.cliquesParaComer : 1;
@@ -27,15 +26,22 @@ public class comida_geral : MonoBehaviour
         if(scriptAranha == null)
             scriptAranha = GetComponent<aranha>();
     }
-    private IEnumerator pulandinho()
-    {
-        //continuar aqui
-        yield return null;
-    }
+
 
     private void Update() 
-    { 
-        rb.velocity = new Vector3(0, 0, -ponto.MetrosPorSegundo); 
+    {
+        if (CompareTag("Frutas"))
+        {
+            float amplitude = 1.3f;       // altura do pulo
+            float frequencia = 2f;      // velocidade da oscilação
+            float y = Mathf.Sin(Time.time * frequencia * Mathf.PI * 2f) * amplitude;
+
+            rb.velocity = new Vector3(0, y, -ponto.MetrosPorSegundo);
+        }
+        else
+        {
+            rb.velocity = new Vector3(0, 0, -ponto.MetrosPorSegundo);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

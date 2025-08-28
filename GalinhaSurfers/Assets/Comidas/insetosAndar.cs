@@ -29,22 +29,25 @@ public class insetosAndar : MonoBehaviour
 
         if (xAtual == 2f)
         {
-            posicao.x = 0f; 
+            posicao.x = 0f;
         }
         else if (xAtual == -2f)
         {
-            posicao.x = 0f; 
+            posicao.x = 0f;
         }
         else if (xAtual == 0f)
         {
             posicao.x = (Random.value < 0.5f) ? -2f : 2f;
         }
 
+        // garante alinhamento na lane
+        posicao.x = Mathf.Round(posicao.x);
         transform.position = posicao;
+
         //Debug.Log("Inseto foi para: " + posicao.x);
     }
-
-    public void Update()
+    /*
+    //public void Update()
     {
         Vector3 posicao = transform.position;
         if (posicao.x <= 2.5f && posicao.x > 1.7f)
@@ -58,7 +61,7 @@ public class insetosAndar : MonoBehaviour
         else posicao.x = 0f;
         transform.position = posicao;
 
-    }
+    }*/
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Frutas"))

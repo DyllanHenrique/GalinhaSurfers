@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4913534757628773246}
   - component: {fileID: 2161337351615058863}
   m_Layer: 0
-  m_Name: ARANHA_TESTE
+  m_Name: ARANHA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 305.25458, y: 356.4503, z: -554.5767}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 19f84621a3137164a98a58bf19f2b2d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 474d54f0fc1272a48b5be2d78b1a3592, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,10 +135,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 4.1781664
+  m_Radius: 0.7
+  m_Height: 6.67
   m_Direction: 1
-  m_Center: {x: -0.15398258, y: -0.2400509, z: 0}
+  m_Center: {x: -0.15398258, y: 1.32, z: 0}
 --- !u!114 &6625364540050901927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armada: 0
-  spriteNormal: {fileID: 21300000, guid: 19f84621a3137164a98a58bf19f2b2d8, type: 3}
-  spriteArmada: {fileID: 21300000, guid: 38b6f8ca6768688449c1614bb4dc95ba, type: 3}
+  spriteNormal: {fileID: 21300000, guid: 474d54f0fc1272a48b5be2d78b1a3592, type: 3}
+  spriteArmada: {fileID: 21300000, guid: b608bbca24419604da8a19a2a74861cb, type: 3}
 --- !u!114 &2161337351615058863
 MonoBehaviour:
   m_ObjectHideFlags: 0

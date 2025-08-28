@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class tentando : MonoBehaviour
 {
-    public Transform neckBone;           // Osso real do pescoço
-    public float moveSpeed = 5f;         // Velocidade do Lerp
-    public float forwardDistance = 2f;   // Distância de esticada
+    public Transform neckBone;         
+    public float moveSpeed = 5f;      
+    public float forwardDistance = 2f;  
 
-    private Vector3 originalLocalPos;    // Posição inicial local do pescoço
+    private Vector3 originalLocalPos;   
     private bool stretch = false;
     private Vector3 forwardTarget;
-
-    public LaneDetector[] lanes;   // <- arrasta os 3 detectors aqui
+    private float velocidadeAtual;
+    public LaneDetector[] lanes;
     private LaneDetector laneAtual;
     private comida_geral frutaAlvo;
-    public float stretchSpeed = 0.3f;
+    private comida_geral frutaAlvoParaDestruir;
+    public float frutaOffsetZ = 0.2f;
     void Start()
     {
         if (neckBone == null)
@@ -26,24 +27,33 @@ public class tentando : MonoBehaviour
         }
 
         originalLocalPos = neckBone.localPosition;
+        velocidadeAtual = moveSpeed; 
     }
 
     void Update()
     {
         laneAtual = GetLaneMaisProxima();
 
-        if (laneAtual != null)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            frutaAlvo = laneAtual.GetFrutaMaisNaFrente();
+            frutaAlvo = laneAtual != null ? laneAtual.GetFrutaMaisNaFrente() : null;
 
-            if (frutaAlvo != null && Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(neckBone.localPosition.y - originalLocalPos.y) < 0.0001f)
+            if (frutaAlvo != null)
             {
-                if (frutaAlvo.cliquesRestantes == 1)
-                {
-                    forwardTarget = frutaAlvo.transform.position;
-                    stretch = true;
-                }
-                frutaAlvo.ConsumirClique();
+
+                forwardTarget = frutaAlvo.transform.position - new Vector3(0, 0, frutaOffsetZ);
+                stretch = true;
+
+                // marca para destruir depois
+                frutaAlvoParaDestruir = frutaAlvo;
+            }
+            else
+            {
+     
+                forwardTarget = neckBone.position + neckBone.forward * forwardDistance;
+                stretch = true;
+
+                frutaAlvoParaDestruir = null; 
             }
         }
     }
@@ -52,18 +62,46 @@ public class tentando : MonoBehaviour
     {
         if (stretch)
         {
-            // interpola suavemente do pescoço para o alvo
-            neckBone.position = Vector3.Lerp(neckBone.position, forwardTarget, stretchSpeed);
+         
+            neckBone.position = Vector3.MoveTowards(
+                neckBone.position,
+                forwardTarget,
+                velocidadeAtual * Time.deltaTime
+            );
 
             if (Vector3.Distance(neckBone.position, forwardTarget) < 0.05f)
-                stretch = false;
+            {
+           
+                if (frutaAlvoParaDestruir != null)
+                {
+                    frutaAlvoParaDestruir.ConsumirClique();
+                    frutaAlvoParaDestruir = null;
+                }
+
+          
+                Vector3 posOriginal = neckBone.parent.TransformPoint(originalLocalPos);
+                posOriginal.x = neckBone.parent.position.x; 
+                forwardTarget = posOriginal;
+                stretch = false; 
+            }
         }
         else
         {
-            neckBone.position = Vector3.MoveTowards(neckBone.position, neckBone.parent.TransformPoint(originalLocalPos), moveSpeed * Time.deltaTime);
-        }
+     
+            Vector3 targetPos = neckBone.parent.TransformPoint(originalLocalPos);
+            targetPos.x = neckBone.parent.position.x; 
 
+            if (Vector3.Distance(neckBone.position, targetPos) > 0.01f)
+            {
+                neckBone.position = Vector3.MoveTowards(
+                    neckBone.position,
+                    targetPos,
+                    velocidadeAtual * Time.deltaTime
+                );
+            }
+        }
     }
+
     LaneDetector GetLaneMaisProxima()
     {
         LaneDetector maisPerto = null;

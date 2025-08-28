@@ -904,7 +904,7 @@ Transform:
   m_GameObject: {fileID: 90292372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5925, z: 5.45}
+  m_LocalPosition: {x: 0, y: 4.08, z: 4.6677}
   m_LocalScale: {x: 0.18, y: 1, z: 0.7067}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -943,8 +943,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 2.33, z: 10}
-  m_Center: {x: 0, y: -0.98, z: 0}
+  m_Size: {x: 10, y: 6.72, z: 10}
+  m_Center: {x: 0, y: -2.36, z: 0}
 --- !u!1 &91092224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,17 +1651,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 2574228993165405271, guid: e54990f7c01475346a1c106f17e44e55, type: 3}
-  - {fileID: 5217274193910570369, guid: d09e80c376cde0c439b516a1dc6f1158, type: 3}
-  - {fileID: 982361190997541557, guid: 6ef0949c4d1d67441a2cfd297b869631, type: 3}
-  - {fileID: 8267870656542886816, guid: 8290e94c48af9a34bac4ef209775dfe2, type: 3}
-  - {fileID: 5963871530914419481, guid: 1332cd85b3766bb4581371ac65f8645e, type: 3}
   - {fileID: 2201366866340733, guid: 9c60e0c1307d136488dfe2d83e16200e, type: 3}
+  - {fileID: 5963871530914419481, guid: 1332cd85b3766bb4581371ac65f8645e, type: 3}
+  - {fileID: 5893673058613364931, guid: f3153744ae1154b47a681552c8eebf9c, type: 3}
+  - {fileID: 8267870656542886816, guid: 8290e94c48af9a34bac4ef209775dfe2, type: 3}
+  - {fileID: 982361190997541557, guid: 6ef0949c4d1d67441a2cfd297b869631, type: 3}
+  - {fileID: 6600980405684268374, guid: 37680fd49353ca2409bf02d6480219a5, type: 3}
+  - {fileID: 5217274193910570369, guid: d09e80c376cde0c439b516a1dc6f1158, type: 3}
+  - {fileID: 1481411336038317815, guid: 1040a3d17cf119e43b14a7d38c35a16e, type: 3}
   - {fileID: 1287690394428048194, guid: 6a02b1944b891ee47a94fbb55d8c2c26, type: 3}
+  - {fileID: 2166479405735110548, guid: 73bab832465530d4ba230a701529deec, type: 3}
+  - {fileID: 2574228993165405271, guid: e54990f7c01475346a1c106f17e44e55, type: 3}
   comidaChances:
   - 0
-  - 100
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 100
   - 0
   - 0
   - 0
@@ -4966,7 +4974,7 @@ MonoBehaviour:
   - {fileID: 1803791029}
   - {fileID: 90292377}
   - {fileID: 1446048875}
-  stretchSpeed: 0.25
+  frutaOffsetZ: 0.2
 --- !u!1 &1248727716 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e03f2c4f060a6234fa6252c22789f50a, type: 3}
@@ -5314,7 +5322,7 @@ Transform:
   m_GameObject: {fileID: 1446048870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 1.5925, z: 5.45}
+  m_LocalPosition: {x: 2, y: 4.08, z: 4.6677}
   m_LocalScale: {x: 0.18, y: 1, z: 0.7067}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5353,8 +5361,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 2.33, z: 10}
-  m_Center: {x: 0, y: -0.98, z: 0}
+  m_Size: {x: 10, y: 6.72, z: 10}
+  m_Center: {x: 0, y: -2.36, z: 0}
 --- !u!1 &1454588488
 GameObject:
   m_ObjectHideFlags: 0
@@ -6550,7 +6558,7 @@ Transform:
   m_GameObject: {fileID: 1803791024}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 1.5925, z: 5.45}
+  m_LocalPosition: {x: -2, y: 4.08, z: 4.6677}
   m_LocalScale: {x: 0.18, y: 1, z: 0.7067}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6589,8 +6597,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 2.33, z: 10}
-  m_Center: {x: 0, y: -0.98, z: 0}
+  m_Size: {x: 10, y: 6.72, z: 10}
+  m_Center: {x: 0, y: -2.36, z: 0}
 --- !u!1 &1805936253
 GameObject:
   m_ObjectHideFlags: 0
@@ -7137,13 +7145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9f35ca5bc1081469bc4a5daa16ac11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hueShiftSpeed: 0.75
-  jumpAmplitude: 5
-  jumpFrequency: 2
-  characterOffset: 0.2
-  tmpText: {fileID: 0}
-  textInfo: {textComponent: {fileID: 0}, characterCount: 0, spriteCount: 0, spaceCount: 0, wordCount: 0, linkCount: 0, lineCount: 0, pageCount: 0, materialCount: 0}
-  time: 0
 --- !u!1001 &1940204827
 PrefabInstance:
   m_ObjectHideFlags: 0

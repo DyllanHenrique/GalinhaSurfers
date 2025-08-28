@@ -37,13 +37,14 @@ public class LaneDetector : MonoBehaviour
     }
     public comida_geral GetFrutaMaisNaFrente()
     {
+        frutasNaLane.RemoveAll(c => c == null);
         if (frutasNaLane.Count == 0)
             return null;
 
         comida_geral alvo = frutasNaLane[0];
         foreach (var fruta in frutasNaLane)
         {
-            if (fruta.transform.position.z < alvo.transform.position.z)
+            if (fruta != null && fruta.transform.position.z < alvo.transform.position.z)
             {
                 alvo = fruta;
             }
