@@ -40,6 +40,7 @@ public class fome : MonoBehaviour
     private bool Morreu;
     public GameObject HighScore;
     public TMP_Text Score;
+    public TMP_Text ScoreSombra;
 
     void Start()
 
@@ -66,7 +67,7 @@ public class fome : MonoBehaviour
         if (pimentaAtiva) AtualizarPosicaoPimenta();
         if (valorAtualFome <= 0 && !Morreu)
         {
-            GalinhaMorreu();
+            StartCoroutine(GalinhaMorreu());
         }
     }
     void AtualizarFome()
@@ -288,7 +289,7 @@ public class fome : MonoBehaviour
         }
         Debug.Log("Efeito alucinógeno passou!");
     }
-    private void GalinhaMorreu()
+    private IEnumerator GalinhaMorreu()
     {
         int recorde = PlayerPrefs.GetInt("pontuacao",0);
         Debug.Log(recorde);
@@ -296,11 +297,13 @@ public class fome : MonoBehaviour
         scriptPontuacao.galinhaMorta = true;
         mortehud.SetActive(true);
         Score.text = "Score:" + scriptPontuacao.distanciaNum;
+        ScoreSombra.text = Score.text;
         int pontosAtuais = scriptPontuacao.distanciaNum;
         if (pontosAtuais > recorde)
         {
             Debug.Log(pontosAtuais);
             PlayerPrefs.SetInt("pontuacao", pontosAtuais);
+            yield return new WaitForSeconds(3f);
             HighScore.SetActive(true);
         }
         //Usado para atualizar o score em breve
