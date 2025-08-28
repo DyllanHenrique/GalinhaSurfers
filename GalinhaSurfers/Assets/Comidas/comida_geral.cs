@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class comida_geral : MonoBehaviour
@@ -25,12 +27,23 @@ public class comida_geral : MonoBehaviour
         if(scriptAranha == null)
             scriptAranha = GetComponent<aranha>();
     }
+    private IEnumerator pulandinho()
+    {
+        //continuar aqui
+        yield return null;
+    }
 
     private void Update() 
     { 
         rb.velocity = new Vector3(0, 0, -ponto.MetrosPorSegundo); 
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("destruir")) 
+        {
+            Destroy(gameObject);
+        }
+    }
     public void ConsumirClique()
     {
         cliquesRestantes--;
