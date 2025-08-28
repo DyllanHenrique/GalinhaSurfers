@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Frutas
   - Inseto
+  - destruir
   layers:
   - Default
   - TransparentFX
