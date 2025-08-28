@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LobbyManager : MonoBehaviour
 {
     public Animator galinAnimator;
+    public ParticleSystem transitionParticles; // <- adicione no Inspector as partículas da transição
 
     private bool isTransitioning = false;
 
@@ -49,10 +50,21 @@ public class LobbyManager : MonoBehaviour
     {
         isTransitioning = true;
 
-        galinAnimator.gameObject.SetActive(false);
+        // Ativar partículas
+        if (transitionParticles != null)
+        {
+            transitionParticles.Play();
+        }
 
-        yield return new WaitForSeconds(0.5f);
+        // Espera 1 segundo e destrói a galinha
+        yield return new WaitForSeconds(2f);
+        if (galinAnimator != null)
+        {
+            Destroy(galinAnimator.gameObject);
+        }
 
+        // Espera mais 1 segundo (total 2s desde as partículas) e troca de cena
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Galinha_MasComProfundidade");
     }
 }

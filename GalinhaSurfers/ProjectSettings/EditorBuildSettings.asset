@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Lobyby.unity
+    guid: 6c3349766fef5dd4fa8125300d819fc8
+  - enabled: 1
+    path: Assets/Scenes/Galinha_MasComProfundidade.unity
+    guid: eef01d9b1fe74a74bbf44d2ac53dd908
   m_configObjects: {}
