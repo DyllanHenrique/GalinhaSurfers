@@ -64,7 +64,7 @@ public class insetosAndar : MonoBehaviour
         if (collision.gameObject.CompareTag("Frutas"))
         {
             Destroy(collision.gameObject);
-            Debug.Log("Inseto comeu a fruta!");
+            //Debug.Log("Inseto comeu a fruta!");
         }
     }
 }
