@@ -22,6 +22,7 @@ public class SpawnScript : MonoBehaviour
         }
         StartCoroutine(SpawnLoop());
     }
+
     public IEnumerator SpawnLoop()
     {
         while (true)
