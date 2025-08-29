@@ -22,6 +22,7 @@ public class tentando : MonoBehaviour
     public tresDoisUm tresDoisUm;
     private Animator animator;
     private Coroutine eatingCoroutine;
+    private bool voltandoDoEating = false;
 
     void Start()
     {
@@ -41,7 +42,8 @@ public class tentando : MonoBehaviour
     {
         if (tresDoisUm.TresDoisUmGO)
             return;
-
+        if (voltandoDoEating)
+            return;
         laneAtual = GetLaneMaisProxima();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -132,6 +134,9 @@ public class tentando : MonoBehaviour
                 {
                     frutaAlvoParaDestruir.ConsumirClique();
                     frutaAlvoParaDestruir = null;
+
+                
+                    voltandoDoEating = true;
                 }
 
                 forwardTarget = neckBone.parent.TransformPoint(originalLocalPos);
@@ -148,6 +153,11 @@ public class tentando : MonoBehaviour
                     targetPos,
                     velocidadeAtual * Time.deltaTime
                 );
+            }
+            else if (voltandoDoEating)
+            {
+ 
+                voltandoDoEating = false;
             }
         }
     }
