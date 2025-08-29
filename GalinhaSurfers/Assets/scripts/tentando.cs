@@ -115,7 +115,7 @@ public class tentando : MonoBehaviour
             animator.Play("Eating");
 
         fruta.ConsumirClique();
-        yield return new WaitForSeconds(1.5f); // duração da animação
+        yield return new WaitForSeconds(1.4f); // duração da animação
 
         if (animator != null)
             animator.Play("Walk");
