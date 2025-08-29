@@ -7,7 +7,7 @@ public class GalinhaMovement : MonoBehaviour
     private float[] lanes = { -2f, 0f, 2f };
     private int currentLane = 1;
     public float speed = 1f;
-    public float duration;
+    public float durationJump;
     private Animator animator;
     private bool isJumping = false;
     public tresDoisUm tresDoisUm;
@@ -35,9 +35,18 @@ public class GalinhaMovement : MonoBehaviour
             }
         }
     }
+    private float? speedPending = null;
     public void VelGalin()
     {
-        animator.speed = speed;
+        if (!isJumping)
+        {
+            animator.speed = speed;
+            durationJump = 0.75f / speed;
+        }
+        else
+        {
+            speedPending = speed;
+        }
     }
 
     private IEnumerator JumpToLane(int newLane)
@@ -47,10 +56,10 @@ public class GalinhaMovement : MonoBehaviour
         Vector3 startPos = transform.position;
         Vector3 endPos = new Vector3(lanes[newLane], startPos.y, startPos.z); 
         float elapsed = 0f;
-        while (elapsed < duration)
+        while (elapsed < durationJump)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / duration;
+            float t = elapsed / durationJump;
             transform.position = Vector3.Lerp(startPos, endPos, t);
             yield return null;
         }
@@ -58,5 +67,12 @@ public class GalinhaMovement : MonoBehaviour
         currentLane = newLane;
         animator.Play("Walk");
         isJumping = false;
+        if (speedPending.HasValue)
+        {
+            speed = speedPending.Value;
+            animator.speed = speed;
+            durationJump = 0.75f / speed;
+            speedPending = null;
+        }
     }
 }

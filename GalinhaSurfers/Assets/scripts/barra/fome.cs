@@ -71,6 +71,10 @@ public class fome : MonoBehaviour
     void Update()
     {
         if (!taLiberado) return;
+          if (Input.GetKeyDown(KeyCode.W))
+            AtivarEscorpiaoLentidao();
+          if (Input.GetKeyDown(KeyCode.E))
+            AtivarCookie();
 
         AtualizarFome();
         AtualizarPimenta();

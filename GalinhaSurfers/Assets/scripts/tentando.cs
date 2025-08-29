@@ -14,7 +14,7 @@ public class tentando : MonoBehaviour
     private Vector3 forwardTarget;
     private float velocidadeAtual;
 
-    public LaneDetector[] lanes;
+    [SerializeField] private LaneDetector[] lanes;
     private LaneDetector laneAtual;
     private comida_geral frutaAlvo;
     private comida_geral frutaAlvoParaDestruir;
@@ -24,6 +24,11 @@ public class tentando : MonoBehaviour
     private Coroutine eatingCoroutine;
     private bool voltandoDoEating = false;
 
+    void Awake()
+    {
+        // encontra todos os LaneDetector na cena
+        lanes = FindObjectsOfType<LaneDetector>();
+    }
     void Start()
     {
         if (neckBone == null)
