@@ -7,9 +7,9 @@ using System;
 public class tresDoisUm : MonoBehaviour
 {
     public Image[] images;
-    private float fadeDuration = 0.2f;
-    private float scaleDuration = 1.5f;
-    private float tempoVisivel = 0.5f;
+    public float fadeDuration = 0.2f;
+    public float scaleDuration = 1.5f;
+    public float tempoVisivel = 0.5f;
 
     private void Start()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class comida_geral : MonoBehaviour
 {
@@ -35,8 +36,8 @@ public class comida_geral : MonoBehaviour
             float amplitude = 1.3f;       // altura do pulo
             float frequencia = 2f;      // velocidade da oscilação
             float y = Mathf.Sin(Time.time * frequencia * Mathf.PI * 2f) * amplitude;
-
-            rb.velocity = new Vector3(0, y, -ponto.MetrosPorSegundo);
+            float velcomidas = -ponto.MetrosPorSegundo;
+            rb.velocity = new Vector3(0, y, velcomidas-1);
         }
         else
         {

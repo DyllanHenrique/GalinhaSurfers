@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class fome : MonoBehaviour
 {
-    private float delayAntesDeTUDO = 12f;
+    private float delayAntesDeTUDO = 8f;
     private bool taLiberado = false;
     [Header("Barra Fome")]
     public RectTransform barraFome;
@@ -304,6 +304,7 @@ public class fome : MonoBehaviour
         Debug.Log(recorde);
         Morreu = true;
         scriptPontuacao.galinhaMorta = true;
+        yield return new WaitForSeconds(3.5f);
         mortehud.SetActive(true);
         Score.text = "Score:" + scriptPontuacao.distanciaNum;
         ScoreSombra.text = Score.text;
