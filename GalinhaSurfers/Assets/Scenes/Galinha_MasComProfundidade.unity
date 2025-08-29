@@ -5087,6 +5087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  duration: 0.75
 --- !u!95 &1179152641
 Animator:
   serializedVersion: 5
@@ -5859,6 +5860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  duration: 0
 --- !u!1 &1504322095
 GameObject:
   m_ObjectHideFlags: 0

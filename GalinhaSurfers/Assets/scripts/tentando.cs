@@ -57,7 +57,16 @@ public class tentando : MonoBehaviour
                     if (distancia < 2f)
                     {
                         // Come Eating normalmente
-                        if (eatingCoroutine != null) StopCoroutine(eatingCoroutine);
+                        if (eatingCoroutine != null)
+                        {
+                            StopCoroutine(eatingCoroutine);
+                            eatingCoroutine = null;
+
+                            // Apenas toca Walk sem resetar velocidade ou posição lateral
+                            if (animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName("Eating"))
+                                animator.Play("Walk");
+                        }
+
                         eatingCoroutine = StartCoroutine(TocarEating(frutaAlvo));
                         stretch = false;
                         frutaAlvoParaDestruir = null;
@@ -75,7 +84,7 @@ public class tentando : MonoBehaviour
                         frutaAlvoParaDestruir = frutaAlvo; // desaparece ao chegar perto
                     }
                 }
-                //frutaAlvo.ConsumirClique();
+                //
                 // Se não estiver em Walk, não estica nem come, apenas cliques já decrementados
             }
             else
@@ -96,7 +105,7 @@ public class tentando : MonoBehaviour
     {
         if (animator != null)
             animator.Play("Eating");
-
+        frutaAlvo.ConsumirClique();
         yield return new WaitForSeconds(1.5f); // duração da animação
 
         if (animator != null)
