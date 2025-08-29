@@ -17,7 +17,7 @@ public class tentando : MonoBehaviour
     private LaneDetector laneAtual;
     private comida_geral frutaAlvo;
     private comida_geral frutaAlvoParaDestruir;
-
+    public tresDoisUm tresDoisUm;
     private Animator animator;
     private Coroutine eatingCoroutine;
 
@@ -37,6 +37,8 @@ public class tentando : MonoBehaviour
 
     void Update()
     {
+        if (tresDoisUm.TresDoisUmGO == true)
+            return;
         laneAtual = GetLaneMaisProxima();
 
         if (Input.GetKeyDown(KeyCode.Space))

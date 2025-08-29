@@ -10,19 +10,23 @@ public class tresDoisUm : MonoBehaviour
     public float fadeDuration = 0.2f;
     public float scaleDuration = 1.5f;
     public float tempoVisivel = 0.5f;
+    public bool TresDoisUmGO = false;
 
     private void Start()
     {
+        TresDoisUmGO = true;
         StartCoroutine(Sequencia());
     }
 
     IEnumerator Sequencia()
     {
-        yield return new WaitForSeconds(2f);
+
+        yield return new WaitForSeconds(1f);
         foreach (var img in images)
         {
             yield return StartCoroutine(Aparecer(img));
         }
+        TresDoisUmGO = false;
     }
 
     IEnumerator Aparecer(Image img)

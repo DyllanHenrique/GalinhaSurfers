@@ -10,7 +10,7 @@ public class GalinhaMovement : MonoBehaviour
     public float duration;
     private Animator animator;
     private bool isJumping = false;
-
+    public tresDoisUm tresDoisUm;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,6 +19,9 @@ public class GalinhaMovement : MonoBehaviour
 
     private void Update()
     {
+        if (tresDoisUm.TresDoisUmGO == true)
+            return;
+
         if (!isJumping)
         {
             if (Input.GetKeyDown(KeyCode.A) && currentLane > 0)

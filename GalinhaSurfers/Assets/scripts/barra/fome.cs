@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class fome : MonoBehaviour
 {
-    private float delayAntesDeTUDO = 8f;
+    private float delayAntesDeTUDO =8f;
     private bool taLiberado = false;
     [Header("Barra Fome")]
     public RectTransform barraFome;
