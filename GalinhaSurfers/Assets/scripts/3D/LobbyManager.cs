@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class LobbyManager : MonoBehaviour
 {
-    public Animator galinAnimator;
-    public ParticleSystem transitionParticles; // <- adicione no Inspector as partículas da transição
+    public Animator animatorGalinha;
+
+    public GameObject smokeObject;
 
     private bool isTransitioning = false;
+
+    public GameObject startObject;
 
     //MenuOpcoes
     public GameObject optionsMenu;
@@ -18,17 +23,50 @@ public class LobbyManager : MonoBehaviour
     public Animator animatorA;
     public Animator animatorD;
     public Animator animatorGalin;
+    public Animator animatorSpace;
     private Coroutine animationCoroutine;
+    public Image imageMilho;
+    public Image imageCoconut;
+    public float fadeDuration = 1f;
+    public Animator animatorChomp;
 
     void Start()
     {
+        startObject.SetActive(true);
+
+        smokeObject.SetActive(false);
+
+
         Debug.Log("Idle");
-        galinAnimator.Play("Idle");
+        animatorGalinha.Play("Idle");
         StartCoroutine(RandomIdleCycle());
 
         //MO
         optionsMenu.SetActive(false);
         htpMenu.SetActive(false);
+
+        //MHTP
+        if (imageMilho != null)
+        {
+            Image[] milhoImages = imageMilho.GetComponentsInChildren<Image>();
+            foreach (var img in milhoImages)
+            {
+                Color c = img.color;
+                c.a = 0f;
+                img.color = c;
+            }
+        }
+
+        if (imageCoconut != null)
+        {
+            Image[] coconutImages = imageCoconut.GetComponentsInChildren<Image>();
+            foreach (var img in coconutImages)
+            {
+                Color c = img.color;
+                c.a = 0f;
+                img.color = c;
+            }
+        }
     }
 
     void Update()
@@ -48,20 +86,20 @@ public class LobbyManager : MonoBehaviour
     {
         while (true)
         {
-            float idleTime = Random.Range(5f, 30f);
+            float idleTime = Random.Range(2f, 10f);
             yield return new WaitForSeconds(idleTime);
 
             int randomIdle = Random.Range(1, 6);
             string animName = "Idle_" + randomIdle;
 
-            galinAnimator.Play(animName);
+            animatorGalinha.Play(animName);
 
             yield return null;
 
-            AnimatorStateInfo state = galinAnimator.GetCurrentAnimatorStateInfo(0);
+            AnimatorStateInfo state = animatorGalinha.GetCurrentAnimatorStateInfo(0);
             yield return new WaitForSeconds(state.length);
 
-            galinAnimator.Play("Idle");
+            animatorGalinha.Play("Idle");
         }
     }
 
@@ -69,20 +107,14 @@ public class LobbyManager : MonoBehaviour
     {
         isTransitioning = true;
 
-        // Ativar partículas
-        if (transitionParticles != null)
-        {
-            transitionParticles.Play();
-        }
+        startObject.SetActive(false);
 
-        // Espera 1 segundo e destrói a galinha
-        yield return new WaitForSeconds(2f);
-        if (galinAnimator != null)
-        {
-            Destroy(galinAnimator.gameObject);
-        }
+        smokeObject.SetActive(true);
 
-        // Espera mais 1 segundo (total 2s desde as partículas) e troca de cena
+        yield return new WaitForSeconds(0.2f);
+
+        animatorGalinha.Play("Idle");
+
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Galinha_MasComProfundidade");
     }
@@ -103,8 +135,9 @@ public class LobbyManager : MonoBehaviour
 
     public void CloseHTPMenu()
     {
-        htpMenu.SetActive(false);
+        Debug.Log("Fechou");
         StopHTPSequence();
+        htpMenu.SetActive(false);
     }
 
     public void StartHTPSequence()
@@ -119,16 +152,21 @@ public class LobbyManager : MonoBehaviour
 
     public void StopHTPSequence()
     {
-        Debug.Log("Terminou");
-        if (animationCoroutine != null)
-        {
-            StopCoroutine(animationCoroutine);
-            animationCoroutine = null;
-        }
+        animatorA.Rebind();
+        animatorA.Update(0f);
+        animatorA.Play("Idle_A", 0, 0f);
 
-        animatorA.Play("Idle_A");
-        animatorD.Play("Idle_D");
-        animatorGalin.Play("Idle");
+        animatorD.Rebind();
+        animatorD.Update(0f);
+        animatorD.Play("Idle_D", 0, 0f);
+
+        animatorGalin.Rebind();
+        animatorGalin.Update(0f);
+        animatorGalin.Play("Idle", 0, 0f);
+
+        animatorSpace.Rebind();
+        animatorSpace.Update(0f);
+        animatorSpace.Play("Idle_Space", 0, 0f);
     }
 
     private IEnumerator PlayHTPSequence()
@@ -164,7 +202,76 @@ public class LobbyManager : MonoBehaviour
             animatorA.SetTrigger("T_Idle_A");
             animatorGalin.SetTrigger("T_Idle");
 
+            yield return new WaitForSeconds(0.5f);
+
+            animatorChomp.SetTrigger("Comeu");
+            animatorSpace.SetTrigger("T_Press_Space");
+            animatorGalin.SetTrigger("T_Eating");
+            StartCoroutine(Fade());
+            yield return new WaitForSeconds(1.5f);
+            animatorSpace.SetTrigger("T_Idle_Space");
+            animatorGalin.SetTrigger("T_Idle");
+            animatorChomp.SetTrigger("Cabo");
+
             yield return new WaitForSeconds(1f);
+
+        }
+    }
+
+    IEnumerator Fade()
+    {
+        if (imageMilho == null || imageCoconut == null) yield break;
+
+        Image[] milhoImages = imageMilho.GetComponentsInChildren<Image>();
+        Image[] coconutImages = imageCoconut.GetComponentsInChildren<Image>();
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
+
+            foreach (var img in milhoImages)
+            {
+                Color c = img.color;
+                c.a = alpha;
+                img.color = c;
+            }
+
+            foreach (var img in coconutImages)
+            {
+                Color c = img.color;
+                c.a = alpha;
+                img.color = c;
+            }
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Clamp01(1 - (elapsedTime / fadeDuration));
+
+            foreach (var img in milhoImages)
+            {
+                Color c = img.color;
+                c.a = alpha;
+                img.color = c;
+            }
+
+            foreach (var img in coconutImages)
+            {
+                Color c = img.color;
+                c.a = alpha;
+                img.color = c;
+            }
+
+            yield return null;
         }
     }
 }
