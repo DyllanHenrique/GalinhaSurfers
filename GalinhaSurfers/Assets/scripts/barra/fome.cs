@@ -44,7 +44,7 @@ public class fome : MonoBehaviour
     public TMP_Text Score;
     public TMP_Text ScoreSombra;
     public SpawnScript spwanScript;
-    void Start()
+    public void Start()
     {
         // Fome 
         alturaInicialFome = barraFome.sizeDelta.y;

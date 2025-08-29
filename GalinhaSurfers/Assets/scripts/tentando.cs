@@ -45,37 +45,32 @@ public class tentando : MonoBehaviour
         {
             frutaAlvo = laneAtual != null ? laneAtual.GetFrutaMaisNaFrente() : null;
 
+            // Bloqueia clique apenas se o pescoço já está esticado para uma fruta existente
+            if (frutaAlvo != null && stretch && frutaAlvoParaDestruir != null && frutaAlvo == frutaAlvoParaDestruir)
+                return;
+
             if (frutaAlvo != null)
             {
-                bool ultimoClique = frutaAlvo.cliquesRestantes == 1;
                 float distancia = Vector3.Distance(frutaAlvo.transform.position, neckBone.position);
 
-                // Sempre diminui o clique
-          
-
-                // Só estica ou come se estiver em Walk
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
                 {
                     if (distancia < 2f)
                     {
-                        // Come Eating normalmente
                         if (eatingCoroutine != null)
                         {
                             StopCoroutine(eatingCoroutine);
                             eatingCoroutine = null;
 
-                            // Apenas toca Walk sem resetar velocidade ou posição lateral
                             if (animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName("Eating"))
                                 animator.Play("Walk");
                         }
 
                         eatingCoroutine = StartCoroutine(TocarEating(frutaAlvo));
-                        stretch = false;
                         frutaAlvoParaDestruir = null;
                     }
                     else
                     {
-                        // Mesmo que seja o último clique, se estiver em Walk, estica para comer
                         Vector3 targetPos = frutaAlvo.transform.position - new Vector3(0, 0, frutaOffsetZ);
                         Vector3 deslocamento = targetPos - neckBone.parent.TransformPoint(originalLocalPos);
                         if (deslocamento.magnitude > forwardDistance)
@@ -83,11 +78,9 @@ public class tentando : MonoBehaviour
 
                         forwardTarget = neckBone.parent.TransformPoint(originalLocalPos) + deslocamento;
                         stretch = true;
-                        frutaAlvoParaDestruir = frutaAlvo; // desaparece ao chegar perto
+                        frutaAlvoParaDestruir = frutaAlvo;
                     }
                 }
-                //
-                // Se não estiver em Walk, não estica nem come, apenas cliques já decrementados
             }
             else
             {
