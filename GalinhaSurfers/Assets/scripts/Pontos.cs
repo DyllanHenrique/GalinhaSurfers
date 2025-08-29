@@ -102,7 +102,7 @@ public class Pontos : MonoBehaviour
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
         //Debug.Log("velSCORE" + MetrosPorSegundo);
-        Debug.Log("velGALIN" + galinha.speed);
+        //Debug.Log("velGALIN" + galinha.speed);
         //Debug.Log("velMUNDO" + Mundo.rotationSpeed);
     }
     public void pimentaSpeed()
@@ -128,6 +128,7 @@ public class Pontos : MonoBehaviour
         galinha.speed *= cookieIncremento;
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
+        Debug.Log("velGALIN" + galinha.speed);
     }
     public void cookieMenosSpeed()
     {
@@ -136,6 +137,7 @@ public class Pontos : MonoBehaviour
         galinha.speed /= cookieIncremento;
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
+        Debug.Log("velGALIN" + galinha.speed);
     }
     public void escorpiaoSpeed()
     {
