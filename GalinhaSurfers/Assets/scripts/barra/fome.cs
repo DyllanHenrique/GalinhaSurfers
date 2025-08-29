@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 public class fome : MonoBehaviour
 {
+    private float delayAntesDeTUDO = 12f;
+    private bool taLiberado = false;
     [Header("Barra Fome")]
     public RectTransform barraFome;
     public float valorAtualFome;
@@ -43,7 +45,6 @@ public class fome : MonoBehaviour
     public TMP_Text ScoreSombra;
 
     void Start()
-
     {
         // Fome 
         alturaInicialFome = barraFome.sizeDelta.y;
@@ -53,12 +54,18 @@ public class fome : MonoBehaviour
         // Pimenta 
         barraPimenta.gameObject.SetActive(false);
         pimentaAtiva = false;
+        StartCoroutine(Perai());
+
     }
+    private IEnumerator Perai() 
+    { 
+        yield return new WaitForSeconds(delayAntesDeTUDO); 
+        taLiberado = true; 
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-            AtivarCogumeloMal();
-
+        if (!taLiberado) return;
         AtualizarFome();
         AtualizarPimenta();
         AtualizarCookie();
@@ -69,14 +76,15 @@ public class fome : MonoBehaviour
         {
             StartCoroutine(GalinhaMorreu());
         }
+
     }
     void AtualizarFome()
     {
-        // Redu��o normal da fome
         valorAtualFome -= velFome * Time.deltaTime; valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
-        // Atualiza altura da barra de fome
         float alturaMaximaFome = alturaInicialFome * (valorMaxFome / valorMaxInicialFome);
         float porcentagemFome = valorAtualFome / valorMaxFome; barraFome.sizeDelta = new Vector2(barraFome.sizeDelta.x, alturaMaximaFome * porcentagemFome);
+
+
     }
     void AtualizarPimenta()
     {
@@ -245,6 +253,7 @@ public class fome : MonoBehaviour
     }
     private IEnumerator EfeitoAlucinogeno(float duracao)
     {
+
         float tempoPassado = 0f;
         bool mostrarNovo = true;
         Dictionary<GameObject, Sprite> originais = new Dictionary<GameObject, Sprite>();

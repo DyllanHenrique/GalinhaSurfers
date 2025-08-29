@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class tentando : MonoBehaviour
 {
-    public Transform neckBone;         
-    public float moveSpeed = 5f;      
-    public float forwardDistance = 2f;  
+    public Transform neckBone;
+    public float moveSpeed = 5f;
+    public float forwardDistance = 2f;
+    public float frutaOffsetZ = 0.2f;
 
-    private Vector3 originalLocalPos;   
+    private Vector3 originalLocalPos;
     private bool stretch = false;
     private Vector3 forwardTarget;
     private float velocidadeAtual;
@@ -16,7 +17,10 @@ public class tentando : MonoBehaviour
     private LaneDetector laneAtual;
     private comida_geral frutaAlvo;
     private comida_geral frutaAlvoParaDestruir;
-    public float frutaOffsetZ = 0.2f;
+
+    private Animator animator;
+    private Coroutine eatingCoroutine;
+
     void Start()
     {
         if (neckBone == null)
@@ -27,7 +31,8 @@ public class tentando : MonoBehaviour
         }
 
         originalLocalPos = neckBone.localPosition;
-        velocidadeAtual = moveSpeed; 
+        velocidadeAtual = moveSpeed;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -40,74 +45,91 @@ public class tentando : MonoBehaviour
 
             if (frutaAlvo != null)
             {
-                if (frutaAlvo.transform.position.z < 2f)
+                bool ultimoClique = frutaAlvo.cliquesRestantes == 1;
+                float distancia = Vector3.Distance(frutaAlvo.transform.position, neckBone.position);
+
+                // Sempre diminui o clique
+          
+
+                // Só estica ou come se estiver em Walk
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
                 {
-                    stretch = false;
-                    Animator animator = GetComponent<Animator>();
-                    if (animator != null)
+                    if (distancia < 2f)
                     {
-                        StartCoroutine(TocarEating(animator, frutaAlvo));
-                        frutaAlvo.ConsumirClique();
+                        // Come Eating normalmente
+                        if (eatingCoroutine != null) StopCoroutine(eatingCoroutine);
+                        eatingCoroutine = StartCoroutine(TocarEating(frutaAlvo));
+                        stretch = false;
+                        frutaAlvoParaDestruir = null;
+                    }
+                    else
+                    {
+                        // Mesmo que seja o último clique, se estiver em Walk, estica para comer
+                        Vector3 targetPos = frutaAlvo.transform.position - new Vector3(0, 0, frutaOffsetZ);
+                        Vector3 deslocamento = targetPos - neckBone.parent.TransformPoint(originalLocalPos);
+                        if (deslocamento.magnitude > forwardDistance)
+                            deslocamento = deslocamento.normalized * forwardDistance;
+
+                        forwardTarget = neckBone.parent.TransformPoint(originalLocalPos) + deslocamento;
+                        stretch = true;
+                        frutaAlvoParaDestruir = frutaAlvo; // desaparece ao chegar perto
                     }
                 }
-                else
-                {
-                    forwardTarget = frutaAlvo.transform.position - new Vector3(0, 0, 0.2f);
-                    stretch = true;
-                    frutaAlvoParaDestruir = frutaAlvo;
-                }
+                //frutaAlvo.ConsumirClique();
+                // Se não estiver em Walk, não estica nem come, apenas cliques já decrementados
             }
             else
             {
-                forwardTarget = neckBone.position + neckBone.forward * forwardDistance;
-                stretch = true;
-                frutaAlvoParaDestruir = null;
+                // Espaço apertado sem fruta
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+                {
+                    Vector3 deslocamento = neckBone.forward * forwardDistance;
+                    forwardTarget = neckBone.parent.TransformPoint(originalLocalPos) + deslocamento;
+                    stretch = true;
+                    frutaAlvoParaDestruir = null;
+                }
             }
         }
     }
-    private IEnumerator TocarEating(Animator animator, comida_geral fruta)
-    {
-        animator.Play("Eating");
 
-        // espera a duração da animação
-        float duration = 1.5f;
-        yield return new WaitForSeconds(duration);       
-        animator.Play("Walk");        
+    private IEnumerator TocarEating(comida_geral fruta)
+    {
+        if (animator != null)
+            animator.Play("Eating");
+
+        yield return new WaitForSeconds(1.5f); // duração da animação
+
+        if (animator != null)
+            animator.Play("Walk");
+
+        eatingCoroutine = null;
     }
 
     void LateUpdate()
     {
         if (stretch)
         {
-         
             neckBone.position = Vector3.MoveTowards(
                 neckBone.position,
                 forwardTarget,
                 velocidadeAtual * Time.deltaTime
             );
 
-            if (Vector3.Distance(neckBone.position, forwardTarget) < 0.05f)
+            if (Vector3.Distance(neckBone.position, forwardTarget) < 0.005f)
             {
-           
                 if (frutaAlvoParaDestruir != null)
                 {
-                    frutaAlvoParaDestruir.ConsumirClique();
+                    frutaAlvoParaDestruir.ConsumirClique(); // só aqui a fruta some
                     frutaAlvoParaDestruir = null;
                 }
 
-          
-                Vector3 posOriginal = neckBone.parent.TransformPoint(originalLocalPos);
-                posOriginal.x = neckBone.parent.position.x; 
-                forwardTarget = posOriginal;
-                stretch = false; 
+                forwardTarget = neckBone.parent.TransformPoint(originalLocalPos);
+                stretch = false;
             }
         }
         else
         {
-     
             Vector3 targetPos = neckBone.parent.TransformPoint(originalLocalPos);
-            targetPos.x = neckBone.parent.position.x; 
-
             if (Vector3.Distance(neckBone.position, targetPos) > 0.01f)
             {
                 neckBone.position = Vector3.MoveTowards(
@@ -118,6 +140,7 @@ public class tentando : MonoBehaviour
             }
         }
     }
+
     LaneDetector GetLaneMaisProxima()
     {
         LaneDetector maisPerto = null;

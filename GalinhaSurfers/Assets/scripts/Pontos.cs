@@ -16,26 +16,41 @@ public class Pontos : MonoBehaviour
     public cenario cenario;
     public RotacaoMundo Mundo;
     public GalinhaMovement galinha;
+    private float delayAntesDeTUDO = 12f;
+    private bool taLiberado = false;
 
     public float pimentaIncremento;
     public float cookieIncremento;
     public float escorpiaoIncremento;
     // Update is called once per frame
+    void Start()
+
+    {
+        StartCoroutine(Perai());
+    }
+    private IEnumerator Perai()
+    {
+        yield return new WaitForSeconds(delayAntesDeTUDO);
+        taLiberado = true;
+    }
     void Update()
     {
-        if (!galinhaMorta)
-        { 
-            distanciaNum = Mathf.FloorToInt(distanciaPercorrida);
-            distanciaPercorrida += MetrosPorSegundo * Time.deltaTime;
-            textMetros.text = distanciaNum.ToString() + " m";
-
-            if (distanciaPercorrida >= Aumento)
+        if (taLiberado)
+        {
+            if (!galinhaMorta)
             {
-                cenario.AumentarVelocidade();
-                AumentarVelocidadeMetros();
-                Aumento += 100;
+                distanciaNum = Mathf.FloorToInt(distanciaPercorrida);
+                distanciaPercorrida += MetrosPorSegundo * Time.deltaTime;
+                textMetros.text = distanciaNum.ToString() + " m";
+
+                if (distanciaPercorrida >= Aumento)
+                {
+                    cenario.AumentarVelocidade();
+                    AumentarVelocidadeMetros();
+                    Aumento += 100;
+                }
             }
-        }
+        } 
     }
 
     public void AumentarVelocidadeMetros()
