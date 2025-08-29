@@ -43,7 +43,7 @@ public class fome : MonoBehaviour
     public GameObject HighScore;
     public TMP_Text Score;
     public TMP_Text ScoreSombra;
-
+    public SpawnScript spwanScript;
     void Start()
     {
         // Fome 
@@ -304,6 +304,7 @@ public class fome : MonoBehaviour
         Debug.Log(recorde);
         Morreu = true;
         scriptPontuacao.galinhaMorta = true;
+        spwanScript.morreu = true;
         yield return new WaitForSeconds(3.5f);
         mortehud.SetActive(true);
         Score.text = "Score:" + scriptPontuacao.distanciaNum;

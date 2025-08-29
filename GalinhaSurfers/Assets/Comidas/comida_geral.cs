@@ -11,6 +11,8 @@ public class comida_geral : MonoBehaviour
     private Rigidbody rb;
     public Pontos ponto;
     private aranha scriptAranha;
+    public static bool morreu = false; 
+    private Coroutine desacelerando = null;
     private void Start()
     {
         cliquesRestantes = config != null ? config.cliquesParaComer : 1;
@@ -31,18 +33,43 @@ public class comida_geral : MonoBehaviour
 
     private void Update() 
     {
+        if (morreu)
+            return;
+        float velcomidas = -ponto.MetrosPorSegundo;
         if (CompareTag("Frutas"))
         {
             float amplitude = 1.3f;       // altura do pulo
             float frequencia = 2f;      // velocidade da oscilação
             float y = Mathf.Sin(Time.time * frequencia * Mathf.PI * 2f) * amplitude;
-            float velcomidas = -ponto.MetrosPorSegundo;
+           
             rb.velocity = new Vector3(0, y, velcomidas-1);
         }
         else
         {
-            rb.velocity = new Vector3(0, 0, -ponto.MetrosPorSegundo);
+            rb.velocity = new Vector3(0, 0, velcomidas - 1);
         }
+    }
+    public void IniciarDesaceleracao(float duracao = 3f)
+    {
+        if (desacelerando == null)
+            desacelerando = StartCoroutine(Desacelerar(duracao));
+    }
+    private IEnumerator Desacelerar(float duracao)
+    {
+        Vector3 startVel = rb.velocity;
+        float t = 0f;
+
+        while (t < duracao)
+        {
+            t += Time.deltaTime;
+            float progress = t / duracao;
+            rb.velocity = Vector3.Lerp(startVel, Vector3.zero, progress);
+
+            yield return null;
+        }
+
+        rb.velocity = Vector3.zero;
+        desacelerando = null;
     }
     private void OnTriggerEnter(Collider other)
     {

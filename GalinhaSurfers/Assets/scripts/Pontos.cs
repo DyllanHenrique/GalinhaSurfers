@@ -63,9 +63,18 @@ public class Pontos : MonoBehaviour
         morrendo = true;
         GALIN.SetActive(false);
         Frangao.SetActive(true);
+
         Vector3 startRotation = Mundo.rotationSpeed;
         float startMetros = MetrosPorSegundo;
         float startSpeed = galinha.speed;
+
+        comida_geral.morreu = true;
+        comida_geral[] comidas = FindObjectsOfType<comida_geral>();
+        foreach (var c in comidas)
+        {
+            c.IniciarDesaceleracao(3f);
+        }
+
         float duracao = 3f; 
         float t = 0f;
         while (t < duracao)
