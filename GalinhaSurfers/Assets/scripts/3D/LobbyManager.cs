@@ -10,11 +10,25 @@ public class LobbyManager : MonoBehaviour
 
     private bool isTransitioning = false;
 
+    //MenuOpcoes
+    public GameObject optionsMenu;
+
+    //MenuHowToPlay
+    public GameObject htpMenu;
+    public Animator animatorA;
+    public Animator animatorD;
+    public Animator animatorGalin;
+    private Coroutine animationCoroutine;
+
     void Start()
     {
         Debug.Log("Idle");
         galinAnimator.Play("Idle");
         StartCoroutine(RandomIdleCycle());
+
+        //MO
+        optionsMenu.SetActive(false);
+        htpMenu.SetActive(false);
     }
 
     void Update()
@@ -22,6 +36,11 @@ public class LobbyManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isTransitioning)
         {
             StartCoroutine(TransitionToGame());
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            optionsMenu.SetActive(true);
         }
     }
 
@@ -66,5 +85,86 @@ public class LobbyManager : MonoBehaviour
         // Espera mais 1 segundo (total 2s desde as partículas) e troca de cena
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Galinha_MasComProfundidade");
+    }
+
+    //OptionsMenu
+    public void CloseOptionMenu()
+    {
+        optionsMenu.SetActive(false);
+    }
+
+    //HTPMenu
+    public void OpenHTPMenu()
+    {
+        optionsMenu.SetActive(false);
+        htpMenu.SetActive(true);
+        StartHTPSequence();
+    }
+
+    public void CloseHTPMenu()
+    {
+        htpMenu.SetActive(false);
+        StopHTPSequence();
+    }
+
+    public void StartHTPSequence()
+    {
+        Debug.Log("Comecou");
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+        }
+        animationCoroutine = StartCoroutine(PlayHTPSequence());
+    }
+
+    public void StopHTPSequence()
+    {
+        Debug.Log("Terminou");
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+            animationCoroutine = null;
+        }
+
+        animatorA.Play("Idle_A");
+        animatorD.Play("Idle_D");
+        animatorGalin.Play("Idle");
+    }
+
+    private IEnumerator PlayHTPSequence()
+    {
+        while (htpMenu.activeSelf)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            animatorA.SetTrigger("T_Press_A");
+            animatorGalin.SetTrigger("T_ME");
+            yield return new WaitForSeconds(0.5f);
+            animatorA.SetTrigger("T_Idle_A");
+
+            yield return new WaitForSeconds(1f);
+
+            animatorD.SetTrigger("T_Press_D");
+            animatorGalin.SetTrigger("T_EM");
+            yield return new WaitForSeconds(0.5f);
+            animatorD.SetTrigger("T_Idle_D");
+
+            yield return new WaitForSeconds(1f);
+
+            animatorD.SetTrigger("T_Press_D");
+            animatorGalin.SetTrigger("T_MD");
+            yield return new WaitForSeconds(0.5f);
+            animatorD.SetTrigger("T_Idle_D");
+
+            yield return new WaitForSeconds(1f);
+
+            animatorA.SetTrigger("T_Press_A");
+            animatorGalin.SetTrigger("T_DM");
+            yield return new WaitForSeconds(0.5f);
+            animatorA.SetTrigger("T_Idle_A");
+            animatorGalin.SetTrigger("T_Idle");
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
