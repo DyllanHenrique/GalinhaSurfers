@@ -4,7 +4,11 @@ using UnityEngine;
 using TMPro;
 public class fome : MonoBehaviour
 {
-    private float delayAntesDeTUDO = 12f;
+    public Material materialRainbow; 
+    private Material materialOriginal;
+    public SkinnedMeshRenderer personagemRenderer;
+
+    private float delayAntesDeTUDO =8f;
     private bool taLiberado = false;
     [Header("Barra Fome")]
     public RectTransform barraFome;
@@ -43,9 +47,10 @@ public class fome : MonoBehaviour
     public GameObject HighScore;
     public TMP_Text Score;
     public TMP_Text ScoreSombra;
-
-    void Start()
+    public SpawnScript spwanScript;
+    public void Start()
     {
+        materialOriginal = personagemRenderer.material;
         // Fome 
         alturaInicialFome = barraFome.sizeDelta.y;
         valorMaxInicialFome = alturaInicialFome;
@@ -66,6 +71,7 @@ public class fome : MonoBehaviour
     void Update()
     {
         if (!taLiberado) return;
+
         AtualizarFome();
         AtualizarPimenta();
         AtualizarCookie();
@@ -131,21 +137,16 @@ public class fome : MonoBehaviour
         tempoRestanteCookie -= Time.deltaTime;
         if (tempoRestanteCookie <= 0f)
         {
+            personagemRenderer.material = materialOriginal;
             cookieAtivo = false;
             scriptPontuacao.cookieMenosSpeed();
-            GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
-            foreach (GameObject fruta in frutas)
-            {
-                Collider2D col = fruta.GetComponent<Collider2D>();
-                if (col != null)
-                    col.enabled = true; // reativa o clique
-            }
+            
         }
     }
     void AtualizarEscorpion()
     {
-        if (!escorpiaoAtivo)
-            return;
+        if(!escorpiaoAtivo)
+            return ;
         tempoRestanteEscorpion -= Time.deltaTime;
         if (tempoRestanteEscorpion <= 0f)
         {
@@ -168,32 +169,43 @@ public class fome : MonoBehaviour
     public void AtivarPimenta()
     {
         pimentaAtiva = true;
-        scriptPontuacao.pimentaSpeed();
-        barraPimenta.gameObject.SetActive(true);
-        // Salva o maxFome antes da redu��o da pimenta
-        valorMaxFomeAntesPimenta = valorMaxFome;
-        // Calcula valor da pimenta (25% do maxFome atual antes de reduzir) 
-        valorMaxPimenta = valorMaxFomeAntesPimenta * tamanhoPimenta; valorAtualPimenta = valorMaxPimenta;
-        // Aplica redu��o no maxFome sem afetar o Y da barra da pimenta
-        valorMaxFome -= valorMaxPimenta;
-        // Define altura inicial da barra proporcional ao valor da pimenta
-        float alturaPimenta = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
-        barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta);
-        // Calcula posi��o inicial 
-        AtualizarPosicaoPimenta();
+
+        if (!barraPimenta.gameObject.activeSelf)
+            barraPimenta.gameObject.SetActive(true);
+
+        if (valorAtualPimenta != 0f)
+        {
+            // Resetar o tamanho e duração da pimenta
+            valorAtualPimenta = valorMaxPimenta;
+
+            float alturaPimenta2 = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
+            barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta2);
+        }
+        else
+        {
+            scriptPontuacao.pimentaSpeed();
+            valorMaxFomeAntesPimenta = valorMaxFome;
+
+            valorMaxPimenta = valorMaxFomeAntesPimenta * tamanhoPimenta;
+            valorAtualPimenta = valorMaxPimenta;
+
+            valorMaxFome -= valorMaxPimenta;
+
+            float alturaPimenta = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
+            barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta);
+
+            AtualizarPosicaoPimenta();
+        }
+
     }
     public void AtivarCookie()
     {
-        GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
-        foreach (GameObject fruta in frutas)
-        {
-            Collider2D col = fruta.GetComponent<Collider2D>();
-            if (col != null)
-                col.enabled = false;
-        }
+        personagemRenderer.material = materialRainbow;
+        if (!cookieAtivo)
+            scriptPontuacao.cookieSpeed();
         cookieAtivo = true;
-        scriptPontuacao.cookieSpeed();
         tempoRestanteCookie = duracaoCookie;
+        AtualizarCookie();
     }
     public void AtivarCogumeloMal()
     {
@@ -203,9 +215,11 @@ public class fome : MonoBehaviour
     }
     public void AtivarEscorpiaoLentidao()
     {
+        if (!escorpiaoAtivo)
+            scriptPontuacao.escorpiaoSpeed();
         escorpiaoAtivo = true;
         tempoRestanteEscorpion = duracaoEscorpiao;
-        scriptPontuacao.escorpiaoSpeed();
+
     }
     public void AdicionarFome(float quantidade)
     {
@@ -247,16 +261,22 @@ public class fome : MonoBehaviour
             valorAtualFome = Mathf.Clamp(valorAtualFome, 0, valorMaxFome);
         }
     }
+    private Coroutine cogumeloCoroutine;
     public void AtivarCogumeloMaluco()
     {
-        StartCoroutine(EfeitoAlucinogeno(duracaoCoguMaluco));
+        if (cogumeloCoroutine != null)
+        {
+            StopCoroutine(cogumeloCoroutine);
+        }
+
+        cogumeloCoroutine = StartCoroutine(EfeitoAlucinogeno(duracaoCoguMaluco));
     }
     private IEnumerator EfeitoAlucinogeno(float duracao)
     {
-
         float tempoPassado = 0f;
         bool mostrarNovo = true;
         Dictionary<GameObject, Sprite> originais = new Dictionary<GameObject, Sprite>();
+
         while (tempoPassado < duracao)
         {
             GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
@@ -267,6 +287,7 @@ public class fome : MonoBehaviour
                 if (sr == null || todasFrutas.Count == 0) continue;
                 if (!originais.ContainsKey(fruta))
                     originais.Add(fruta, sr.sprite);
+
                 if (mostrarNovo)
                 {
                     Sprite novoSprite;
@@ -287,6 +308,8 @@ public class fome : MonoBehaviour
             yield return new WaitForSeconds(1f);
             tempoPassado += 1f;
         }
+
+        // Restaura os sprites originais
         foreach (var item in originais)
         {
             if (item.Key != null)
@@ -296,6 +319,8 @@ public class fome : MonoBehaviour
                     sr.sprite = item.Value;
             }
         }
+
+        cogumeloCoroutine = null;
         Debug.Log("Efeito alucinógeno passou!");
     }
     private IEnumerator GalinhaMorreu()
@@ -304,6 +329,8 @@ public class fome : MonoBehaviour
         Debug.Log(recorde);
         Morreu = true;
         scriptPontuacao.galinhaMorta = true;
+        spwanScript.morreu = true;
+        yield return new WaitForSeconds(3.5f);
         mortehud.SetActive(true);
         Score.text = "Score:" + scriptPontuacao.distanciaNum;
         ScoreSombra.text = Score.text;

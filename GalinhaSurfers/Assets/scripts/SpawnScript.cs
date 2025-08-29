@@ -10,7 +10,7 @@ public class SpawnScript : MonoBehaviour
     public Transform[] spawns;
     public int IntervaloSpawn;
     public Pontos pontosdacena;
-
+    public bool morreu = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class SpawnScript : MonoBehaviour
 
     public IEnumerator SpawnLoop()
     {
-        while (true)
+        while (!morreu)
         {
             SpawnarItens();
             yield return new WaitForSeconds(IntervaloSpawn);

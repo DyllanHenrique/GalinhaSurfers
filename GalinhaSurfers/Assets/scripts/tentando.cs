@@ -7,19 +7,22 @@ public class tentando : MonoBehaviour
     public Transform neckBone;
     public float moveSpeed = 5f;
     public float forwardDistance = 2f;
-    public float frutaOffsetZ = 0.2f;
+    private float frutaOffsetZ = 1.55f;
 
     private Vector3 originalLocalPos;
     private bool stretch = false;
     private Vector3 forwardTarget;
     private float velocidadeAtual;
+
     public LaneDetector[] lanes;
     private LaneDetector laneAtual;
     private comida_geral frutaAlvo;
     private comida_geral frutaAlvoParaDestruir;
 
+    public tresDoisUm tresDoisUm;
     private Animator animator;
     private Coroutine eatingCoroutine;
+    private bool voltandoDoEating = false;
 
     void Start()
     {
@@ -37,43 +40,43 @@ public class tentando : MonoBehaviour
 
     void Update()
     {
+        if (tresDoisUm.TresDoisUmGO)
+            return;
+        if (voltandoDoEating)
+            return;
         laneAtual = GetLaneMaisProxima();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             frutaAlvo = laneAtual != null ? laneAtual.GetFrutaMaisNaFrente() : null;
 
-            if (frutaAlvo != null)
+    
+            if (stretch && frutaAlvoParaDestruir != null && frutaAlvo == frutaAlvoParaDestruir)
+                return;
+
+            if (frutaAlvo != null && animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
             {
                 bool ultimoClique = frutaAlvo.cliquesRestantes == 1;
                 float distancia = Vector3.Distance(frutaAlvo.transform.position, neckBone.position);
 
-                // Sempre diminui o clique
-          
-
-                // Só estica ou come se estiver em Walk
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+                if (ultimoClique)
                 {
                     if (distancia < 2f)
                     {
-                        // Come Eating normalmente
+        
                         if (eatingCoroutine != null)
                         {
                             StopCoroutine(eatingCoroutine);
                             eatingCoroutine = null;
-
-                            // Apenas toca Walk sem resetar velocidade ou posição lateral
-                            if (animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName("Eating"))
-                                animator.Play("Walk");
+                            animator.Play("Walk");
                         }
-
                         eatingCoroutine = StartCoroutine(TocarEating(frutaAlvo));
                         stretch = false;
                         frutaAlvoParaDestruir = null;
                     }
                     else
                     {
-                        // Mesmo que seja o último clique, se estiver em Walk, estica para comer
+            
                         Vector3 targetPos = frutaAlvo.transform.position - new Vector3(0, 0, frutaOffsetZ);
                         Vector3 deslocamento = targetPos - neckBone.parent.TransformPoint(originalLocalPos);
                         if (deslocamento.magnitude > forwardDistance)
@@ -81,22 +84,22 @@ public class tentando : MonoBehaviour
 
                         forwardTarget = neckBone.parent.TransformPoint(originalLocalPos) + deslocamento;
                         stretch = true;
-                        frutaAlvoParaDestruir = frutaAlvo; // desaparece ao chegar perto
+                        frutaAlvoParaDestruir = frutaAlvo;
                     }
                 }
-                //
-                // Se não estiver em Walk, não estica nem come, apenas cliques já decrementados
-            }
-            else
-            {
-                // Espaço apertado sem fruta
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+                else
                 {
-                    Vector3 deslocamento = neckBone.forward * forwardDistance;
-                    forwardTarget = neckBone.parent.TransformPoint(originalLocalPos) + deslocamento;
-                    stretch = true;
-                    frutaAlvoParaDestruir = null;
+            
+                    frutaAlvo.ConsumirClique();
                 }
+            }
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            {
+          
+                Vector3 deslocamento = neckBone.forward * forwardDistance;
+                forwardTarget = neckBone.parent.TransformPoint(originalLocalPos) + deslocamento;
+                stretch = true;
+                frutaAlvoParaDestruir = null;
             }
         }
     }
@@ -105,7 +108,8 @@ public class tentando : MonoBehaviour
     {
         if (animator != null)
             animator.Play("Eating");
-        frutaAlvo.ConsumirClique();
+
+        fruta.ConsumirClique();
         yield return new WaitForSeconds(1.5f); // duração da animação
 
         if (animator != null)
@@ -128,8 +132,11 @@ public class tentando : MonoBehaviour
             {
                 if (frutaAlvoParaDestruir != null)
                 {
-                    frutaAlvoParaDestruir.ConsumirClique(); // só aqui a fruta some
+                    frutaAlvoParaDestruir.ConsumirClique();
                     frutaAlvoParaDestruir = null;
+
+                
+                    voltandoDoEating = true;
                 }
 
                 forwardTarget = neckBone.parent.TransformPoint(originalLocalPos);
@@ -146,6 +153,11 @@ public class tentando : MonoBehaviour
                     targetPos,
                     velocidadeAtual * Time.deltaTime
                 );
+            }
+            else if (voltandoDoEating)
+            {
+ 
+                voltandoDoEating = false;
             }
         }
     }

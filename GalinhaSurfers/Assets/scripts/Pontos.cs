@@ -16,13 +16,15 @@ public class Pontos : MonoBehaviour
     public cenario cenario;
     public RotacaoMundo Mundo;
     public GalinhaMovement galinha;
-    private float delayAntesDeTUDO = 12f;
+    private float delayAntesDeTUDO = 8f;
     private bool taLiberado = false;
-
+    private bool morrendo = false;
     public float pimentaIncremento;
     public float cookieIncremento;
     public float escorpiaoIncremento;
     // Update is called once per frame
+    public GameObject Frangao;
+    public GameObject GALIN;
     void Start()
 
     {
@@ -50,9 +52,48 @@ public class Pontos : MonoBehaviour
                     Aumento += 100;
                 }
             }
+            else if(galinhaMorta && !morrendo)
+            {
+                StartCoroutine(ParandoTudo());
+            }
         } 
     }
+    public IEnumerator ParandoTudo()
+    {
+        morrendo = true;
+        GALIN.SetActive(false);
+        Frangao.SetActive(true);
 
+        Vector3 startRotation = Mundo.rotationSpeed;
+        float startMetros = MetrosPorSegundo;
+        float startSpeed = galinha.speed;
+
+        comida_geral.morreu = true;
+        comida_geral[] comidas = FindObjectsOfType<comida_geral>();
+        foreach (var c in comidas)
+        {
+            c.IniciarDesaceleracao(3f);
+        }
+
+        float duracao = 3f; 
+        float t = 0f;
+        while (t < duracao)
+        {
+            t += Time.deltaTime;
+            float progress = t / duracao; 
+            Mundo.rotationSpeed = Vector3.Lerp(startRotation, Vector3.zero, progress);
+            MetrosPorSegundo = Mathf.Lerp(startMetros, 0f, progress);
+            galinha.speed = Mathf.Lerp(startSpeed, 0f, progress);
+
+            galinha.VelGalin();
+
+            yield return null; 
+        }
+        Mundo.rotationSpeed = Vector3.zero;
+        MetrosPorSegundo = 0f;
+        galinha.speed = 0f;
+        galinha.VelGalin();
+    }
     public void AumentarVelocidadeMetros()
     {
         Mundo.rotationSpeed *= incremento;
@@ -61,7 +102,7 @@ public class Pontos : MonoBehaviour
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
         //Debug.Log("velSCORE" + MetrosPorSegundo);
-        Debug.Log("velGALIN" + galinha.speed);
+        //Debug.Log("velGALIN" + galinha.speed);
         //Debug.Log("velMUNDO" + Mundo.rotationSpeed);
     }
     public void pimentaSpeed()
@@ -87,6 +128,7 @@ public class Pontos : MonoBehaviour
         galinha.speed *= cookieIncremento;
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
+        Debug.Log("velGALIN" + galinha.speed);
     }
     public void cookieMenosSpeed()
     {
@@ -95,6 +137,7 @@ public class Pontos : MonoBehaviour
         galinha.speed /= cookieIncremento;
         if (galinha.speed >= 2.5) galinha.speed = 2.5f;
         galinha.VelGalin();
+        Debug.Log("velGALIN" + galinha.speed);
     }
     public void escorpiaoSpeed()
     {
