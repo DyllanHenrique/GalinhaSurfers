@@ -11,12 +11,37 @@ public class GalinhaMovement : MonoBehaviour
     private Animator animator;
     private bool isJumping = false;
     public tresDoisUm tresDoisUm;
+    public GameObject Frangao;
+    public Transform frangao;
     private void Start()
     {
         animator = GetComponent<Animator>();
         animator.Play("Walk");
     }
+    public IEnumerator Frangorino()
+    {
+        GameObject[] frutas = GameObject.FindGameObjectsWithTag("Frutas");
+        GameObject[] insetos = GameObject.FindGameObjectsWithTag("inseto");
+        List<GameObject> ignorar = new List<GameObject>();
+        ignorar.AddRange(frutas);
+        ignorar.AddRange(insetos);
 
+        Collider flangoCollider = Frangao.GetComponent<Collider>();
+
+        foreach (GameObject ign in ignorar)
+        {
+            Collider colInimigo = ign.GetComponent<Collider>();
+            if (colInimigo != null)
+            {
+                Physics.IgnoreCollision(flangoCollider, colInimigo);
+            }
+        }
+        Vector3 pos = frangao.transform.position; 
+        pos.x = transform.position.x;    
+        frangao.transform.position = pos;
+        Frangao.SetActive(true);
+        yield return null;
+    }
     private void Update()
     {
         if (tresDoisUm.TresDoisUmGO == true)

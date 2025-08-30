@@ -25,11 +25,10 @@ public class Pontos : MonoBehaviour
 
     //Morte
     public AudioSource AudMorte;
-    public GameObject Frangao;
+
     public GameObject GALIN;
     public ParticleSystem penasPartic;
     public GameObject smokeObject;
-
     void Start()
 
     {
@@ -74,7 +73,7 @@ public class Pontos : MonoBehaviour
         smokeObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         GALIN.SetActive(false);
-        Frangao.SetActive(true);
+        StartCoroutine(galinha.Frangorino());
         AudMorte.Play();
 
         Vector3 startRotation = Mundo.rotationSpeed;
