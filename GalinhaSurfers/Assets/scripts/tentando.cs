@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class tentando : MonoBehaviour
 {
@@ -25,6 +26,12 @@ public class tentando : MonoBehaviour
     private Coroutine eatingCoroutine;
     private bool voltandoDoEating = false;
 
+    //ImagensComer
+    public GameObject[] chompObjects;
+    float displayTime = 0.2f;
+    float maxOffsetX = 0.8f;
+    float maxOffsetY = 0.4f;
+
     void Awake()
     {
         // encontra todos os LaneDetector na cena
@@ -42,6 +49,15 @@ public class tentando : MonoBehaviour
         originalLocalPos = neckBone.localPosition;
         velocidadeAtual = moveSpeed;
         animator = GetComponent<Animator>();
+
+        //chomp
+        foreach (GameObject img in chompObjects)
+        {
+            if (img != null)
+                img.SetActive(false);
+        }
+
+
     }
 
     void Update()
@@ -96,6 +112,8 @@ public class tentando : MonoBehaviour
                 {
             
                     frutaAlvo.ConsumirClique();
+                    //chomp
+                    StartCoroutine(ShowRandomImage());
                 }
             }
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
@@ -107,6 +125,7 @@ public class tentando : MonoBehaviour
                 frutaAlvoParaDestruir = null;
             }
         }
+
     }
 
     private IEnumerator TocarEating(comida_geral fruta)
@@ -114,6 +133,7 @@ public class tentando : MonoBehaviour
         if (animator != null)
             somComer.pitch = Random.Range(0.5f, 2f);
             somComer.Play();
+            StartCoroutine(ShowRandomImage());
             animator.Play("Eating");
 
         fruta.ConsumirClique();
@@ -141,6 +161,7 @@ public class tentando : MonoBehaviour
                 {
                     somComer.pitch = Random.Range(0.5f, 2f);
                     somComer.Play();
+                    StartCoroutine(ShowRandomImage());
                     frutaAlvoParaDestruir.ConsumirClique();
                     frutaAlvoParaDestruir = null;
 
@@ -187,5 +208,26 @@ public class tentando : MonoBehaviour
         }
 
         return maisPerto;
+    }
+
+    //ImagComi
+    IEnumerator ShowRandomImage()
+    {
+        int randomIndex = Random.Range(0, chompObjects.Length);
+        GameObject selectedImage = chompObjects[randomIndex];
+
+        Vector3 originalPos = selectedImage.transform.position;
+        float randomX = originalPos.x + Random.Range(-maxOffsetX, maxOffsetX);
+        float randomY = originalPos.y + Random.Range(-maxOffsetY, maxOffsetY);
+        selectedImage.transform.position = new Vector3(randomX, randomY, originalPos.z);
+
+        float randomRotation = Random.Range(-20f, 20f);
+        selectedImage.transform.rotation = Quaternion.Euler(0, 0, randomRotation);
+
+        selectedImage.SetActive(true);
+
+        yield return new WaitForSeconds(displayTime);
+
+        selectedImage.SetActive(false);
     }
 }
