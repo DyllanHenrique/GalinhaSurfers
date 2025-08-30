@@ -17995,7 +17995,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1831412561}
   - component: {fileID: 1831412560}
-  - component: {fileID: 1831412559}
   - component: {fileID: 1831412558}
   m_Layer: 0
   m_Name: CameraRainbow
@@ -18048,14 +18047,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1831412559
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831412557}
-  m_Enabled: 1
 --- !u!20 &1831412560
 Camera:
   m_ObjectHideFlags: 0
@@ -20539,7 +20530,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2093339610}
   - component: {fileID: 2093339609}
-  - component: {fileID: 2093339608}
   - component: {fileID: 2093339607}
   m_Layer: 0
   m_Name: CameraP
@@ -20592,14 +20582,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &2093339608
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093339606}
-  m_Enabled: 1
 --- !u!20 &2093339609
 Camera:
   m_ObjectHideFlags: 0
