@@ -15,8 +15,6 @@ public class LobbyManager : MonoBehaviour
 
     public GameObject startObject;
 
-    public ParticleSystem penasPartic;
-
     //MenuOpcoes
     public GameObject optionsMenu;
 
@@ -37,8 +35,6 @@ public class LobbyManager : MonoBehaviour
         startObject.SetActive(true);
 
         smokeObject.SetActive(false);
-
-        penasPartic.Stop();
 
 
         Debug.Log("Idle");
@@ -75,8 +71,7 @@ public class LobbyManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isTransitioning
-            && !optionsMenu.activeSelf && !htpMenu.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Space) && !isTransitioning)
         {
             StartCoroutine(TransitionToGame());
         }
@@ -115,8 +110,6 @@ public class LobbyManager : MonoBehaviour
         startObject.SetActive(false);
 
         smokeObject.SetActive(true);
-
-        penasPartic.Play();
 
         yield return new WaitForSeconds(0.2f);
 
