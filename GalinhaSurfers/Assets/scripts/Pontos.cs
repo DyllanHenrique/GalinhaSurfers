@@ -12,7 +12,7 @@ public class Pontos : MonoBehaviour
     public int distanciaNum;
     public bool galinhaMorta;
     public float incremento;
-    private int Aumento = 100;
+    private int Aumento = 150;
     public cenario cenario;
     public RotacaoMundo Mundo;
     public GalinhaMovement galinha;
@@ -53,11 +53,27 @@ public class Pontos : MonoBehaviour
                 distanciaPercorrida += MetrosPorSegundo * Time.deltaTime;
                 textMetros.text = distanciaNum.ToString() + " m";
 
+                //como esse caba meeente
                 if (distanciaPercorrida >= Aumento)
                 {
                     cenario.AumentarVelocidade();
                     AumentarVelocidadeMetros();
-                    Aumento += 100;
+                    if (distanciaPercorrida <= 600f)
+                    {
+                        Aumento += 150;
+                    }
+                    else if (distanciaPercorrida <= 1800f)
+                    {
+                        Aumento += 400;
+                    }
+                    else if (distanciaPercorrida <= 3350f)
+                    {
+                        Aumento += 500;
+                    }
+                    else
+                    {
+                        Aumento += 1000;
+                    }
                 }
             }
             else if(galinhaMorta && !morrendo)
