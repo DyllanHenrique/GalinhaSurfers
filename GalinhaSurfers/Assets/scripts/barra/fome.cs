@@ -10,7 +10,7 @@ public class fome : MonoBehaviour
     public Material materialRainbow; 
     private Material materialOriginal;
     private Material materialOriginalBarra;
-    public Image bFome;
+    public Renderer bFome;
     public SkinnedMeshRenderer personagemRenderer;
     public AudioSource ComidasSons;
 
@@ -83,7 +83,7 @@ public class fome : MonoBehaviour
         if (!taLiberado) return;
 
           if (Input.GetKeyDown(KeyCode.E))
-            AtivarPimenta();
+            AtivarCookie();
 
         AtualizarFome();
         AtualizarPimenta();
