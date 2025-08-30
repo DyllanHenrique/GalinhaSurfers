@@ -82,8 +82,6 @@ public class fome : MonoBehaviour
     {
         if (!taLiberado) return;
 
-          if (Input.GetKeyDown(KeyCode.E))
-            AtivarPimenta();
 
         AtualizarFome();
         AtualizarPimenta();
