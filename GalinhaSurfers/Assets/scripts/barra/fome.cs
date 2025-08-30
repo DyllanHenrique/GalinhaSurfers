@@ -83,7 +83,7 @@ public class fome : MonoBehaviour
         if (!taLiberado) return;
 
           if (Input.GetKeyDown(KeyCode.E))
-            AtivarCookie();
+            AtivarPimenta();
 
         AtualizarFome();
         AtualizarPimenta();
@@ -133,13 +133,15 @@ public class fome : MonoBehaviour
     {
         float fomeTotal = valorMaxFome + valorMaxPimenta;
 
-        // normaliza em rela��o a 1000 (se esse for teu limite fixo)
-        float posY = (fomeTotal - 500f) * alturaInicialFome / 1000f;
+        float posY = (fomeTotal - 462.75f) * alturaInicialFome / 925.5f;
 
         Vector3 posPimenta = barraPimenta.localPosition;
         posPimenta.y = posY;
-        if (posPimenta.y >= 500) posPimenta.y = 500;
-        if (posPimenta.y <= -499) posPimenta.y = -499;
+        if (posPimenta.y > (alturaInicialFome / 2f))
+            posPimenta.y = alturaInicialFome / 2f;
+
+        if (posPimenta.y < -(alturaInicialFome / 2f))
+            posPimenta.y = -(alturaInicialFome / 2f);
         barraPimenta.localPosition = posPimenta;
     }
     void AtualizarCookie()
