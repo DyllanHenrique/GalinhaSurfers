@@ -44,6 +44,15 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
+    }
+    public void Menu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Lobyby");
+    }
+        public void Creditos()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Creditos");
     }
 }
