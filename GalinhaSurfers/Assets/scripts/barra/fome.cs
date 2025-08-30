@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR;
+
 public class fome : MonoBehaviour
 {
     public Material materialRainbow; 
     private Material materialOriginal;
+    private Material materialOriginalBarra;
+    public Image bFome;
     public SkinnedMeshRenderer personagemRenderer;
 
     private float delayAntesDeTUDO =8f;
@@ -50,6 +55,7 @@ public class fome : MonoBehaviour
     public SpawnScript spwanScript;
     public void Start()
     {
+        materialOriginalBarra = bFome.material;
         materialOriginal = personagemRenderer.material;
         // Fome 
         alturaInicialFome = barraFome.sizeDelta.y;
@@ -71,10 +77,9 @@ public class fome : MonoBehaviour
     void Update()
     {
         if (!taLiberado) return;
-          if (Input.GetKeyDown(KeyCode.W))
-            AtivarEscorpiaoLentidao();
+
           if (Input.GetKeyDown(KeyCode.E))
-            AtivarCookie();
+            AtivarPimenta();
 
         AtualizarFome();
         AtualizarPimenta();
@@ -141,6 +146,7 @@ public class fome : MonoBehaviour
         tempoRestanteCookie -= Time.deltaTime;
         if (tempoRestanteCookie <= 0f)
         {
+            bFome.material = materialOriginalBarra;
             personagemRenderer.material = materialOriginal;
             cookieAtivo = false;
             scriptPontuacao.cookieMenosSpeed();
@@ -204,6 +210,7 @@ public class fome : MonoBehaviour
     }
     public void AtivarCookie()
     {
+        bFome.material = materialRainbow;
         personagemRenderer.material = materialRainbow;
         if (!cookieAtivo)
             scriptPontuacao.cookieSpeed();
