@@ -1310,7 +1310,6 @@ MonoBehaviour:
   cookieIncremento: 2
   escorpiaoIncremento: 0.75
   AudMorte: {fileID: 334251235}
-  Frangao: {fileID: 1345515225}
   GALIN: {fileID: 1179152636}
   penasPartic: {fileID: 1490944090}
   smokeObject: {fileID: 1741505661}
@@ -1684,7 +1683,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 1132362362, guid: a43ca439690ef304da0024e1e4a9ad64, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -6354,7 +6353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &818646334
 Transform:
   m_ObjectHideFlags: 0
@@ -8574,6 +8573,8 @@ MonoBehaviour:
   speed: 1
   durationJump: 0.75
   tresDoisUm: {fileID: 1258235383}
+  Frangao: {fileID: 1345515225}
+  frangao: {fileID: 1345515228}
 --- !u!95 &1179152641
 Animator:
   serializedVersion: 5
@@ -9347,8 +9348,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.0000005, y: 5, z: 0.20000008}
-  m_Center: {x: 0, y: 0.35, z: 0}
+  m_Size: {x: 5.0000005, y: 5, z: 0.28}
+  m_Center: {x: -1.77, y: 0.35, z: 0}
 --- !u!212 &1345515227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9410,7 +9411,7 @@ Transform:
   m_GameObject: {fileID: 1345515225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11319834, y: -0, z: -0, w: 0.9935724}
-  m_LocalPosition: {x: 0.097, y: 0.5810001, z: 0.004000008}
+  m_LocalPosition: {x: 0.097, y: 0.975, z: 0.095}
   m_LocalScale: {x: 0.38, y: 0.38, z: 0.38}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -15328,6 +15329,8 @@ MonoBehaviour:
   speed: 10
   durationJump: 0
   tresDoisUm: {fileID: 0}
+  Frangao: {fileID: 0}
+  frangao: {fileID: 0}
 --- !u!1 &1504322095
 GameObject:
   m_ObjectHideFlags: 0
@@ -15423,7 +15426,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -1168433296, guid: a1cc224a5ebf00144a29136f342077b9, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -16225,7 +16228,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 1132362362, guid: a43ca439690ef304da0024e1e4a9ad64, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -16323,7 +16326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1608049960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19132,7 +19135,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -1168433296, guid: a1cc224a5ebf00144a29136f342077b9, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -20824,7 +20827,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 1132362362, guid: a43ca439690ef304da0024e1e4a9ad64, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -21374,7 +21377,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -1168433296, guid: a1cc224a5ebf00144a29136f342077b9, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

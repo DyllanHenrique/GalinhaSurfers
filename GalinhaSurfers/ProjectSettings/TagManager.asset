@@ -8,6 +8,7 @@ TagManager:
   - Inseto
   - destruir
   - rainbow
+  - inseto
   layers:
   - Default
   - TransparentFX
