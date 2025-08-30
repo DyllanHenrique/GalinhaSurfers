@@ -11,7 +11,9 @@ public class tresDoisUm : MonoBehaviour
     public float scaleDuration = 1.5f;
     public float tempoVisivel = 0.5f;
     public bool TresDoisUmGO = false;
-
+    public AudioSource audLargada;
+    public AudioClip audio321;
+    public AudioClip audioGo;   
     private void Start()
     {
         TresDoisUmGO = true;
@@ -26,11 +28,15 @@ public class tresDoisUm : MonoBehaviour
         {
             yield return StartCoroutine(Aparecer(img));
         }
+        audLargada.clip = audioGo;
+        audLargada.Play();
         TresDoisUmGO = false;
     }
 
     IEnumerator Aparecer(Image img)
     {
+        audLargada.clip = audio321;
+        audLargada.Play();
         Color corOriginal = img.color;
         img.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 0f);
 
@@ -58,7 +64,7 @@ public class tresDoisUm : MonoBehaviour
             yield return null;
         }
 
-        // Tempo visível
+        // Tempo visï¿½vel
         yield return new WaitForSeconds(tempoVisivel);
 
         // Fade out

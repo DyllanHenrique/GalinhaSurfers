@@ -12,6 +12,7 @@ public class fome : MonoBehaviour
     private Material materialOriginalBarra;
     public Image bFome;
     public SkinnedMeshRenderer personagemRenderer;
+    public AudioSource ComidasSons;
 
     private float delayAntesDeTUDO =8f;
     private bool taLiberado = false;
@@ -30,10 +31,12 @@ public class fome : MonoBehaviour
     private bool pimentaAtiva;
     private float valorMaxFomeAntesPimenta;
     private float debitoPimenta = 0f;
+    public AudioClip pimentaSom;
     [Header("Cookie")]
     public float duracaoCookie;
     private bool cookieAtivo;
     private float tempoRestanteCookie;
+    public AudioClip cookieSom;
     [Header("CogumeloMal")]
     public float duracaoCM;
     private bool CMAtivo;
@@ -53,6 +56,7 @@ public class fome : MonoBehaviour
     public TMP_Text Score;
     public TMP_Text ScoreSombra;
     public SpawnScript spwanScript;
+    public AudioSource MscHighScore;
     public void Start()
     {
         materialOriginalBarra = bFome.material;
@@ -179,7 +183,8 @@ public class fome : MonoBehaviour
     public void AtivarPimenta()
     {
         pimentaAtiva = true;
-
+        ComidasSons.clip = pimentaSom;
+        ComidasSons.Play();
         if (!barraPimenta.gameObject.activeSelf)
             barraPimenta.gameObject.SetActive(true);
 
@@ -212,6 +217,8 @@ public class fome : MonoBehaviour
     {
         bFome.material = materialRainbow;
         personagemRenderer.material = materialRainbow;
+        ComidasSons.clip = cookieSom;
+        ComidasSons.Play();
         if (!cookieAtivo)
             scriptPontuacao.cookieSpeed();
         cookieAtivo = true;
@@ -351,6 +358,7 @@ public class fome : MonoBehaviour
             Debug.Log(pontosAtuais);
             PlayerPrefs.SetInt("pontuacao", pontosAtuais);
             yield return new WaitForSeconds(3f);
+            MscHighScore.Play();
             HighScore.SetActive(true);
         }
         //Usado para atualizar o score em breve

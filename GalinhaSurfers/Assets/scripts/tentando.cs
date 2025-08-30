@@ -7,6 +7,7 @@ public class tentando : MonoBehaviour
     public Transform neckBone;
     public float moveSpeed = 5f;
     public float forwardDistance = 2f;
+    public AudioSource somComer;
     private float frutaOffsetZ = 1.55f;
 
     private Vector3 originalLocalPos;
@@ -33,7 +34,7 @@ public class tentando : MonoBehaviour
     {
         if (neckBone == null)
         {
-            Debug.LogError("Neck bone não atribuído!");
+            Debug.LogError("Neck bone nï¿½o atribuï¿½do!");
             enabled = false;
             return;
         }
@@ -81,7 +82,6 @@ public class tentando : MonoBehaviour
                     }
                     else
                     {
-            
                         Vector3 targetPos = frutaAlvo.transform.position - new Vector3(0, 0, frutaOffsetZ);
                         Vector3 deslocamento = targetPos - neckBone.parent.TransformPoint(originalLocalPos);
                         if (deslocamento.magnitude > forwardDistance)
@@ -112,10 +112,12 @@ public class tentando : MonoBehaviour
     private IEnumerator TocarEating(comida_geral fruta)
     {
         if (animator != null)
+            somComer.pitch = Random.Range(0.5f, 2f);
+            somComer.Play();
             animator.Play("Eating");
 
         fruta.ConsumirClique();
-        yield return new WaitForSeconds(1.4f); // duração da animação
+        yield return new WaitForSeconds(1.4f); // duraï¿½ï¿½o da animaï¿½ï¿½o
 
         if (animator != null)
             animator.Play("Walk");
@@ -137,6 +139,8 @@ public class tentando : MonoBehaviour
             {
                 if (frutaAlvoParaDestruir != null)
                 {
+                    somComer.pitch = Random.Range(0.5f, 2f);
+                    somComer.Play();
                     frutaAlvoParaDestruir.ConsumirClique();
                     frutaAlvoParaDestruir = null;
 

@@ -24,6 +24,7 @@ public class Pontos : MonoBehaviour
     public float escorpiaoIncremento;
 
     //Morte
+    public AudioSource AudMorte;
     public GameObject Frangao;
     public GameObject GALIN;
     public ParticleSystem penasPartic;
@@ -74,6 +75,7 @@ public class Pontos : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         GALIN.SetActive(false);
         Frangao.SetActive(true);
+        AudMorte.Play();
 
         Vector3 startRotation = Mundo.rotationSpeed;
         float startMetros = MetrosPorSegundo;
