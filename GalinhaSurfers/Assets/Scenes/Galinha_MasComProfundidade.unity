@@ -730,15 +730,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51056415}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4374919, y: 1.754233, z: -0.60562134}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4374919, y: 2.067233, z: -0.60562134}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1345515228}
   - {fileID: 1490944092}
   - {fileID: 1741505662}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1179152637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &55298211
 PrefabInstance:
@@ -957,6 +956,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22c53ddc45b424d4aab0a03400808cbb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2146108091}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22c53ddc45b424d4aab0a03400808cbb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 51056416}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 22c53ddc45b424d4aab0a03400808cbb, type: 3}
       insertIndex: -1
@@ -7959,6 +7961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1117291813}
   - component: {fileID: 1117291814}
+  - component: {fileID: 1117291815}
   m_Layer: 0
   m_Name: Crunch
   m_TagString: Untagged
@@ -8033,6 +8036,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1117291815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117291812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e4f5599c6d06143b780903c3061424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1120409401
 GameObject:
   m_ObjectHideFlags: 0
@@ -9395,11 +9410,11 @@ Transform:
   m_GameObject: {fileID: 1345515225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11319834, y: -0, z: -0, w: 0.9935724}
-  m_LocalPosition: {x: -1.3404919, y: -1.173233, z: 0.60962135}
+  m_LocalPosition: {x: 0.097, y: 0.5810001, z: 0.004000008}
   m_LocalScale: {x: 0.38, y: 0.38, z: 0.38}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 51056416}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 12.999, y: 0, z: 0}
 --- !u!54 &1345515229
 Rigidbody:
@@ -17854,6 +17869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1782245843}
   - component: {fileID: 1782245844}
+  - component: {fileID: 1782245845}
   m_Layer: 0
   m_Name: Chomp
   m_TagString: Untagged
@@ -17928,6 +17944,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1782245845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782245842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e4f5599c6d06143b780903c3061424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1799531157
 GameObject:
   m_ObjectHideFlags: 0
@@ -17938,6 +17966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799531158}
   - component: {fileID: 1799531159}
+  - component: {fileID: 1799531160}
   m_Layer: 0
   m_Name: Nham
   m_TagString: Untagged
@@ -18012,6 +18041,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1799531160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799531157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e4f5599c6d06143b780903c3061424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1802775308
 GameObject:
   m_ObjectHideFlags: 0
@@ -21556,7 +21597,7 @@ SceneRoots:
   - {fileID: 1498212490}
   - {fileID: 565722870}
   - {fileID: 89294224}
-  - {fileID: 51056416}
+  - {fileID: 1345515228}
   - {fileID: 287567339}
   - {fileID: 181140516}
   - {fileID: 1602256128}

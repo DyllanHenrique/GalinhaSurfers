@@ -29,8 +29,8 @@ public class tentando : MonoBehaviour
     //ImagensComer
     public GameObject[] chompObjects;
     float displayTime = 0.2f;
-    float maxOffsetX = 0.8f;
-    float maxOffsetY = 0.4f;
+    float maxOffsetX = 0.6f;
+    float maxOffsetY = 0.3f;
 
     void Awake()
     {
@@ -221,7 +221,7 @@ public class tentando : MonoBehaviour
         float randomY = originalPos.y + Random.Range(-maxOffsetY, maxOffsetY);
         selectedImage.transform.position = new Vector3(randomX, randomY, originalPos.z);
 
-        float randomRotation = Random.Range(-20f, 20f);
+        float randomRotation = Random.Range(-35f, 35f);
         selectedImage.transform.rotation = Quaternion.Euler(0, 0, randomRotation);
 
         selectedImage.SetActive(true);
