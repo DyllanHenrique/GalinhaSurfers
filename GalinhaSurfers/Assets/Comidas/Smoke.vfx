@@ -17,10 +17,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 729
-    y: -428
-    width: 636
-    height: 2060
+    x: 941
+    y: -224
+    width: 424
+    height: 1856
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1097,7 +1097,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.6
+      m_SerializableObject: 0.4
     m_Space: 2147483647
   m_Property:
     name: B
@@ -1195,7 +1195,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Position, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"position":{"x":-0.5,"y":-0.5,"z":-0.5}}'
+      m_SerializableObject: '{"position":{"x":-0.6000000238418579,"y":-0.6000000238418579,"z":-0.6000000238418579}}'
     m_Space: 0
   m_Property:
     name: A
@@ -1365,7 +1365,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Position, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"position":{"x":0.5,"y":0.5,"z":0.5}}'
+      m_SerializableObject: '{"position":{"x":0.6000000238418579,"y":0.6000000238418579,"z":0.6000000238418579}}'
     m_Space: 0
   m_Property:
     name: B

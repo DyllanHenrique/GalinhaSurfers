@@ -22,12 +22,19 @@ public class Pontos : MonoBehaviour
     public float pimentaIncremento;
     public float cookieIncremento;
     public float escorpiaoIncremento;
-    // Update is called once per frame
+
+    //Morte
     public GameObject Frangao;
     public GameObject GALIN;
+    public ParticleSystem penasPartic;
+    public GameObject smokeObject;
+
     void Start()
 
     {
+        penasPartic.Stop();
+        smokeObject.SetActive(false);
+
         StartCoroutine(Perai());
     }
     private IEnumerator Perai()
@@ -61,6 +68,10 @@ public class Pontos : MonoBehaviour
     public IEnumerator ParandoTudo()
     {
         morrendo = true;
+
+        penasPartic.Play();
+        smokeObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         GALIN.SetActive(false);
         Frangao.SetActive(true);
 
