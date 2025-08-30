@@ -490,8 +490,11 @@ MonoBehaviour:
   pimentaIncremento: 0
   cookieIncremento: 0
   escorpiaoIncremento: 0
+  AudMorte: {fileID: 0}
   Frangao: {fileID: 0}
   GALIN: {fileID: 0}
+  penasPartic: {fileID: 0}
+  smokeObject: {fileID: 0}
 --- !u!4 &181140516
 Transform:
   m_ObjectHideFlags: 0
@@ -1917,37 +1920,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &490946044
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 490946045}
-  m_Layer: 0
-  m_Name: oi
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &490946045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490946044}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.59243, y: -33.668133, z: 54.44022}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &503964272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,19 +2827,19 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1789035221}
   m_FillRect: {fileID: 1832584690}
-  m_HandleRect: {fileID: 0}
+  m_HandleRect: {fileID: 1789035220}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1165193104}
-        m_TargetAssemblyTypeName: SoundMixerNugget, Assembly-CSharp
+      - m_Target: {fileID: 1958040580}
+        m_TargetAssemblyTypeName: SoundMixerLoby, Assembly-CSharp
         m_MethodName: SetFXVolume
         m_Mode: 0
         m_Arguments:
@@ -2957,19 +2929,19 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 714623674}
   m_FillRect: {fileID: 923371608}
-  m_HandleRect: {fileID: 0}
+  m_HandleRect: {fileID: 714623673}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1165193104}
-        m_TargetAssemblyTypeName: SoundMixerNugget, Assembly-CSharp
+      - m_Target: {fileID: 1958040580}
+        m_TargetAssemblyTypeName: SoundMixerLoby, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
@@ -4207,19 +4179,19 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2139573859}
   m_FillRect: {fileID: 697451057}
-  m_HandleRect: {fileID: 0}
+  m_HandleRect: {fileID: 2139573858}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1165193104}
-        m_TargetAssemblyTypeName: SoundMixerNugget, Assembly-CSharp
+      - m_Target: {fileID: 1958040580}
+        m_TargetAssemblyTypeName: SoundMixerLoby, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 0
         m_Arguments:
@@ -14359,6 +14331,57 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1958040577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1958040579}
+  - component: {fileID: 1958040580}
+  m_Layer: 0
+  m_Name: SoundMixerLoby
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1958040579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958040577}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 948.32996, y: 552.81537, z: -0.21290417}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1958040580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958040577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c721ab780bfde74799184c4f2a741b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: f9e9c9df4f59f6e4ebb0e77a5bb4f6b5, type: 2}
+  sliderMusic: {fileID: 606220823}
+  sliderFx: {fileID: 596825406}
+  sliderMaster: {fileID: 751946023}
+  sliderValue1: 0
+  sliderValue2: 0
+  sliderValue3: 0
 --- !u!1 &1996334188
 GameObject:
   m_ObjectHideFlags: 0
@@ -19764,4 +19787,4 @@ SceneRoots:
   - {fileID: 1392641421}
   - {fileID: 1476562862}
   - {fileID: 2041224510}
-  - {fileID: 490946045}
+  - {fileID: 1958040579}
