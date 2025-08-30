@@ -117,13 +117,14 @@ public class LobbyManager : MonoBehaviour
         smokeObject.SetActive(true);
 
         penasPartic.Play();
-
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Galinha_MasComProfundidade");
+        asyncLoad.allowSceneActivation = false; 
         yield return new WaitForSeconds(0.2f);
 
         animatorGalinha.Play("Idle");
 
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Galinha_MasComProfundidade");
+        asyncLoad.allowSceneActivation = true;
     }
 
     //OptionsMenu
