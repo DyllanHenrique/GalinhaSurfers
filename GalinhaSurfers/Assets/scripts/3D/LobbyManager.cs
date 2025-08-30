@@ -115,7 +115,7 @@ public class LobbyManager : MonoBehaviour
 
         animatorGalinha.Play("Idle");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Galinha_MasComProfundidade");
     }
 
