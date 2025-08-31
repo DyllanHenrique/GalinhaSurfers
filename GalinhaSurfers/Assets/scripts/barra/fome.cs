@@ -70,9 +70,7 @@ public class fome : MonoBehaviour
     public RectTransform meioContorno; // objeto que vai ser escalonado
     public float alturaMaxMeio = 433f;
     public float alturaMinMeio = 80f;
-    private float posYOriginalPimenta;
     float valorMaxFomeBase = 925.5f;
-    private float yInicialDentroPai;
     private Coroutine cogumeloCoroutine;
 
     public void Start()
@@ -81,16 +79,16 @@ public class fome : MonoBehaviour
         materialOriginal = personagemRenderer.material;
 
         // Fome
-        alturaInicialFome = barraFome.sizeDelta.y;
+        alturaInicialFome = valorMaxFomeBase;
         valorMaxInicialFome = alturaInicialFome;
         valorMaxFome = valorMaxInicialFome;
         valorAtualFome = valorMaxFome;
 
-        // Pimenta
+        // Pimenta 
         barraPimenta.gameObject.SetActive(false);
         pimentaAtiva = false;
-        yInicialDentroPai = barraPimenta.anchoredPosition.y;
         StartCoroutine(Perai());
+
     }
 
     private IEnumerator Perai()
@@ -104,7 +102,11 @@ public class fome : MonoBehaviour
         if (!taLiberado) return;
 
         if (Input.GetKeyDown(KeyCode.E))
+            AtivarCogumeloMal();
+        if (Input.GetKeyDown(KeyCode.W))
             AtivarPimenta();
+        if (Input.GetKeyDown(KeyCode.Q))
+            AtivarCookie();
 
         AtualizarFome();
         AtualizarTopoFome();
@@ -136,59 +138,50 @@ public class fome : MonoBehaviour
     void AtualizarPimenta()
     {
         if (!pimentaAtiva) return;
-
-        // 1️⃣ Reduz pimenta
+        // Redu  o da pimenta
         float velPimenta = valorMaxPimenta / duracaoPimenta;
         valorAtualPimenta -= velPimenta * Time.deltaTime;
         valorAtualPimenta = Mathf.Clamp(valorAtualPimenta, 0, valorMaxPimenta);
-
-        // 2️⃣ Altura proporcional da barra (pivot topo)
-        float fatorAltura = valorAtualPimenta / valorMaxPimenta;
-        float alturaBase = valorMaxPimenta * (462.3f / 925.5f); // 462.3 = topo original relativo ao canvas
-        float alturaAtual = alturaBase * fatorAltura;
-        barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaAtual);
-
-        // 3️⃣ Mantém o topo fixo relativo ao Canvas
-        float topoDesejadoCanvas = 462.3f; // Y no Canvas que queremos manter fixo
-        barraPimenta.anchoredPosition = new Vector2(
-            barraPimenta.anchoredPosition.x,
-            topoDesejadoCanvas - alturaAtual * (1 - barraPimenta.pivot.y)
-        );
-
-        Debug.Log("[AtualizarPimenta] alturaAtual: " + alturaAtual +
-                  " | anchoredPosition.y: " + barraPimenta.anchoredPosition.y);
-
-        // 4️⃣ Desativa pimenta quando acabar
+        // Atualiza altura da barra da pimenta 
+        float alturaPimenta = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
+        float porcentagemPimenta = valorAtualPimenta / valorMaxPimenta;
+        barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta * porcentagemPimenta);
+        //Debug.Log($"[PIMENTA] Max: {valorMaxPimenta:F2} | Atual: {valorAtualPimenta:F2}");
         if (valorAtualPimenta <= 0f)
         {
             pimentaAtiva = false;
             barraPimenta.gameObject.SetActive(false);
-
             valorMaxFome = valorMaxFomeAntesPimenta;
             valorMaxFome += debitoPimenta * (1 / tamanhoPimenta);
             debitoPimenta = 0f;
-
+            if (valorMaxFome >= 1000) valorMaxFome = 1000;
+            if (valorMaxFome <= 0) valorMaxFome = 0;
             scriptPontuacao.pimentaMenosSpeed();
         }
+
     }
 
     void AtualizarPosicaoPimenta()
     {
-        if (!pimentaAtiva) return;
+        // Limites de Y da barra de pimenta no Canvas
+        float Y_max = 445.3f;   // quando Max Fome = 925.5
+        float Y_min = -479.3f;  // limite inferior do Canvas (ou quando Max Fome = 0)
 
-        // 1️⃣ Altura proporcional à pimenta
-        float alturaPimenta = valorMaxPimenta * (462.3f / 925.5f);
-        float porcentagemPimenta = valorAtualPimenta / valorMaxPimenta;
-        barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta * porcentagemPimenta);
+        // Limite de referência para Max Fome
+        float MaxFomeRef = 925.5f;
+        float MinFomeRef = 0f;  // limite mínimo que você quer considerar
 
-        // 2️⃣ Topo fixo dentro do pai
-        float topoPai = 462.3f; // topo dentro do pai
-        barraPimenta.anchoredPosition = new Vector2(
-            barraPimenta.anchoredPosition.x,
-            topoPai - barraPimenta.sizeDelta.y
-        );
+        // Calcula posição proporcional
+        float posY = Y_min + (Y_max - Y_min) * (valorMaxFomeAntesPimenta - MinFomeRef) / (MaxFomeRef - MinFomeRef);
 
-        Debug.Log("[AtualizarPosicaoPimenta] anchoredPosition.y: " + barraPimenta.anchoredPosition.y);
+        // Limita para não ultrapassar o Canvas
+        posY = Mathf.Clamp(posY, Y_min, Y_max);
+
+        // Aplica posição
+        Vector3 posPimenta = barraPimenta.localPosition;
+        posPimenta.y = posY;
+        barraPimenta.localPosition = posPimenta;
+
     }
 
     void AtualizarCookie()
@@ -233,25 +226,43 @@ public class fome : MonoBehaviour
     public void AtivarPimenta()
     {
         pimentaAtiva = true;
-        ComidasSons.clip = pimentaSom;
-        ComidasSons.Play();
 
         if (!barraPimenta.gameObject.activeSelf)
             barraPimenta.gameObject.SetActive(true);
 
-        if (valorAtualPimenta <= 0f)
+        if (valorAtualPimenta != 0f)
+        {
+            // Resetar o tamanho e duração da pimenta
+            valorAtualPimenta = valorMaxPimenta;
+
+            float alturaPimenta2 = alturaInicialFome * (valorMaxPimenta / valorMaxInicialFome);
+            barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta2);
+        }
+        else
         {
             scriptPontuacao.pimentaSpeed();
             valorMaxFomeAntesPimenta = valorMaxFome;
+
             valorMaxPimenta = valorMaxFomeAntesPimenta * tamanhoPimenta;
             valorAtualPimenta = valorMaxPimenta;
+
             valorMaxFome -= valorMaxPimenta;
+
+            float alturaPimenta;
+            if (Mathf.Approximately(valorMaxFomeAntesPimenta, 925.5f))
+            {
+                alturaPimenta = 445.3f;
+            }
+            else
+            {
+                // Ajusta proporcionalmente para outros valores de maxFome
+                alturaPimenta = 445.3f * (valorMaxFomeAntesPimenta / 925.5f);
+            }
+
+            barraPimenta.sizeDelta = new Vector2(barraPimenta.sizeDelta.x, alturaPimenta);
+            AtualizarPosicaoPimenta();
         }
-
-        // Atualiza altura e posição imediatamente
-        AtualizarPimenta();
     }
-
     public void AtivarCookie()
     {
         bFome.material = materialRainbow;
@@ -271,6 +282,7 @@ public class fome : MonoBehaviour
         CMAtivo = true;
         tempoRestanteCM = duracaoCM;
         valorMaxFome = valorMaxFome / 2;
+
     }
 
     public void AtivarEscorpiaoLentidao()
