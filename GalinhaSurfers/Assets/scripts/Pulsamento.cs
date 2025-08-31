@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Autodesk.Fbx;
 using UnityEngine;
 
 public class Pulsamento : MonoBehaviour
