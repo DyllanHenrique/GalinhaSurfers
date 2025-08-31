@@ -71,7 +71,7 @@ public class fome : MonoBehaviour
     public RectTransform meioContorno; // objeto que vai ser escalonado
     public float alturaMaxMeio = 433f;
     public float alturaMinMeio = 80f;
-
+    private float posYOriginalPimenta;
     float valorMaxFomeBase = 925.5f;
 
     public void Start()
@@ -88,7 +88,7 @@ public class fome : MonoBehaviour
         // Pimenta
         barraPimenta.gameObject.SetActive(false);
         pimentaAtiva = false;
-
+        posYOriginalPimenta = barraPimenta.localPosition.y;
         StartCoroutine(Perai());
     }
 
@@ -162,17 +162,23 @@ public class fome : MonoBehaviour
 
     void AtualizarPosicaoPimenta()
     {
-        float topoMinY = -245f;
-        float topoMaxY = 462.3f;
+        if (!pimentaAtiva) return;
+
+        // Posição original da pimenta quando maxFomeBase = 925.5
+        float posTopo = posYOriginalPimenta;
+
+        // Calcula a posição proporcional usando regra de 3
+        // Se valorMaxFomeBase = 925.5 -> posY = posTopo
+        // Se valorMaxFomeBase = 230 -> posY = posTopo - deslocamento mínimo
         float minFome = 230f;
         float maxFome = 925.5f;
+        float posMin = posTopo - (posTopo - (-posYOriginalPimenta)); // ajuste conforme o limite mínimo desejado
+        float posY = posMin + (valorMaxFomeBase - minFome) * (posTopo - posMin) / (maxFome - minFome);
 
-        float t = Mathf.InverseLerp(minFome, maxFome, valorMaxFomeBase);
-        float posY = Mathf.Lerp(topoMinY, topoMaxY, t);
-
-        Vector3 posPimenta = barraPimenta.localPosition;
-        posPimenta.y = posY;
-        barraPimenta.localPosition = posPimenta;
+        // Aplica posição
+        Vector3 pos = barraPimenta.localPosition;
+        pos.y = posY;
+        barraPimenta.localPosition = pos;
     }
 
     void AtualizarCookie()
