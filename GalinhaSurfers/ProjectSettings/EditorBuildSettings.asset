@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Galinha_MasComProfundidade.unity
     guid: eef01d9b1fe74a74bbf44d2ac53dd908
+  - enabled: 1
+    path: Assets/Scenes/Creditos.unity
+    guid: 5062a3ea0c006234da033a563307d435
   m_configObjects: {}
