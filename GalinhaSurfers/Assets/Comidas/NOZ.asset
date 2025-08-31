@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NOZ
   m_EditorClassIdentifier: Assembly-CSharp::comidaConfiig
   nomeComida: NOZ
-  cliquesParaComer: 15
+  cliquesParaComer: 10
   valorFome: 500
-  valorMaxFome: 0
+  valorMaxFome: 200
   temPoder: 0

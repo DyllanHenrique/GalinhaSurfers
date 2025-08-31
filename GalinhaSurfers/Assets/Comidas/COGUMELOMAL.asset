@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: COGUMELOMAL
   m_EditorClassIdentifier: 
   nomeComida: COGUMELOMAL
-  cliquesParaComer: 2
-  valorFome: 0
-  valorMaxFome: 0
+  cliquesParaComer: 3
+  valorFome: 150
+  valorMaxFome: -100
   temPoder: 1

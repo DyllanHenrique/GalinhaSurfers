@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::comidaConfiig
   nomeComida: PILULA
   cliquesParaComer: 3
-  valorFome: 0
-  valorMaxFome: 0
+  valorFome: 3
+  valorMaxFome: 3
   temPoder: 1

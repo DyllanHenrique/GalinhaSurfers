@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ESCORPIAO
   m_EditorClassIdentifier: 
   nomeComida: ESCORPIAO
-  cliquesParaComer: 2
-  valorFome: 32
-  valorMaxFome: 6
+  cliquesParaComer: 1
+  valorFome: 175
+  valorMaxFome: -25
   temPoder: 1

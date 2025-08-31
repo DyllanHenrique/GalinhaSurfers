@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomeComida: MIRTILO
   cliquesParaComer: 2
-  valorFome: 50
-  valorMaxFome: 50
+  valorFome: 100
+  valorMaxFome: 20
   temPoder: 0

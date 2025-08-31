@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomeComida: COGUMELOMALUCO
   cliquesParaComer: 1
-  valorFome: 0
+  valorFome: 120
   valorMaxFome: 0
   temPoder: 1
