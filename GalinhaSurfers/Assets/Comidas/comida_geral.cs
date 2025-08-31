@@ -15,6 +15,7 @@ public class comida_geral : MonoBehaviour
     private Coroutine desacelerando = null;
     private void Start()
     {
+        morreu = false;
         cliquesRestantes = config != null ? config.cliquesParaComer : 1;
 
         if (Fome == null)

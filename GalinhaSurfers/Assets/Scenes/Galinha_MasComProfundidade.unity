@@ -2225,7 +2225,10 @@ MonoBehaviour:
   - 12
   - 8
   QntdSpawnSorteado: 0
-  spawns: []
+  spawns:
+  - {fileID: 578610242}
+  - {fileID: 2114786268}
+  - {fileID: 391134836}
   IntervaloSpawn: 3
   pontosdacena: {fileID: 181140515}
   morreu: 0
