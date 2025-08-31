@@ -66,10 +66,6 @@ public class fome : MonoBehaviour
     public TMP_Text ScoreSombra;
     public SpawnScript spwanScript;
     public AudioSource MscHighScore;
-
-    public RectTransform meioContorno; // objeto que vai ser escalonado
-    public float alturaMaxMeio = 433f;
-    public float alturaMinMeio = 80f;
     float valorMaxFomeBase = 925.5f;
     private Coroutine cogumeloCoroutine;
 
@@ -101,16 +97,9 @@ public class fome : MonoBehaviour
     {
         if (!taLiberado) return;
 
-        if (Input.GetKeyDown(KeyCode.E))
-            AtivarCogumeloMal();
-        if (Input.GetKeyDown(KeyCode.W))
-            AtivarPimenta();
-        if (Input.GetKeyDown(KeyCode.Q))
-            AtivarCookie();
+
 
         AtualizarFome();
-        AtualizarTopoFome();
-        AtualizarMeioContorno();
         AtualizarPimenta();
         AtualizarCookie();
         AtualizarEscorpion();
@@ -225,8 +214,10 @@ public class fome : MonoBehaviour
 
     public void AtivarPimenta()
     {
-        pimentaAtiva = true;
 
+        pimentaAtiva = true;
+        ComidasSons.clip = pimentaSom;
+        ComidasSons.Play();
         if (!barraPimenta.gameObject.activeSelf)
             barraPimenta.gameObject.SetActive(true);
 
@@ -410,51 +401,5 @@ public class fome : MonoBehaviour
             MscHighScore.Play();
             HighScore.SetActive(true);
         }
-    }
-
-    void AtualizarMeioContorno()
-    {
-        float minFome = 230f;
-        float maxFome = 925.5f;
-        float novaAltura;
-
-        float valorParaCalculo = Mathf.Clamp(valorMaxFomeBase, minFome, maxFome);
-
-        if (valorParaCalculo <= minFome)
-            novaAltura = alturaMinMeio;
-        else if (valorParaCalculo >= maxFome)
-            novaAltura = alturaMaxMeio;
-        else
-            novaAltura = alturaMinMeio + (valorParaCalculo - minFome) * (alturaMaxMeio - alturaMinMeio) / (maxFome - minFome);
-
-        Vector2 size = meioContorno.sizeDelta;
-        size.y = novaAltura;
-        meioContorno.sizeDelta = size;
-    }
-
-    void AtualizarTopoFome()
-    {
-        float topoMinY = -245f;
-        float topoMaxY = 446.3f;
-        float minFome = 230f;
-        float maxFome = 925.5f;
-        float ajusteVisual = 14f;
-
-        float valorParaCalculo = Mathf.Clamp(valorMaxFomeBase, minFome, maxFome);
-        float posY;
-
-        if (valorParaCalculo <= minFome)
-            posY = topoMinY;
-        else if (valorParaCalculo >= maxFome)
-            posY = topoMaxY;
-        else
-        {
-            posY = topoMinY + (valorParaCalculo - minFome) * (topoMaxY - topoMinY) / (maxFome - minFome);
-            posY -= ajusteVisual;
-        }
-
-        Vector3 pos = topoFome.localPosition;
-        pos.y = posY;
-        topoFome.localPosition = pos;
     }
 }
