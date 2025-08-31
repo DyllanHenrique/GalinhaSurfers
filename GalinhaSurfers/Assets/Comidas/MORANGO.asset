@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MORANGO
   m_EditorClassIdentifier: 
   nomeComida: MORANGO
-  cliquesParaComer: 3
-  valorFome: 10
-  valorMaxFome: -10
+  cliquesParaComer: 4
+  valorFome: 150
+  valorMaxFome: 50
   temPoder: 0

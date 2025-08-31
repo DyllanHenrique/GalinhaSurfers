@@ -59,7 +59,7 @@ public class Pontos : MonoBehaviour
                     AumentarVelocidadeMetros();
                     if (distanciaPercorrida <= 600f)
                     {
-                        Aumento += 150;
+                        Aumento += 75;
                     }
                     else if (distanciaPercorrida <= 1800f)
                     {

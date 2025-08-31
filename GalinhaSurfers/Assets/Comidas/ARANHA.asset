@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ARANHA
   m_EditorClassIdentifier: 
   nomeComida: ARANHA
-  cliquesParaComer: 1
-  valorFome: 0
+  cliquesParaComer: 3
+  valorFome: 100
   valorMaxFome: 0
   temPoder: 0
