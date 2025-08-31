@@ -5,48 +5,46 @@ using UnityEngine;
 public class CharacterSelection : MonoBehaviour
 {
     public GameObject[] Characters;
+    public GameObject[] Infos;
     public int Number;
 
     void Start()
     {
-        // Garante que só o personagem selecionado esteja ativo
-        for (int i = 0; i < Characters.Length; i++)
-        {
-            if (Characters[i] != null)
-            {
-                Characters[i].SetActive(i == Number); // Ativa apenas o selecionado
-
-                Animator anim = Characters[i].GetComponent<Animator>();
-                if (anim != null && i == Number)
-                {
-                    anim.Play("Idle"); // inicia Idle apenas no personagem ativo
-                }
-            }
-        }
+        UpdateSelection();
     }
 
     public void ChangeCharacter(int Num)
     {
-        for (int i = 0; i < Characters.Length; i++)
-        {
-            if (Characters[i] != null)
-                Characters[i].SetActive(false);
-        }
-
+        // Atualiza o número do personagem
         Number += Num;
-
         if (Number >= Characters.Length)
             Number = 0;
         if (Number < 0)
             Number = Characters.Length - 1;
 
-        if (Characters[Number] != null)
+        UpdateSelection();
+    }
+
+    void UpdateSelection()
+    {
+        for (int i = 0; i < Characters.Length; i++)
         {
-            Characters[Number].SetActive(true);
-            Animator anim = Characters[Number].GetComponent<Animator>();
-            if (anim != null)
+            bool isActive = (i == Number);
+
+            // Ativa/desativa personagens
+            if (Characters[i] != null)
+                Characters[i].SetActive(isActive);
+
+            // Ativa/desativa infos
+            if (Infos[i] != null)
+                Infos[i].SetActive(isActive);
+
+            // Toca animação Idle apenas no personagem ativo
+            if (isActive && Characters[i] != null)
             {
-                anim.Play("Idle");
+                Animator anim = Characters[i].GetComponent<Animator>();
+                if (anim != null)
+                    anim.Play("Idle");
             }
         }
     }

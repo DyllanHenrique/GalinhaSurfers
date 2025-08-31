@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1523055544e58d4197864f8e0976e6a
+guid: aa6e84a5d0b0f9946b2c537f2abcd5b3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: itch-io-icon-lg_0
+      name: vecteezy_linkedin-logo-png-linkedin-icon-transparent-png_18930585_835-1536x1536_0
       rect:
         serializedVersion: 2
-        x: 175
-        y: 200
-        width: 933
-        height: 884
+        x: 307
+        y: 307
+        width: 922
+        height: 922
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0209bd60941d814c8d577b6d022253d
-      internalID: -1479949859
+      spriteID: bb48b1a55f4bd804e98656529500a467
+      internalID: 1707552565
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      itch-io-icon-lg_0: -1479949859
+      vecteezy_linkedin-logo-png-linkedin-icon-transparent-png_18930585_835-1536x1536_0: 1707552565
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
